@@ -1,0 +1,76 @@
+<!-- calculator.component.html -->
+<div>
+    <h2>Calculator</h2>
+    <form ng-submit="calculate()">
+        <h3>Transportation Habits</h3>
+        <label for="vehicleType">Vehicle Type:</label>
+        <select id="vehicleType" ng-model="vehicleType">
+            <option value="car">Car</option>
+            <option value="van">Van</option>
+            <option value="truck">Truck</option>
+        </select>
+        <br>
+        <label for="vehicleUsage">Vehicle Usage (miles/year):</label>
+        <input type="number" id="vehicleUsage" ng-model="vehicleUsage" placeholder="Enter miles/year">
+        <br>
+        <label for="publicTransportation">Public Transportation (miles/year):</label>
+        <input type="number" id="publicTransportation" ng-model="publicTransportation" placeholder="Enter miles/year">
+
+        <h3>Dietary Choices</h3>
+        <label for="dietType">Dietary Preference:</label>
+        <select id="dietType" ng-model="dietType">
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="meatBased">Meat-Based</option>
+        </select>
+
+        <h3>Household Information</h3>
+        <label for="numPeople">Number of People in Household:</label>
+        <input type="number" id="numPeople" ng-model="numPeople" placeholder="Enter number of people">
+        <br>
+        <label for="waterScarcity">Water Scarcity Level:</label>
+        <select id="waterScarcity" ng-model="waterScarcity">
+            <option value="low">Low</option>
+            <option value="moderate">Moderate</option>
+            <option value="high">High</option>
+        </select>
+
+        <h3>Daily Water Usage</h3>
+        <label for="showersPerDay">Number of Showers per Day:</label>
+        <input type="number" id="showersPerDay" ng-model="showersPerDay" placeholder="Enter number of showers">
+        <br>
+        <label for="flushesPerDay">Number of Flushes per Day:</label>
+        <input type="number" id="flushesPerDay" ng-model="flushesPerDay" placeholder="Enter number of flushes">
+        <br>
+        <label for="dishesPerDay">Number of Dishes Washed per Day:</label>
+        <input type="number" id="dishesPerDay" ng-model="dishesPerDay" placeholder="Enter number of dishes washed">
+
+        <h3>Energy Consumption</h3>
+        <label for="energySources">Energy Sources:</label>
+        <input type="text" id="energySources" ng-model="energySources" placeholder="Enter energy sources">
+        <br>
+        <label for="livingSpaceSize">Living Space Size (sq. ft.):</label>
+        <input type="number" id="livingSpaceSize" ng-model="livingSpaceSize" placeholder="Enter living space size">
+        <br>
+        <label for="applianceEfficiency">Appliance Efficiency:</label>
+        <input type="text" id="applianceEfficiency" ng-model="applianceEfficiency" placeholder="Enter appliance efficiency ratings">
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <div ng-if="totalEmissions || totalWaterUsage || totalEnergyConsumption">
+        <h3>Total Carbon Emissions</h3>
+        <p>{{ totalEmissions }} kgCO2e per year</p>
+
+        <h3>Total Water Usage</h3>
+        <p>{{ totalWaterUsage }} gallons per year</p>
+
+        <h3>Total Energy Consumption</h3>
+        <p>{{ totalEnergyConsumption }} kWh per year</p>
+
+        <h3>Recommendations</h3>
+        <ul>
+            <li ng-repeat="recommendation in recommendations">{{ recommendation }}</li>
+        </ul>
+    </div>
+</div>

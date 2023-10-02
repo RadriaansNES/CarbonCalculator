@@ -3,17 +3,38 @@
 angular.module('myApp', ['ui.router'])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'Components/Home/home.component.html',
-        controller: 'HomeController'
+      .state('layout', {
+        abstract: true, // Layout State
+        templateUrl: 'Components/Layout/layout.html', 
       })
-      .state('login', {
-        url: '/login',
-        templateUrl: 'Components/Login/login.component.html',
-        controller: 'LoginController'
+      .state('layout.home', {
+        url: '/', 
+        views: {
+          '': {
+            templateUrl: 'Components/Home/home.component.html',
+            controller: 'HomeController'
+          }
+        }
+      })
+      .state('layout.login', {
+        url: '/login', 
+        views: {
+          '': {
+            templateUrl: 'Components/Login/login.component.html', 
+            controller: 'LoginController'
+          }
+        }
+      })
+      .state('layout.calculator', {
+        url: '/', 
+        views: {
+          '': {
+            templateUrl: 'Components/Calc/calculator.component.html', 
+            controller: 'CalculatorController'
+          }
+        }
       });
 
-    // Default route (redirect to home)
+    // Default route 
     $urlRouterProvider.otherwise('/');
   });
