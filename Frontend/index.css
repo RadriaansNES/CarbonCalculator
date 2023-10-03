@@ -241,7 +241,6 @@ body {
 @keyframes fadeIn {
   to {
     opacity: 1;
-    /* At the end of the animation, set opacity to 1 to show the element */
   }
 }
 
