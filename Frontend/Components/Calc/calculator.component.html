@@ -36,37 +36,89 @@
         </select>
 
         <h3>Daily Water Usage</h3>
-        <label for="showersPerDay">Number of Showers per Day:</label>
+        <label for="showersPerDay">Daily Showers Per Person</label>
         <input type="number" id="showersPerDay" ng-model="showersPerDay" placeholder="Enter number of showers">
         <br>
-        <label for="flushesPerDay">Number of Flushes per Day:</label>
+        <label for="flushesPerDay">Daily Flushes Per Person:</label>
         <input type="number" id="flushesPerDay" ng-model="flushesPerDay" placeholder="Enter number of flushes">
         <br>
-        <label for="dishesPerDay">Number of Dishes Washed per Day:</label>
+        <label for="dishesPerDay">Daily Dishes Cleaned Per Person:</label>
         <input type="number" id="dishesPerDay" ng-model="dishesPerDay" placeholder="Enter number of dishes washed">
 
         <h3>Energy Consumption</h3>
-        <label for="energySources">Energy Sources:</label>
-        <input type="text" id="energySources" ng-model="energySources" placeholder="Enter energy sources">
+        <div ng-repeat="source in energySources track by $index">
+            <label for="energySourceType{{$index}}">Energy Source:</label>
+            <select id="energySourceType{{$index}}" ng-model="source.type">
+                <option value="Solar energy">Solar energy</option>
+                <option value="Geothermal energy">Geothermal energy</option>
+                <option value="Wind energy">Wind energy</option>
+                <option value="Biomass from plants">Biomass from plants</option>
+                <option value="Hydropower">Hydropower</option>
+                <option value="Petroleum">Petroleum</option>
+                <option value="Hydrocarbon gas liquids">Hydrocarbon gas liquids</option>
+                <option value="Natural gas">Natural gas</option>
+                <option value="Coal">Coal</option>
+                <option value="Nuclear energy">Nuclear energy</option>
+            </select>
+            <br>
+            <label for="energyUsage{{$index}}">Monthly Energy Usage (kWh):</label>
+            <input type="number" id="energyUsage{{$index}}" ng-model="source.usage"
+                placeholder="Enter monthly energy usage">
+            <button ng-click="removeEnergySource($index)">Remove</button>
+        </div>
+
+        <button ng-click="addEnergySource()">Add Energy Source</button>
+
+        <h3>Waste Emissions</h3>
+        <label for="monthlyGarbageBins">Garbage Bins (monthly):</label>
+        <input type="number" id="monthlyGarbageBins" ng-model="monthlyGarbageBins"
+            placeholder="Enter number of garbage bins monthly">
         <br>
-        <label for="livingSpaceSize">Living Space Size (sq. ft.):</label>
-        <input type="number" id="livingSpaceSize" ng-model="livingSpaceSize" placeholder="Enter living space size">
+        <label for="monthlyRecyclingBins">Recycling Bins (monthly):</label>
+        <input type="number" id="monthlyRecyclingBins" ng-model="monthlyRecyclingBins"
+            placeholder="Enter number of recycling bins monthly">
         <br>
-        <label for="applianceEfficiency">Appliance Efficiency:</label>
-        <input type="text" id="applianceEfficiency" ng-model="applianceEfficiency" placeholder="Enter appliance efficiency ratings">
+        <label for="monthlyCompostBins">Compost Bins (monthly):</label>
+        <input type="number" id="monthlyCompostBins" ng-model="monthlyCompostBins"
+            placeholder="Enter number of compost bins monthly">
+        <br>
+
+        <h3>Vacation Habits</h3>
+        <label for="vehicleTypeVacay">Vehicle Type:</label>
+        <select id="vehicleTypeVacay" ng-model="vehicleTypeVacay">
+            <option value="car">Car</option>
+            <option value="van">Van</option>
+            <option value="truck">Truck</option>
+        </select>
+        <br>
+        <label for="milesDriven">Miles Driven (per year):</label>
+        <input type="number" id="milesDriven" ng-model="milesDriven" placeholder="Enter miles/year for driving">
+        <br>
+        <label for="milesFlown">Miles Flown (per year):</label>
+        <input type="number" id="milesFlown" ng-model="milesFlown" placeholder="Enter miles/year for flights">
+        <br>
 
         <button type="submit">Calculate</button>
     </form>
 
-    <div ng-if="totalEmissions || totalWaterUsage || totalEnergyConsumption">
-        <h3>Total Carbon Emissions</h3>
-        <p>{{ totalEmissions }} kgCO2e per year</p>
+    <div ng-if="totalEmissions || totalWaterUsage || totalEnergyEmissions">
+        <h3>Total Vehicle Emissions</h3>
+        <p>{{ totalVehicleEmissions }} kgCO2e per year</p>
 
-        <h3>Total Water Usage</h3>
-        <p>{{ totalWaterUsage }} gallons per year</p>
+        <h3>Total Dietary Emissions</h3>
+        <p>{{ totalDietaryEmissions }} kgCO2e per year</p>
 
-        <h3>Total Energy Consumption</h3>
-        <p>{{ totalEnergyConsumption }} kWh per year</p>
+        <h3>Total Water Emissions</h3>
+        <p>{{ totalWaterEmission }} kgCO2e per year</p>
+
+        <h3>Total Energy Emissions</h3>
+        <p>{{ totalEnergyEmissions }} kgCO2e per year</p>
+
+        <h3>Total Waste Emissions</h3>
+        <p>{{ totalWasteEmissions }} kgCO2e per year</p>
+
+        <h3>Total Vacation Emissions</h3>
+        <p>{{ totalVacayEmissions }} kgCO2e per year</p>
 
         <h3>Recommendations</h3>
         <ul>
