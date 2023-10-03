@@ -2,5 +2,193 @@
 
 .MainApp {
     display: flex;
-    padding: 60px;
+
+    a,
+    p {
+        text-decoration: none;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-weight: bold;
+    }
+
+    em {
+        margin-bottom: 80px;
+        font-size: 20px;
+        font-weight: bolder;
+    }
+
+    h1 {
+        padding-bottom: 17vh;
+        margin-top: 0;
+        margin-bottom: 0;
+        // ADD QUERY FOR word-break: break-all - for smaller than medium device size
+    }
+
+    #slogan,
+    h1,
+    h2 {
+        text-align: center !important;
+    }
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    margin: 0;
+    padding: 0 5% 0 5%;
+    z-index: 1000;
+    height: 10vh;
+    background-image: url('Src/nav.PNG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+
+    a {
+        color: white !important;
+    }
+
+    .navbar-toggle {
+        background-color: white;
+    }
+
+    .navbar-header {
+        height: 10vh;
+        margin-top: 20px; // will need to adjust for query
+    }
+
+    .navbar-nav {
+        background-color: black;
+        opacity: 1;
+        margin-top: 0;
+        padding: 0 5% 0 5%;
+    }
+
+    #navbar-collapse {
+        margin-top: -20px; //query pair
+        margin-left: -5vw;
+        margin-right: -5vw;
+    }
+
+}
+
+body {
+    padding: 10vh 0 0 0;
+}
+
+.container-fluid {
+
+    .c1 {
+        background-image: url('Src/c1.PNG');
+        background-size: cover;
+        background-position: center;
+        justify-content: center;
+
+        div p {
+            margin-bottom: 17vh;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+    }
+
+    .c2 {
+        background-image: url('Src/c2.PNG');
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    .c3 {
+        background-image: url('Src/c3.PNG');
+        background-size: 100% 100%;
+        background-position: cover;
+    }
+
+    .c4 {
+        background-image: url('Src/c4.PNG');
+        background-size: 100% 100%;
+        background-position: cover;
+    }
+
+    .c5 {
+        background-image: url('Src/c5.PNG');
+        background-size: 100% 100%;
+        background-position: cover;
+    }
+
+    .c6 {
+        background-image: url('Src/c6.PNG');
+        background-size: 100% 100%;
+        background-position: cover;
+    }
+
+    .c7 {
+        background-image: url('Src/c7.PNG');
+        background-size: 100% 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h2 {
+            padding-bottom: 10vh;
+            color: white;
+        }
+
+        button {
+            color: black;
+            height: 50px;
+        }
+    }
+
+
+    .c2,
+    .c3,
+    .c4,
+    .c5,
+    .c6, .c7 {
+
+        h2 {
+            padding-top: 20%;
+        }
+
+        position: relative;
+
+        &::before {
+            content: '';
+            /* Create a pseudo-element for the overlay */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        & * {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+    }
+}
+
+section {
+    height: 90vh;
+    padding: 0 7% 0 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    p {
+        text-align: justify;
+    }
 }

@@ -1,6 +1,173 @@
 .MainApp {
   display: flex;
-  padding: 60px;
+}
+.MainApp a,
+.MainApp p {
+  text-decoration: none;
+}
+.MainApp h2 {
+  margin-top: 0;
+  font-weight: bold;
+}
+.MainApp em {
+  margin-bottom: 80px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.MainApp h1 {
+  padding-bottom: 17vh;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.MainApp #slogan,
+.MainApp h1,
+.MainApp h2 {
+  text-align: center !important;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  padding: 0 5% 0 5%;
+  z-index: 1000;
+  height: 10vh;
+  background-image: url("Src/nav.PNG");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+}
+.navbar a {
+  color: white !important;
+}
+.navbar .navbar-toggle {
+  background-color: white;
+}
+.navbar .navbar-header {
+  height: 10vh;
+  margin-top: 20px;
+}
+.navbar .navbar-nav {
+  background-color: black;
+  opacity: 1;
+  margin-top: 0;
+  padding: 0 5% 0 5%;
+}
+.navbar #navbar-collapse {
+  margin-top: -20px;
+  margin-left: -5vw;
+  margin-right: -5vw;
+}
+
+body {
+  padding: 10vh 0 0 0;
+}
+
+.container-fluid .c1 {
+  background-image: url("Src/c1.PNG");
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+}
+.container-fluid .c1 div p {
+  margin-bottom: 17vh;
+}
+.container-fluid .c1 p {
+  font-weight: bold;
+}
+.container-fluid .c2 {
+  background-image: url("Src/c2.PNG");
+  background-size: 100% 100%;
+  background-position: center;
+}
+.container-fluid .c3 {
+  background-image: url("Src/c3.PNG");
+  background-size: 100% 100%;
+  background-position: cover;
+}
+.container-fluid .c4 {
+  background-image: url("Src/c4.PNG");
+  background-size: 100% 100%;
+  background-position: cover;
+}
+.container-fluid .c5 {
+  background-image: url("Src/c5.PNG");
+  background-size: 100% 100%;
+  background-position: cover;
+}
+.container-fluid .c6 {
+  background-image: url("Src/c6.PNG");
+  background-size: 100% 100%;
+  background-position: cover;
+}
+.container-fluid .c7 {
+  background-image: url("Src/c7.PNG");
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container-fluid .c7 h2 {
+  padding-bottom: 10vh;
+  color: white;
+}
+.container-fluid .c7 button {
+  color: black;
+  height: 50px;
+}
+.container-fluid .c2,
+.container-fluid .c3,
+.container-fluid .c4,
+.container-fluid .c5,
+.container-fluid .c6, .container-fluid .c7 {
+  position: relative;
+}
+.container-fluid .c2 h2,
+.container-fluid .c3 h2,
+.container-fluid .c4 h2,
+.container-fluid .c5 h2,
+.container-fluid .c6 h2, .container-fluid .c7 h2 {
+  padding-top: 20%;
+}
+.container-fluid .c2::before,
+.container-fluid .c3::before,
+.container-fluid .c4::before,
+.container-fluid .c5::before,
+.container-fluid .c6::before, .container-fluid .c7::before {
+  content: "";
+  /* Create a pseudo-element for the overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.container-fluid .c2 *,
+.container-fluid .c3 *,
+.container-fluid .c4 *,
+.container-fluid .c5 *,
+.container-fluid .c6 *, .container-fluid .c7 * {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+
+section {
+  height: 90vh;
+  padding: 0 7% 0 7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+section p {
+  text-align: justify;
 }
 
 /*# sourceMappingURL=index.css.map */

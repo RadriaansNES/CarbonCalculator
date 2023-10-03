@@ -26,7 +26,7 @@ angular.module('myApp', ['ui.router'])
         }
       })
       .state('layout.calculator', {
-        url: '/', 
+        url: '/calculator', 
         views: {
           '': {
             templateUrl: 'Components/Calc/calculator.component.html', 
