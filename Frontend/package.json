@@ -1,6 +1,10 @@
 {
+  "scripts": {
+    "start": "http-server -p $PORT"
+  },
   "dependencies": {
     "angular": "^1.8.3",
     "angular-ui-router": "^1.0.30"
+
   }
 }
