@@ -90,7 +90,7 @@ body {
 }
 .container-fluid .c1 {
   background-image: url("Src/c1.PNG");
-  background-size: cover;
+  background-size: 125% 100%;
   background-position: center;
   justify-content: center;
 }
@@ -142,6 +142,7 @@ body {
   padding-bottom: 10vh;
   color: white;
 }
+.container-fluid .c1,
 .container-fluid .c2,
 .container-fluid .c3,
 .container-fluid .c4,
@@ -150,6 +151,7 @@ body {
 .container-fluid .c7 {
   position: relative;
 }
+.container-fluid .c1 h2,
 .container-fluid .c2 h2,
 .container-fluid .c3 h2,
 .container-fluid .c4 h2,
@@ -158,6 +160,7 @@ body {
 .container-fluid .c7 h2 {
   padding-top: 20%;
 }
+.container-fluid .c1::before,
 .container-fluid .c2::before,
 .container-fluid .c3::before,
 .container-fluid .c4::before,
@@ -173,6 +176,7 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
+.container-fluid .c1 *,
 .container-fluid .c2 *,
 .container-fluid .c3 *,
 .container-fluid .c4 *,
