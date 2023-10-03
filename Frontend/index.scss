@@ -32,11 +32,7 @@
         text-align: center !important;
     }
 }
-
-.container-fluid {
-    padding: 0;
-}
-
+//Nav
 .navbar {
     position: fixed;
     width: 100%;
@@ -78,13 +74,13 @@
     }
 
 }
-
+//Reset
 body {
     padding: 10vh 0 0 0;
 }
-
+//Home
 .container-fluid {
-
+    padding: 0;
     .c1 {
         background-image: url('Src/c1.PNG');
         background-size: cover;
@@ -179,16 +175,26 @@ body {
             color: #fff;
         }
     }
+
+    section {
+        height: 90vh;
+        padding: 0 7% 0 7%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    
+        p {
+            text-align: justify;
+        }
+    }
+
 }
 
-section {
-    height: 90vh;
-    padding: 0 7% 0 7%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+//Calc
 
-    p {
-        text-align: justify;
+#calc {
+    padding: 0 7% 0 7%;
+    h2 {
+        padding: 3vh;
     }
 }
