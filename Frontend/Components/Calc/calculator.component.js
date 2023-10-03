@@ -57,7 +57,7 @@ function CalculatorController($scope) {
         'Biomass from plants': 0.05,
         'Hydropower': 0.04,
         'Petroleum': 0.2,
-        'Hydrocarbon gas liquids': 0.15,
+        'Hydrocarbons': 0.15,
         'Natural gas': 0.17,
         'Coal': 0.3,
         'Nuclear energy': 0.01,

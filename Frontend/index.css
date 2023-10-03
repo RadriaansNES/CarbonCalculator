@@ -15,7 +15,7 @@
   font-weight: bolder;
 }
 .MainApp h1 {
-  padding-bottom: 17vh;
+  padding-bottom: 16vh;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -23,6 +23,11 @@
 .MainApp h1,
 .MainApp h2 {
   text-align: center !important;
+}
+.MainApp .bigBut {
+  color: black !important;
+  height: 50px;
+  min-width: 100%;
 }
 
 .navbar {
@@ -65,6 +70,21 @@ body {
   padding: 10vh 0 0 0;
 }
 
+#slogan {
+  font-size: 24px;
+  font-weight: bold;
+  overflow: hidden;
+  animation: handwriting 1s steps(40) forwards;
+}
+
+@keyframes handwriting {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
 .container-fluid {
   padding: 0;
 }
@@ -75,7 +95,7 @@ body {
   justify-content: center;
 }
 .container-fluid .c1 div p {
-  margin-bottom: 17vh;
+  margin-bottom: 16vh;
 }
 .container-fluid .c1 p {
   font-weight: bold;
@@ -84,26 +104,31 @@ body {
   background-image: url("Src/c2.PNG");
   background-size: 100% 100%;
   background-position: center;
+  background-attachment: fixed;
 }
 .container-fluid .c3 {
   background-image: url("Src/c3.PNG");
   background-size: 100% 100%;
   background-position: cover;
+  background-attachment: fixed;
 }
 .container-fluid .c4 {
   background-image: url("Src/c4.PNG");
   background-size: 100% 100%;
   background-position: cover;
+  background-attachment: fixed;
 }
 .container-fluid .c5 {
   background-image: url("Src/c5.PNG");
   background-size: 100% 100%;
   background-position: cover;
+  background-attachment: fixed;
 }
 .container-fluid .c6 {
   background-image: url("Src/c6.PNG");
   background-size: 100% 100%;
   background-position: cover;
+  background-attachment: fixed;
 }
 .container-fluid .c7 {
   background-image: url("Src/c7.PNG");
@@ -111,34 +136,34 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-attachment: fixed;
 }
 .container-fluid .c7 h2 {
   padding-bottom: 10vh;
   color: white;
 }
-.container-fluid .c7 button {
-  color: black;
-  height: 50px;
-}
 .container-fluid .c2,
 .container-fluid .c3,
 .container-fluid .c4,
 .container-fluid .c5,
-.container-fluid .c6, .container-fluid .c7 {
+.container-fluid .c6,
+.container-fluid .c7 {
   position: relative;
 }
 .container-fluid .c2 h2,
 .container-fluid .c3 h2,
 .container-fluid .c4 h2,
 .container-fluid .c5 h2,
-.container-fluid .c6 h2, .container-fluid .c7 h2 {
+.container-fluid .c6 h2,
+.container-fluid .c7 h2 {
   padding-top: 20%;
 }
 .container-fluid .c2::before,
 .container-fluid .c3::before,
 .container-fluid .c4::before,
 .container-fluid .c5::before,
-.container-fluid .c6::before, .container-fluid .c7::before {
+.container-fluid .c6::before,
+.container-fluid .c7::before {
   content: "";
   /* Create a pseudo-element for the overlay */
   position: absolute;
@@ -152,10 +177,17 @@ body {
 .container-fluid .c3 *,
 .container-fluid .c4 *,
 .container-fluid .c5 *,
-.container-fluid .c6 *, .container-fluid .c7 * {
+.container-fluid .c6 *,
+.container-fluid .c7 * {
   position: relative;
   z-index: 1;
   color: #fff;
+}
+.container-fluid .c2 h2,
+.container-fluid .c2 div p {
+  /* Initial position for text */
+  animation-duration: 1.5s;
+  animation-name: slideleft;
 }
 .container-fluid section {
   height: 90vh;
@@ -168,11 +200,49 @@ body {
   text-align: justify;
 }
 
-#calc {
-  padding: 0 7% 0 7%;
+@keyframes slideleft {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
-#calc h2 {
-  padding: 3vh;
+#calc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 7% 0 7%;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+#calc #calcHead {
+  padding: 3vh 0;
+  text-align: center;
+  font-weight: bold;
+}
+#calc h3 {
+  padding: 0 0 2vh 0;
+  margin: 0;
+}
+#calc div {
+  margin-bottom: 6vh;
+}
+#calc label,
+#calc input {
+  width: 100%;
+}
+#calc select {
+  min-width: 50%;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    /* At the end of the animation, set opacity to 1 to show the element */
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

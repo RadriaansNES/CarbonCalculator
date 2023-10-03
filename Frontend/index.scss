@@ -20,7 +20,7 @@
     }
 
     h1 {
-        padding-bottom: 17vh;
+        padding-bottom: 16vh;
         margin-top: 0;
         margin-bottom: 0;
         // ADD QUERY FOR word-break: break-all - for smaller than medium device size
@@ -31,7 +31,14 @@
     h2 {
         text-align: center !important;
     }
+
+    .bigBut {
+        color: black !important;
+        height: 50px;
+        min-width: 100%;
+    }
 }
+
 //Nav
 .navbar {
     position: fixed;
@@ -57,7 +64,7 @@
 
     .navbar-header {
         height: 10vh;
-        margin-top: 2.25vh; 
+        margin-top: 2.25vh;
     }
 
     .navbar-nav {
@@ -74,13 +81,34 @@
     }
 
 }
+
 //Reset
 body {
     padding: 10vh 0 0 0;
 }
+
 //Home
+
+#slogan {
+    font-size: 24px;
+    font-weight: bold;
+    overflow: hidden;
+    animation: handwriting 1s steps(40) forwards;
+}
+
+@keyframes handwriting {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
 .container-fluid {
     padding: 0;
+
     .c1 {
         background-image: url('Src/c1.PNG');
         background-size: cover;
@@ -88,7 +116,7 @@ body {
         justify-content: center;
 
         div p {
-            margin-bottom: 17vh;
+            margin-bottom: 16vh;
         }
 
         p {
@@ -101,30 +129,35 @@ body {
         background-image: url('Src/c2.PNG');
         background-size: 100% 100%;
         background-position: center;
+        background-attachment: fixed;
     }
 
     .c3 {
         background-image: url('Src/c3.PNG');
         background-size: 100% 100%;
         background-position: cover;
+        background-attachment: fixed;
     }
 
     .c4 {
         background-image: url('Src/c4.PNG');
         background-size: 100% 100%;
         background-position: cover;
+        background-attachment: fixed;
     }
 
     .c5 {
         background-image: url('Src/c5.PNG');
         background-size: 100% 100%;
         background-position: cover;
+        background-attachment: fixed;
     }
 
     .c6 {
         background-image: url('Src/c6.PNG');
         background-size: 100% 100%;
         background-position: cover;
+        background-attachment: fixed;
     }
 
     .c7 {
@@ -133,15 +166,11 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        background-attachment: fixed;
 
         h2 {
             padding-bottom: 10vh;
             color: white;
-        }
-
-        button {
-            color: black;
-            height: 50px;
         }
     }
 
@@ -150,7 +179,8 @@ body {
     .c3,
     .c4,
     .c5,
-    .c6, .c7 {
+    .c6,
+    .c7 {
 
         h2 {
             padding-top: 20%;
@@ -176,25 +206,80 @@ body {
         }
     }
 
+    .c2 {
+
+        h2,
+        div p {
+            /* Initial position for text */
+            animation-duration: 1.5s;
+            animation-name: slideleft;
+        }
+    }
+
     section {
         height: 90vh;
         padding: 0 7% 0 7%;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-    
+
         p {
             text-align: justify;
         }
     }
+}
 
+@keyframes slideleft {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
 }
 
 //Calc
-
 #calc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 0 7% 0 7%;
-    h2 {
-        padding: 3vh;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+
+    #calcHead {
+        padding: 3vh 0;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    h3 {
+        padding: 0 0 2vh 0;
+        margin: 0;
+    }
+
+    div {
+        margin-bottom: 6vh;
+    }
+
+    label,
+    input {
+        width: 100%;
+    }
+
+    select {
+        min-width: 50%;
+    }
+
+
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        /* At the end of the animation, set opacity to 1 to show the element */
     }
 }
