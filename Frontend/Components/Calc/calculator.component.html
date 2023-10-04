@@ -53,7 +53,7 @@
         </div>
         <div>
             <h3>Energy Consumption</h3>
-            <div ng-repeat="source in energySources track by $index">
+            <span ng-repeat="source in energySources track by $index">
                 <label for="energySourceType{{$index}}">Energy Source:</label>
                 <select id="energySourceType{{$index}}" ng-model="source.type">
                     <option value="Solar energy">Solar energy</option>
@@ -67,13 +67,12 @@
                     <option value="Coal">Coal</option>
                     <option value="Nuclear energy">Nuclear energy</option>
                 </select>
-                <br>
                 <label for="energyUsage{{$index}}">Monthly Energy Usage (kWh):</label>
                 <input type="number" id="energyUsage{{$index}}" ng-model="source.usage"
                     placeholder="Enter monthly energy usage">
-                <button ng-click="removeEnergySource($index)">Remove</button>
-            </div>
-
+                <button ng-if="energySources.length > 1" ng-click="removeEnergySource($index)">Remove</button>
+            </span>
+            <br>
             <button ng-click="addEnergySource()">Add Energy Source</button>
         </div>
         <div>
@@ -105,33 +104,44 @@
             <br>
             <label for="milesFlown">Miles Flown (per year):</label>
             <input type="number" id="milesFlown" ng-model="milesFlown" placeholder="Enter miles/year for flights">
-            <br>
         </div>
         <button class="bigBut" type="submit">Calculate</button>
     </form>
-
-    <div ng-if="totalEmissions || totalWaterUsage || totalEnergyEmissions">
-        <h3>Total Vehicle Emissions</h3>
-        <p>{{ totalVehicleEmissions }} kgCO2e per year</p>
-
-        <h3>Total Dietary Emissions</h3>
-        <p>{{ totalDietaryEmissions }} kgCO2e per year</p>
-
-        <h3>Total Water Emissions</h3>
-        <p>{{ totalWaterEmission }} kgCO2e per year</p>
-
-        <h3>Total Energy Emissions</h3>
-        <p>{{ totalEnergyEmissions }} kgCO2e per year</p>
-
-        <h3>Total Waste Emissions</h3>
-        <p>{{ totalWasteEmissions }} kgCO2e per year</p>
-
-        <h3>Total Vacation Emissions</h3>
-        <p>{{ totalVacayEmissions }} kgCO2e per year</p>
-
-        <h3>Recommendations</h3>
-        <ul>
-            <li ng-repeat="recommendation in recommendations">{{ recommendation }}</li>
-        </ul>
+    <br>
+    <br>
+    <div>
+        <div>
+            <canvas id="metricsChart"></canvas>
+        </div>
+        <div ng-if="totalVehicleEmissions > 0">
+            <h3>Total Vehicle Emissions</h3>
+            <p>{{ totalVehicleEmissions }} kgCO2e per month</p>
+            <p ng-repeat="recommendation in recommendationsVehicle">{{ recommendation }}</p>
+        </div>
+        <div ng-if="totalDietaryEmissions > 0">
+            <h3>Total Dietary Emissions</h3>
+            <p>{{ totalDietaryEmissions }} kgCO2e per month</p>
+            <p ng-repeat="recommendation in recommendationsDiet">{{ recommendation }}</p>
+        </div>
+        <div ng-if="totalWaterEmission > 0.0001">
+            <h3>Total Water Emissions</h3>
+            <p>{{ totalWaterEmission }} kgCO2e per month</p>
+            <p ng-repeat="recommendation in recommendationsWater">{{ recommendation }}</p>
+        </div>
+        <div ng-if="totalEnergyEmissions > 0">
+            <h3>Total Energy Emissions</h3>
+            <p>{{ totalEnergyEmissions }} kgCO2e per month</p>
+            <p ng-repeat="recommendation in recommendationsWaste">{{ recommendation }}</p>
+        </div>
+        <div ng-if="totalWasteEmissions > 0">
+            <h3>Total Waste Emissions</h3>
+            <p>{{ totalWasteEmissions }} kgCO2e per month</p>
+            <p ng-repeat="recommendation in recommendationsEnergy">{{ recommendation }}</p>
+        </div>
+        <div ng-if="totalVacayEmissions > 0">
+            <h3>Total Vacation Emissions</h3>
+            <p>{{ totalVacayEmissions }} kgCO2e per month</p>
+            <p ng-repeat="recommendation in recommendationsVacay">{{ recommendation }}</p>
+        </div>
     </div>
 </div>
