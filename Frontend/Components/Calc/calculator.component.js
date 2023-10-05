@@ -8,14 +8,14 @@ function CalculatorController($scope) {
     $scope.vehicleType = 'car';
     $scope.vehicleUsage = 0;
     $scope.publicTransportation = 0;
-    $scope.dietType = 'meatBased';
+    $scope.dietType = 'regular';
     $scope.numPeople = 0;
-    $scope.waterScarcity = 'low';
+    $scope.waterScarcity = 'normal';
     $scope.showersPerDay = 0;
     $scope.flushesPerDay = 0;
     $scope.dishesPerDay = 0;
     $scope.energySources = [{
-        type: 'Solar energy',
+        type: 'Hydropower',
         usage: 0,
     }];
     $scope.monthlyGarbageBins = 0;
@@ -27,27 +27,29 @@ function CalculatorController($scope) {
 
     // Factors
     const emissionsFactors = {
-        car: 0.42,
-        van: 0.6,
-        truck: 1.0,
+        electric: 0,
+        car: 0.38,
+        van: 0.45,
+        truck: 0.7,
     };
 
     const dietFactors = {
-        vegetarian: 2.89,
-        vegan: 1.5,
-        meatBased: 7.19,
+        vegetarian: 75,  
+        vegan: 45,
+        regular: 120,      
+        meatBased: 150,  
     };
 
     const waterScarcityFactors = {
-        low: 0.2,
-        moderate: 0.5,
-        high: 0.8,
+        normal: 1,
+        moderate: 1.5,
+        high: 2,
     };
 
     const waterFactors = {
-        showeringFactor: 0.02, // kgCO2e per liter
-        flushingToiletsFactor: 0.01,
-        washingDishesFactor: 0.015
+        showeringFactor: 0.72,
+        flushingToiletsFactor: 0.0615, 
+        washingDishesFactor: 0.04
     };
 
     const carbonFootprintFactors = {
@@ -61,12 +63,6 @@ function CalculatorController($scope) {
         'Natural gas': 0.17,
         'Coal': 0.3,
         'Nuclear energy': 0.01,
-    };
-
-    const binFactors = {
-        garbage: 0.5,
-        recycling: 0.2,
-        compost: 0.1
     };
 
     const flightEmissionsFactor = 0.24;
@@ -87,24 +83,24 @@ function CalculatorController($scope) {
 
     // Function to calculate total carbon emissions
     $scope.calculate = function () {
-        const totalVehicleEmissions = ($scope.vehicleUsage) / 12 * emissionsFactors[$scope.vehicleType];
-        const totalDietaryEmissions = dietFactors[$scope.dietType] / 12;
+        
+        const totalVehicleEmissions = ($scope.vehicleUsage) / 12 * emissionsFactors[$scope.vehicleType] + $scope.publicTransportation * 0.054 / 12;
+        const totalDietaryEmissions = dietFactors[$scope.dietType];
         const monthlyGarbageBins = $scope.monthlyGarbageBins;
         const monthlyRecyclingBins = $scope.monthlyRecyclingBins;
         const monthlyCompostBins = $scope.monthlyCompostBins;
 
         // Calculate water emissions (kgCO2e) per month
-        const showersPerYear = $scope.showersPerDay * 30 * $scope.numPeople;
-        const flushesPerYear = $scope.flushesPerDay * 30 * $scope.numPeople;
-        const dishesPerYear = $scope.dishesPerDay * 30 * $scope.numPeople;
+        const showersPerDay = $scope.showersPerDay * 30 * $scope.numPeople;
+        const flushesPerDay = $scope.flushesPerDay * 30 * $scope.numPeople;
+        const dishesPerDay = $scope.dishesPerDay * 30 * $scope.numPeople;
 
         const waterScarcityFactor = waterScarcityFactors[$scope.waterScarcity];
 
         const totalWaterEmission = (
-            (showersPerYear * waterScarcityFactor * waterFactors.showeringFactor +
-                flushesPerYear * waterScarcityFactor * waterFactors.flushingToiletsFactor +
-                dishesPerYear * waterScarcityFactor * waterFactors.washingDishesFactor) /
-            1000 // Convert to kgCO2e
+            (showersPerDay * waterFactors.showeringFactor * waterScarcityFactor +
+                flushesPerDay * waterFactors.flushingToiletsFactor * waterScarcityFactor +
+                dishesPerDay * waterFactors.washingDishesFactor * waterScarcityFactor) 
         );
 
         // Calculate energy emissions from energy sources and convert to common unit (kgCO2e) per month
@@ -112,9 +108,9 @@ function CalculatorController($scope) {
             return sum + (source.usage * carbonFootprintFactors[source.type]);
         }, 0);
 
-        const totalWasteEmissions = (monthlyGarbageBins * binFactors.garbage +
-            monthlyRecyclingBins * binFactors.recycling +
-            monthlyCompostBins * binFactors.compost);
+        const totalWasteEmissions = (monthlyGarbageBins * 3.5 +
+            monthlyRecyclingBins * 2.5 +
+            monthlyCompostBins * 0.6);
 
         const totalFlightEmissions = $scope.milesFlown * flightEmissionsFactor;
         const totalDrivingVacayEmissions = ($scope.milesDriven * emissionsFactors[$scope.vehicleTypeVacay]) / 12;
@@ -139,79 +135,81 @@ function CalculatorController($scope) {
         $scope.recommendationsVacay = [];
         $scope.recommendationsTotal = [];
 
-        if (totalVehicleEmissions > 5) {
+        const averageValues = {
+            metric1: 383,
+            metric2: 120,
+            metric3: 83,
+            metric4: 166,
+            metric5: 26.4,
+            metric6: 1215,
+        };
+
+        if (totalVehicleEmissions > averageValues.metric1 * 1.5) {
             $scope.recommendationsVehicle.push('You have a relatively high emission rate for your vehicle usage, consider carpooling, using public transportation, or switching to a more fuel-efficient or electric vehicle.');
-        } else if (totalVehicleEmissions >= 2) {
+        } else if (totalVehicleEmissions >= averageValues.metric1) {
             $scope.recommendationsVehicle.push('You have a relatively moderate emission rate for your vehicle usage. Consider optimizing your driving habits to reduce fuel consumption and emissions.');
-        } else if (totalVehicleEmissions < 2) {
+        } else if (totalVehicleEmissions < averageValues.metric1) {
             $scope.recommendationsVehicle.push('Congratulations on having a low emission rate for your vehicle usage! Keep up the good work by maintaining your eco-friendly driving habits.');
         }
 
         if ($scope.dietType === 'meatBased') {
             $scope.recommendationsDiet.push('Your diet contributes to higher emission rates, consider reducing your meat consumption or incorporating more plant-based meals into your diet.');
+        } else if ($scope.dietType === 'regular') {
+            $scope.recommendationsDiet.push('You diet has a typical emission rate. You can further reduce emissions by reducing your meat intake or by choosing more sustainable vegetarian options.');
         } else if ($scope.dietType === 'vegetarian') {
-            $scope.recommendationsDiet.push('Your diet has a moderate emission rate. You can further reduce emissions by choosing more locally sourced and sustainable vegetarian options.');
+            $scope.recommendationsDiet.push('Your diet has a moderate emission rate. You can further reduce emissions by choosing more locally sourced and sustainable vegetarian options or by going vegan.');
         } else if ($scope.dietType === 'vegan') {
             $scope.recommendationsDiet.push('Having a low emission rate for your diet is great! Continue to embrace a vegan diet to minimize your carbon footprint.');
         }
 
-        if (totalWaterEmission > 2) {
+        if (totalWaterEmission > averageValues.metric3 * 1.5) {
             $scope.recommendationsWater.push('Your water-related emissions are considered high. To reduce them, consider fixing any leaks, installing water-saving appliances, and being mindful of water usage in your daily routines.');
-        } else if (totalWaterEmission >= 1) {
+        } else if (totalWaterEmission >= averageValues.metric3) {
             $scope.recommendationsWater.push('Your water-related emissions are at a moderate level. Continue practicing water-saving habits, such as shorter showers and efficient water use.');
-        } else if (totalWaterEmission < 1) {
+        } else if (totalWaterEmission < averageValues.metric3) {
             $scope.recommendationsWater.push('Congratulations on having relatively low water-related emissions! Keep practicing water-saving behaviors to maintain your eco-friendly water footprint.');
         }
 
-        if (totalWasteEmissions > 1) {
-            $scope.recommendationsWaste.push('Your waste-related emissions are considered high. To reduce them, focus on recycling more, minimizing single-use plastics, and composting organic waste.');
-        } else if (totalWasteEmissions >= 0.5) {
-            $scope.recommendationsWaste.push('Your waste-related emissions are at a moderate level. Keep recycling and composting, and consider reducing waste through sustainable shopping and packaging choices.');
-        } else if (totalWasteEmissions < 0.5) {
-            $scope.recommendationsWaste.push('You have relatively low waste-related emissions. Continue your eco-conscious waste management practices and explore ways to further reduce waste.');
-        }
-
-        if (totalEnergyEmissions > 8) {
+        if (totalEnergyEmissions > averageValues.metric4 * 1.5) {
             $scope.recommendationsEnergy.push('Your energy-related emissions are high, consider improving your home\'s energy efficiency, using energy-saving appliances, and transitioning to renewable energy sources.');
-        } else if (totalEnergyEmissions >= 4) {
+        } else if (totalEnergyEmissions >= averageValues.metric4) {
             $scope.recommendationsEnergy.push('Your energy-related emissions are at a moderate level. To further reduce them, consider adding solar panels, insulating your home, and adopting energy-efficient technologies.');
-        } else if (totalEnergyEmissions < 4) {
+        } else if (totalEnergyEmissions < averageValues.metric4) {
             $scope.recommendationsEnergy.push('Congratulations on having low energy-related emissions! Continue to use energy-efficient practices and maintain your use of clean energy sources.');
         }
 
-        if (totalVacayEmissions > 4) {
+
+        if (totalWasteEmissions > averageValues.metric5 * 1.5) {
+            $scope.recommendationsWaste.push('Your waste-related emissions are considered high. To reduce them, focus on recycling more, minimizing single-use plastics, and composting organic waste.');
+        } else if (totalWasteEmissions >= averageValues.metric5) {
+            $scope.recommendationsWaste.push('Your waste-related emissions are at a moderate level. Keep recycling and composting, and consider reducing waste through sustainable shopping and packaging choices.');
+        } else if (totalWasteEmissions < averageValues.metric5) {
+            $scope.recommendationsWaste.push('Weoheooo! You have low waste-related emissions. Continue your eco-conscious waste management practices and explore ways to further reduce waste.');
+        }
+
+        if (totalVacayEmissions > averageValues.metric6 * 1.5) {
             $scope.recommendationsVacay.push('Your vacation-related emissions are considered high. To reduce them, choose destinations closer to home, consider eco-friendly transportation options, and support accommodations with sustainable practices.');
-        } else if (totalVacayEmissions >= 2) {
+        } else if (totalVacayEmissions >= averageValues.metric6) {
             $scope.recommendationsVacay.push('Your vacation-related emissions are at a moderate level. Keep making sustainable travel choices, such as offsetting emissions and minimizing air travel.');
-        } else if (totalVacayEmissions < 2) {
-            $scope.recommendationsVacay.push('You have relatively low vacation-related emissions. Continue to make eco-conscious travel decisions and explore local and sustainable travel options.');
+        } else if (totalVacayEmissions < averageValues.metric6) {
+            $scope.recommendationsVacay.push('Most excellent! You have low vacation-related emissions. Continue to make eco-conscious travel decisions and explore local and sustainable travel options.');
         }
 
         const userMetrics = [
             totalVehicleEmissions,
             totalDietaryEmissions,
             totalWaterEmission,
-            totalWasteEmissions,
             totalEnergyEmissions,
+            totalWasteEmissions,
             totalVacayEmissions,
         ];
-
-
-        const averageValues = {
-            metric1: 350,
-            metric2: 0.8,
-            metric3: 0.02,
-            metric4: 0.03,
-            metric5: 0.6,
-            metric6: 0.05,
-        };
 
         const metricLabels = [
             'Vehicle Emissions',
             'Dietary Emissions',
             'Water Emission',
-            'Waste Emissions',
             'Energy Emissions',
+            'Waste Emissions',
             'Vacation Emissions',
         ];
 
