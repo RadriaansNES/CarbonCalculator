@@ -49,7 +49,7 @@
     height: 10vh;
     background-image: url('Src/nav.PNG');
     background-size: cover;
-    background-position: center;
+    background-position: 50% 85%;
     background-repeat: no-repeat;
     opacity: 0.9;
 
@@ -94,6 +94,7 @@ body {
     overflow: hidden;
     animation: handwriting 1s steps(40) forwards;
     color: #333;
+    margin-bottom: 0;
 }
 
 @keyframes handwriting {
@@ -122,6 +123,7 @@ body {
       
         p {
           font-weight: bold;
+          bottom: 50px;
         }
 
     }
@@ -229,6 +231,8 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+            padding-top: 60px;
+            padding-bottom: 120px;
         }
     }
 }
@@ -278,6 +282,22 @@ body {
         min-width: 50%;
     }
 
+    label, select, input {
+        margin-bottom: 10px;
+    }
+
+    .result {
+        text-decoration: underline;
+    }
+
+    .nomargin {
+        margin-bottom: 0;
+    }
+
+    #disclaimer {
+        margin-top: 10vh;
+        margin-bottom: 0;
+    }
 
 }
 
