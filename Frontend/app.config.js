@@ -42,7 +42,18 @@ angular.module('myApp', ['ui.router'])
             controller: 'RedirectController'
           }
         }
+      })
+      .state('layout.signup', {
+        url: '/signup', 
+        views: {
+          '': {
+            templateUrl: 'Components/Signup/signup.component.html', 
+            controller: 'SignupController'
+          }
+        }
       });
+
+
 
     // Default route 
     $urlRouterProvider.otherwise('/');

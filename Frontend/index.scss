@@ -315,7 +315,21 @@ body {
 
 // Redirect
 .container-fluid .redirect .HEAD{
-    padding-top: 80px;
-    padding-bottom: 450px;
+    padding-top: 40px;
+    padding-bottom: 300px;
     align-items: center;
+}
+
+.ng-valid label{
+    display: flex;
+    justify-content: space-between;
+}
+
+.space-between {
+    min-width: 100%;
+    margin-top: 3vh;
+
+    h2 {
+        padding-bottom: 2vh;
+    }
 }

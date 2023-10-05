@@ -2,8 +2,27 @@
 <div class="container-fluid">
     <section class="redirect">
         <div class="HEAD">
-            <h3 class="animate__animated animate__rotateIn">Login</h3>
-            <button class="scroll-top-button bigBut" ui-sref="layout.login">Login</button>
+            <div class="space-between">
+                <h2 class="animate__animated animate__rotateIn">Login</h2>
+                <form>
+                    <label>
+                        <strong>Username:</strong>
+                        <input type="text" name="username" autoComplete="username" />
+                    </label>
+                    <label>
+                        <strong>Password:</strong>
+                        <input type="password" name="password" required autoComplete="current-password" />
+                    </label>
+
+                    <p style="display:none"><strong>Incorrect username or password. Please try again.</strong></p>
+                    <br>
+                </form>
+            </div>
+            <button class="bigBut" type='submit'>LoginNEEDSuri</button>
+
+            <div>
+                <p>Don't have an account? <a ui-sref='layout.signup'>Sign up today!</a> </p>
+            </div>
             <button class="scroll-top-button bigBut" ui-sref="layout.calculator">Continue as Guest</button>
         </div>
     </section>

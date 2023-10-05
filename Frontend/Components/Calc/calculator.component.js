@@ -155,7 +155,7 @@ function CalculatorController($scope) {
         if ($scope.dietType === 'meatBased') {
             $scope.recommendationsDiet.push('Your diet contributes to higher emission rates, consider reducing your meat consumption or incorporating more plant-based meals into your diet.');
         } else if ($scope.dietType === 'regular') {
-            $scope.recommendationsDiet.push('You diet has a typical emission rate. You can further reduce emissions by reducing your meat intake or by choosing more sustainable vegetarian options.');
+            $scope.recommendationsDiet.push('You diet has a typical emission rate. You can further reduce emissions by reducing your meat intake or by choosing more sustainable options.');
         } else if ($scope.dietType === 'vegetarian') {
             $scope.recommendationsDiet.push('Your diet has a moderate emission rate. You can further reduce emissions by choosing more locally sourced and sustainable vegetarian options or by going vegan.');
         } else if ($scope.dietType === 'vegan') {
