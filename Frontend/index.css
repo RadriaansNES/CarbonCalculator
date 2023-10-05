@@ -10,12 +10,10 @@
   font-weight: bold;
 }
 .MainApp em {
-  margin-bottom: 10vh;
   font-size: 20px;
   font-weight: bolder;
 }
 .MainApp h1 {
-  padding-bottom: 16vh;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -45,7 +43,7 @@
   opacity: 0.9;
 }
 .navbar a {
-  color: white !important;
+  color: black !important;
 }
 .navbar .navbar-toggle {
   background-color: white;
@@ -55,7 +53,7 @@
   margin-top: 2.25vh;
 }
 .navbar .navbar-nav {
-  background-color: black;
+  background-color: whitesmoke;
   opacity: 1;
   margin-top: 0;
   padding: 0 5% 0 5%;
@@ -75,6 +73,7 @@ body {
   font-weight: bold;
   overflow: hidden;
   animation: handwriting 1s steps(40) forwards;
+  color: #333;
 }
 
 @keyframes handwriting {
@@ -89,17 +88,15 @@ body {
   padding: 0;
 }
 .container-fluid .c1 {
-  position: relative;
-  background: linear-gradient(to bottom, #2b0080 0%, #9f8aff 50%, #add8e6 100%);
-  height: 100vh;
-  /* Set an appropriate height */
+  background-image: url("Src/c1.PNG");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center left;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.container-fluid .c1 div p {
-  margin-bottom: 16vh;
+  flex-direction: column; /* Display items vertically */
+  justify-content: space-around; /* Add space around items */
+  align-items: center; /* Center items horizontally */
+  color: #333;
 }
 .container-fluid .c1 p {
   font-weight: bold;
@@ -137,7 +134,7 @@ body {
 }
 .container-fluid .c7 {
   background-image: url("Src/c7.PNG");
-  background-size: 100% 1%;
+  background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -146,7 +143,6 @@ body {
   padding-bottom: 10vh;
   color: white;
 }
-.container-fluid .c1,
 .container-fluid .c2,
 .container-fluid .c3,
 .container-fluid .c4,
@@ -155,7 +151,6 @@ body {
 .container-fluid .c7 {
   position: relative;
 }
-.container-fluid .c1 h2,
 .container-fluid .c2 h2,
 .container-fluid .c3 h2,
 .container-fluid .c4 h2,
@@ -164,7 +159,6 @@ body {
 .container-fluid .c7 h2 {
   padding-top: 20%;
 }
-.container-fluid .c1::before,
 .container-fluid .c2::before,
 .container-fluid .c3::before,
 .container-fluid .c4::before,
@@ -180,7 +174,6 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.container-fluid .c1 *,
 .container-fluid .c2 *,
 .container-fluid .c3 *,
 .container-fluid .c4 *,
@@ -200,6 +193,12 @@ body {
 }
 .container-fluid section p {
   text-align: justify;
+}
+.container-fluid section #HEAD {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 @keyframes slideleft {
