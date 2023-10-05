@@ -1,3 +1,8 @@
+.ng-scope {
+  width: 100%;
+  min-width: 100%;
+}
+
 .MainApp {
   display: flex;
 }
@@ -87,6 +92,7 @@ body {
 }
 .container-fluid {
   padding: 0;
+  min-width: 100%;
 }
 .container-fluid .c1 {
   background-image: url("Src/c1.PNG");
@@ -196,7 +202,7 @@ body {
 .container-fluid section p {
   text-align: justify;
 }
-.container-fluid section #HEAD {
+.container-fluid section .HEAD {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -260,6 +266,11 @@ body {
   to {
     opacity: 1;
   }
+}
+.container-fluid .redirect .HEAD {
+  padding-top: 80px;
+  padding-bottom: 450px;
+  align-items: center;
 }
 
 /*# sourceMappingURL=index.css.map */

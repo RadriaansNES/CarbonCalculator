@@ -33,6 +33,15 @@ angular.module('myApp', ['ui.router'])
             controller: 'CalculatorController'
           }
         }
+      })
+      .state('layout.redirect', {
+        url: '/redirect', 
+        views: {
+          '': {
+            templateUrl: 'Components/Redirect/redirect.component.html', 
+            controller: 'RedirectController'
+          }
+        }
       });
 
     // Default route 
