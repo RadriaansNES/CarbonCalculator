@@ -224,13 +224,13 @@ body {
   min-width: 100%;
   justify-content: space-between;
   z-index: 1000;
-  width: 100vw !important;
-  top: 150vh;
+  top: 180vh;
 }
 .container-fluid .prev-button, .container-fluid .next-button {
   background-color: transparent;
   font-size: 45px;
   border-width: 0;
+  color: white;
 }
 .container-fluid section {
   height: 90vh;
