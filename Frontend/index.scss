@@ -189,20 +189,6 @@ body {
           z-index: 2;
           color: #fff;
         }
-      
-        .CSButs {
-          position: absolute;
-          top: 50vh;
-          display: flex;
-          min-width: 100%;
-          justify-content: space-between;
-        }
-      
-        .prev-button, .next-button {
-          background-color: transparent;
-          font-size: 45px;
-          border-width: 0;
-        }
       }
       
 
@@ -280,6 +266,21 @@ body {
             color: #fff;
         }
     }
+
+    .CSButs {
+        position: absolute;
+        display: flex;
+        min-width: 100%;
+        justify-content: space-between;
+        z-index: 1000;
+        top: 145vh;
+      }
+    
+      .prev-button, .next-button {
+        background-color: transparent;
+        font-size: 45px;
+        border-width: 0;
+      }
 
     section {
         height: 90vh;

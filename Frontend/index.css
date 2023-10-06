@@ -160,18 +160,6 @@ body {
   z-index: 2;
   color: #fff;
 }
-.container-fluid .carousel-slide .CSButs {
-  position: absolute;
-  top: 50vh;
-  display: flex;
-  min-width: 100%;
-  justify-content: space-between;
-}
-.container-fluid .carousel-slide .prev-button, .container-fluid .carousel-slide .next-button {
-  background-color: transparent;
-  font-size: 45px;
-  border-width: 0;
-}
 .container-fluid .c2 {
   background-image: url("Src/c2.PNG");
   background-size: 100% 100%;
@@ -229,6 +217,19 @@ body {
   position: relative;
   z-index: 1;
   color: #fff;
+}
+.container-fluid .CSButs {
+  position: absolute;
+  display: flex;
+  min-width: 100%;
+  justify-content: space-between;
+  z-index: 1000;
+  top: 145vh;
+}
+.container-fluid .prev-button, .container-fluid .next-button {
+  background-color: transparent;
+  font-size: 45px;
+  border-width: 0;
 }
 .container-fluid section {
   height: 90vh;
