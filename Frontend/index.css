@@ -118,10 +118,65 @@ body {
   font-weight: bold;
   bottom: 50px;
 }
+.container-fluid .carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.container-fluid .carousel-slide {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  /* Text color for overlay */
+  padding: 10vh 12%;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.container-fluid .carousel-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Overlay background color and opacity */
+  z-index: 1;
+  /* Ensure the overlay is on top of slide content */
+}
+.container-fluid .carousel-slide * {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+.container-fluid .carousel-slide .CSButs {
+  position: absolute;
+  top: 50vh;
+  display: flex;
+  min-width: 100%;
+  justify-content: space-between;
+}
+.container-fluid .carousel-slide .prev-button, .container-fluid .carousel-slide .next-button {
+  background-color: transparent;
+  font-size: 45px;
+  border-width: 0;
+}
 .container-fluid .c2 {
   background-image: url("Src/c2.PNG");
   background-size: 100% 100%;
-  background-position: center;
 }
 .container-fluid .c2 h2,
 .container-fluid .c2 div p {
@@ -132,22 +187,18 @@ body {
 .container-fluid .c3 {
   background-image: url("Src/c3.PNG");
   background-size: 100% 100%;
-  background-position: cover;
 }
 .container-fluid .c4 {
   background-image: url("Src/c4.PNG");
   background-size: 100% 100%;
-  background-position: cover;
 }
 .container-fluid .c5 {
   background-image: url("Src/c5.PNG");
   background-size: 100% 100%;
-  background-position: cover;
 }
 .container-fluid .c6 {
   background-image: url("Src/c6.PNG");
   background-size: 100% 100%;
-  background-position: cover;
 }
 .container-fluid .c7 {
   background-image: url("Src/c7.PNG");
@@ -160,27 +211,12 @@ body {
   padding-bottom: 10vh;
   color: white;
 }
-.container-fluid .c2,
-.container-fluid .c3,
-.container-fluid .c4,
-.container-fluid .c5,
-.container-fluid .c6,
 .container-fluid .c7 {
   position: relative;
 }
-.container-fluid .c2 h2,
-.container-fluid .c3 h2,
-.container-fluid .c4 h2,
-.container-fluid .c5 h2,
-.container-fluid .c6 h2,
 .container-fluid .c7 h2 {
   padding-top: 20%;
 }
-.container-fluid .c2::before,
-.container-fluid .c3::before,
-.container-fluid .c4::before,
-.container-fluid .c5::before,
-.container-fluid .c6::before,
 .container-fluid .c7::before {
   content: "";
   /* Create a pseudo-element for the overlay */
@@ -191,11 +227,6 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.container-fluid .c2 *,
-.container-fluid .c3 *,
-.container-fluid .c4 *,
-.container-fluid .c5 *,
-.container-fluid .c6 *,
 .container-fluid .c7 * {
   position: relative;
   z-index: 1;
@@ -258,7 +289,9 @@ body {
 #calc select {
   min-width: 50%;
 }
-#calc label, #calc select, #calc input {
+#calc label,
+#calc select,
+#calc input {
   margin-bottom: 10px;
 }
 #calc .result {
@@ -287,6 +320,10 @@ body {
   padding-bottom: 300px;
   align-items: center;
 }
+.container-fluid .redirect .HEAD p {
+  text-align: center;
+  padding-bottom: 2vh;
+}
 
 .ng-valid label {
   display: flex;
@@ -298,6 +335,22 @@ body {
   margin-top: 3vh;
 }
 .space-between h2 {
+  padding-bottom: 2vh;
+}
+
+.container-fluid .register .HEAD {
+  padding: 0;
+  align-items: center;
+}
+.container-fluid .register .HEAD .space-between {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0;
+}
+.container-fluid .register .HEAD p {
+  text-align: center;
   padding-bottom: 2vh;
 }
 

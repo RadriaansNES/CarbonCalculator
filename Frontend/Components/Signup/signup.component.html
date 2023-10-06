@@ -1,78 +1,68 @@
 <!-- signup.component.html -->
-
 <div class="container-fluid">
   <section class="register">
-    <div>
-      <h1>Register an Account</h1>
-    </div>
-    <div>
-      <form ng-submit="handleSubmit()">
+    <div class="HEAD">
+      <div class="space-between">
+        <h2 class="animate__animated animate__rotateIn">Register</h2>
+        <form>
+          <label>
+            Username:
+            <input type="text" name="username" autocomplete="username" />
+          </label>
+          <br />
 
-        <label>
-          Username:
-          <input type="text" name="username" ng-model="formData.username" required
-            ng-change="handleChange()" autocomplete="username" />
-        </label>
-        <br />
+          <label>
+            Password:
+            <input type="password" name="password" autocomplete="current-password" />
+          </label>
+          <br />
 
-        <label>
-          Password:
-          <input type="password" name="password" ng-model="formData.password" required
-            ng-change="handleChange()" autocomplete="current-password" />
-        </label>
-        <br />
+          <label>
+            First Name:
+            <input type="text" name="first_name" autocomplete="given-name" />
+          </label>
+          <br />
 
-        <label>
-          First Name:
-          <input type="text" name="first_name" ng-model="formData.first_name" required
-            ng-change="handleChange()" autocomplete="given-name" />
-        </label>
-        <br />
+          <label>
+            Last Name:
+            <input type="text" name="last_name" autocomplete="family-name" />
+          </label>
+          <br />
 
-        <label>
-          Last Name:
-          <input type="text" name="last_name" ng-model="formData.last_name" required
-            ng-change="handleChange()" autocomplete="family-name" />
-        </label>
-        <br />
+          <label>
+            Telephone:
+            <input type="number" name="telephone" autocomplete="tel" />
+          </label>
+          <br />
 
-        <label>
-          Telephone:
-          <input type="number" name="telephone" ng-model="formData.telephone"
-            ng-change="handleChange()" autocomplete="tel" />
-        </label>
-        <br />
+          <label>
+            Address:
+            <input type="text" name="address" autocomplete="street-address" />
+          </label>
+          <br />
 
-        <label>
-          Address:
-          <input type="text" name="address" ng-model="formData.address"
-            ng-change="handleChange()" autocomplete="street-address" />
-        </label>
-        <br />
+          <label>
+            City:
+            <input type="text" name="city" autocomplete="address-level2" />
+          </label>
+          <br />
 
-        <label>
-          City:
-          <input type="text" name="city" ng-model="formData.city"
-            ng-change="handleChange()" autocomplete="address-level2" />
-        </label>
-        <br />
+          <label>
+            Postal Code:
+            <input type="text" name="postal_code" autocomplete="postal-code" />
+          </label>
+          <br />
 
-        <label>
-          Postal Code:
-          <input type="text" name="postal_code" ng-model="formData.postal_code"
-            ng-change="handleChange()" autocomplete="postal-code" />
-        </label>
-        <br />
+          <label>
+            Country:
+            <input type="text" name="country" autocomplete="country" />
+          </label>
+          <br />
 
-        <label>
-          Country:
-          <input type="text" name="country" ng-model="formData.country"
-            ng-change="handleChange()" autocomplete="country" />
-        </label>
-        <br />
+        </form>
 
-        <button type="submit">Register</button>
-      </form>
+        <button class="bigBut" type='submit'>Submit</button>
+      </div>
     </div>
   </section>
 </div>

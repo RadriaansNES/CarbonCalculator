@@ -1,7 +1,7 @@
 //SCSS
 
 .ng-scope {
-    width: 100%; 
+    width: 100%;
     min-width: 100%;
 }
 
@@ -24,7 +24,7 @@
     }
 
     h1 {
-        
+
         margin-top: 0;
         margin-bottom: 0;
         // ADD QUERY FOR word-break: break-all - for smaller than medium device size
@@ -134,22 +134,83 @@ body {
         background-position: center left;
         display: flex;
         flex-direction: column;
-        justify-content: space-around; 
-        align-items: center; 
+        justify-content: space-around;
+        align-items: center;
         color: #333;
-      
+
         p {
-          font-weight: bold;
-          bottom: 50px;
+            font-weight: bold;
+            bottom: 50px;
         }
 
     }
 
+    .carousel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .carousel-slide {
+        position: absolute;
+        top: 100vh;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        /* Text color for overlay */
+        padding: 10vh 12%;
+        opacity: 0;
+        transition: opacity 0.5s;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Overlay background color and opacity */
+            z-index: 1;
+            /* Ensure the overlay is on top of slide content */
+        }
+
+        & * {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+
+        .CSButs {
+            position: absolute;
+            top: 50vh;
+            display: flex;
+            min-width: 100%;
+            justify-content: space-between;
+        }
+
+        .prev-button, .next-button {
+            background-color: transparent;
+            font-size: 45px;
+            border-width: 0;
+        }
+    }
+
+
     .c2 {
         background-image: url('Src/c2.PNG');
         background-size: 100% 100%;
-        background-position: center;
-
 
         h2,
         div p {
@@ -162,29 +223,23 @@ body {
     .c3 {
         background-image: url('Src/c3.PNG');
         background-size: 100% 100%;
-        background-position: cover;
 
     }
 
     .c4 {
         background-image: url('Src/c4.PNG');
         background-size: 100% 100%;
-        background-position: cover;
 
     }
 
     .c5 {
         background-image: url('Src/c5.PNG');
         background-size: 100% 100%;
-        background-position: cover;
-
     }
 
     .c6 {
         background-image: url('Src/c6.PNG');
         background-size: 100% 100%;
-        background-position: cover;
-
     }
 
     .c7 {
@@ -201,11 +256,6 @@ body {
         }
     }
 
-    .c2,
-    .c3,
-    .c4,
-    .c5,
-    .c6,
     .c7 {
 
         h2 {
@@ -300,13 +350,16 @@ body {
         min-width: 50%;
     }
 
-    label, select, input {
+    label,
+    select,
+    input {
         margin-bottom: 10px;
     }
 
     .result {
         text-decoration: underline;
     }
+
     #disclaimer {
         margin-top: 10vh;
         padding-bottom: 0;
@@ -331,13 +384,18 @@ body {
 }
 
 // Redirect
-.container-fluid .redirect .HEAD{
+.container-fluid .redirect .HEAD {
     padding-top: 40px;
     padding-bottom: 300px;
     align-items: center;
+
+    p {
+        text-align: center;
+        padding-bottom: 2vh;
+    }
 }
 
-.ng-valid label{
+.ng-valid label {
     display: flex;
     justify-content: space-between;
 }
@@ -349,4 +407,24 @@ body {
     h2 {
         padding-bottom: 2vh;
     }
+}
+
+.container-fluid .register .HEAD {
+    padding: 0;
+    align-items: center;
+
+    .space-between {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 0;
+    }
+
+
+    p {
+        text-align: center;
+        padding-bottom: 2vh;
+    }
+
 }

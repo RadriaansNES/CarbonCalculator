@@ -4,25 +4,21 @@
         <div class="HEAD">
             <div class="space-between">
                 <h2 class="animate__animated animate__rotateIn">Login</h2>
-                <form ng-submit="handleSubmit()">
+                <form>
                     <label>
                         <strong>Username:</strong>
-                        <input type="text" name="username" ng-model="formData.username" autocomplete="username" />
+                        <input type="text" name="username" autoComplete="username" />
                     </label>
                     <label>
                         <strong>Password:</strong>
-                        <input type="password" name="password" ng-model="formData.password" required
-                            autocomplete="current-password" />
+                        <input type="password" name="password" required autoComplete="current-password" />
                     </label>
 
-                    <p ng-show="incorrectCredentials"><strong>Incorrect username or password. Please try again.</strong>
-                    </p>
+                    <p style="display:none"><strong>Incorrect username or password. Please try again.</strong></p>
                     <br>
                 </form>
-            </div>
-            <button class="bigBut" type="submit">LoginNEEDSuri</button>
-            <div>
-                <p>Don't have an account? <a ui-sref='layout.signup'>Sign up today!</a></p>
+                <p>Don't have an account? <a ui-sref='layout.signup'>Sign up today!</a> </p>
+                <button class="bigBut" type='submit'>LoginNEEDSuri</button>
             </div>
         </div>
     </section>
