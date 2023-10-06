@@ -224,7 +224,7 @@ body {
   min-width: 100%;
   justify-content: space-between;
   z-index: 1000;
-  top: 180vh;
+  top: 175vh;
 }
 .container-fluid .prev-button, .container-fluid .next-button {
   background-color: transparent;
