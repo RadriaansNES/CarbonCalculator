@@ -273,7 +273,8 @@ body {
         min-width: 100%;
         justify-content: space-between;
         z-index: 1000;
-        top: 145vh;
+        width: 100vw !important;
+        top: 150vh; // Media query for mobile to push  further down. 
       }
     
       .prev-button, .next-button {
