@@ -41,6 +41,17 @@
         height: 50px;
         min-width: 100%;
     }
+
+    .smallbut {
+        color: black !important;
+        height: 40px;
+        min-width: 48%;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 //Nav
@@ -260,12 +271,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 90vh;
     padding: 0 7% 0 7%;
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
 
     #calcHead {
-        padding: 3vh 0;
         text-align: center;
         font-weight: bold;
     }
@@ -276,6 +287,7 @@ body {
     }
 
     div {
+        padding: 3vh 0;
         margin-bottom: 6vh;
     }
 
@@ -295,14 +307,19 @@ body {
     .result {
         text-decoration: underline;
     }
-
-    .nomargin {
+    #disclaimer {
+        margin-top: 10vh;
+        padding-bottom: 0;
         margin-bottom: 0;
     }
 
-    #disclaimer {
-        margin-top: 10vh;
+    .bigBut {
+        margin-top: 5vh;
+    }
+
+    .nomargin {
         margin-bottom: 0;
+        padding-bottom: 0;
     }
 
 }

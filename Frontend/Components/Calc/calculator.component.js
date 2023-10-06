@@ -2,7 +2,31 @@
 angular.module('myApp')
     .controller('CalculatorController', CalculatorController);
 
-function CalculatorController($scope) {
+    function CalculatorController($scope, $timeout) {
+
+    $scope.currentStep = 0; 
+    $scope.calculateButtonClicked = false;
+
+    $scope.nextStep = function () {
+        if ($scope.currentStep < 7) {
+            $scope.currentStep++;
+        } else {
+            $scope.calculateButtonClicked = true;
+            $scope.calculate();
+        }
+    };
+
+    $scope.prevStep = function () {
+        if ($scope.currentStep > 1) {
+            $scope.currentStep--;
+        }
+    };
+
+    $scope.isCurrentStep = function (step) {
+        return $scope.currentStep === step;
+    };
+
+    
 
     // Init
     $scope.vehicleType = 'car';
@@ -24,6 +48,7 @@ function CalculatorController($scope) {
     $scope.milesFlown = 0;
     $scope.milesDriven = 0;
     $scope.vehicleTypeVacay = 'car';
+    let myChart = null;
 
     // Factors
     const emissionsFactors = {
@@ -34,10 +59,10 @@ function CalculatorController($scope) {
     };
 
     const dietFactors = {
-        vegetarian: 75,  
+        vegetarian: 75,
         vegan: 45,
-        regular: 120,      
-        meatBased: 150,  
+        regular: 120,
+        meatBased: 150,
     };
 
     const waterScarcityFactors = {
@@ -48,7 +73,7 @@ function CalculatorController($scope) {
 
     const waterFactors = {
         showeringFactor: 0.72,
-        flushingToiletsFactor: 0.0615, 
+        flushingToiletsFactor: 0.0615,
         washingDishesFactor: 0.04
     };
 
@@ -83,7 +108,7 @@ function CalculatorController($scope) {
 
     // Function to calculate total carbon emissions
     $scope.calculate = function () {
-        
+
         const totalVehicleEmissions = ($scope.vehicleUsage) / 12 * emissionsFactors[$scope.vehicleType] + $scope.publicTransportation * 0.054 / 12;
         const totalDietaryEmissions = dietFactors[$scope.dietType];
         const monthlyGarbageBins = $scope.monthlyGarbageBins;
@@ -100,7 +125,7 @@ function CalculatorController($scope) {
         const totalWaterEmission = (
             (showersPerDay * waterFactors.showeringFactor * waterScarcityFactor +
                 flushesPerDay * waterFactors.flushingToiletsFactor * waterScarcityFactor +
-                dishesPerDay * waterFactors.washingDishesFactor * waterScarcityFactor) 
+                dishesPerDay * waterFactors.washingDishesFactor * waterScarcityFactor)
         );
 
         // Calculate energy emissions from energy sources and convert to common unit (kgCO2e) per month
@@ -116,8 +141,6 @@ function CalculatorController($scope) {
         const totalDrivingVacayEmissions = ($scope.milesDriven * emissionsFactors[$scope.vehicleTypeVacay]) / 12;
         const totalVacayEmissions = totalDrivingVacayEmissions + totalFlightEmissions;
 
-        const totalEmissions = totalVehicleEmissions + totalDietaryEmissions + totalWaterEmission + totalEnergyEmissions + totalWasteEmissions + totalFlightEmissions + totalDrivingVacayEmissions;
-
         $scope.totalVehicleEmissions = !isNaN(totalVehicleEmissions) ? Math.ceil(totalVehicleEmissions * 100) / 100 : 'N/A';
         $scope.totalDietaryEmissions = !isNaN(totalDietaryEmissions) ? Math.ceil(totalDietaryEmissions * 100) / 100 : 'N/A';
         $scope.totalWaterEmission = !isNaN(totalWaterEmission) ? Math.ceil(totalWaterEmission * 100) / 100 : 'N/A';
@@ -126,7 +149,6 @@ function CalculatorController($scope) {
         $scope.totalVacayEmissions = !isNaN(totalVacayEmissions) ? Math.ceil(totalVacayEmissions * 100) / 100 : 'N/A';
 
 
-        // Provide recommendations based on emissions
         $scope.recommendationsVehicle = [];
         $scope.recommendationsDiet = [];
         $scope.recommendationsWater = [];
@@ -214,7 +236,6 @@ function CalculatorController($scope) {
         ];
 
         function createOrUpdateRadarChart() {
-
             const factors = userMetrics.map((userValue, index) =>
                 userValue / averageValues[`metric${index + 1}`]
             );
@@ -222,48 +243,54 @@ function CalculatorController($scope) {
             const maxFactor = Math.max(...factors);
             const maxScaleValue = Math.max(maxFactor, 1);
 
-            // Get the canvas element
             const ctx = document.getElementById('metricsChart').getContext('2d');
 
-            // Check if a chart instance already exists
-            if (window.myChart) {
-          
-                window.myChart.destroy();
-            }
-
-            window.myChart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: metricLabels,
-                    datasets: [
-                        {
-                            label: 'User Metrics',
-                            data: factors,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-                        },
-                        {
-                            label: 'Average Metrics',
-                            data: Array(userMetrics.length).fill(1),
-                            backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                            borderColor: 'rgba(0, 0, 0, 1)',
-                            pointBackgroundColor: 'rgba(0, 0, 0, 1)',
-                        },
-                    ],
-                },
-                options: {
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: maxScaleValue,
+            if (myChart === null) {
+                // Create the chart instance if it doesn't exist
+                myChart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: metricLabels,
+                        datasets: [
+                            {
+                                label: 'User Metrics',
+                                data: factors,
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                            },
+                            {
+                                label: 'Average Metrics',
+                                data: Array(userMetrics.length).fill(1),
+                                backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                                borderColor: 'rgba(0, 0, 0, 1)',
+                                pointBackgroundColor: 'rgba(0, 0, 0, 1)',
+                            },
+                        ],
+                    },
+                    options: {
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: maxScaleValue,
+                            },
                         },
                     },
-                },
-            });
+                });
+            } else {
+                // Update the chart data if it already exists
+                myChart.data.datasets[0].data = factors;
+                myChart.update();
+            }
         }
 
-        // Create the initial chart
-        createOrUpdateRadarChart();
+        $timeout(function () {
+            createOrUpdateRadarChart();
+        });
     }
+
+    $scope.reloadPage = function() {
+        window.location.reload();
+    };
+    
 }

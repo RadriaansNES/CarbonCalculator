@@ -32,6 +32,15 @@
   height: 50px;
   min-width: 100%;
 }
+.MainApp .smallbut {
+  color: black !important;
+  height: 40px;
+  min-width: 48%;
+}
+.MainApp .buttons {
+  display: flex;
+  justify-content: space-between;
+}
 
 .navbar {
   position: fixed;
@@ -225,12 +234,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 90vh;
   padding: 0 7% 0 7%;
   opacity: 0;
   animation: fadeIn 1s ease-in-out forwards;
 }
 #calc #calcHead {
-  padding: 3vh 0;
   text-align: center;
   font-weight: bold;
 }
@@ -239,6 +248,7 @@ body {
   margin: 0;
 }
 #calc div {
+  padding: 3vh 0;
   margin-bottom: 6vh;
 }
 #calc label,
@@ -254,12 +264,17 @@ body {
 #calc .result {
   text-decoration: underline;
 }
-#calc .nomargin {
-  margin-bottom: 0;
-}
 #calc #disclaimer {
   margin-top: 10vh;
+  padding-bottom: 0;
   margin-bottom: 0;
+}
+#calc .bigBut {
+  margin-top: 5vh;
+}
+#calc .nomargin {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 @keyframes fadeIn {

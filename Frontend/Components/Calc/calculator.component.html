@@ -1,9 +1,13 @@
 <!-- calculator.component.html -->
 <div class="container-fluid" id="calc">
-    <p id="calcHead">Enter your information to get your monthly statistics, how you compare against others, and what you
-        can do to improve your footprint.<br> Don't forget to share with your friends!</p>
+    <div ng-if="isCurrentStep(0)">
+        <p id="calcHead">Enter your information to get your monthly statistics, how you compare against others, and what
+            you
+            can do to improve your footprint.<br> Don't forget to share with your friends!</p>
+        <button class="bigBut" ng-click="nextStep()">Begin</button>
+    </div>
     <form ng-submit="calculate()">
-        <div>
+        <div ng-if="isCurrentStep(1)">
             <h3>Transportation Habits</h3>
             <label for="vehicleType">Vehicle Type:</label>
             <select id="vehicleType" ng-model="vehicleType">
@@ -20,8 +24,9 @@
             <label for="publicTransportation">Public Transportation (miles/year):</label>
             <input type="number" id="publicTransportation" ng-model="publicTransportation"
                 ng-init="publicTransportation = publicTransportation || 0" placeholder="Enter miles/year">
+            <button class="bigBut" ng-click="nextStep()">Next</button>
         </div>
-        <div>
+        <div ng-if="isCurrentStep(2)">
             <h3>Dietary Choices</h3>
             <label for="dietType">Dietary Preference:</label>
             <select id="dietType" ng-model="dietType">
@@ -30,8 +35,12 @@
                 <option value="regular">Regular</option>
                 <option value="meatBased">Meat-Based</option>
             </select>
+            <div class="buttons">
+                <button class="smallbut" ng-click="prevStep()">Previous</button>
+                <button class="smallbut" ng-click="nextStep()">Next</button>
+            </div>
         </div>
-        <div>
+        <div ng-if="isCurrentStep(3)">
             <h3>Household Information</h3>
             <label for="numPeople">Number of People in Household:</label>
             <input type="number" id="numPeople" ng-model="numPeople" ng-init="numPeople = numPeople || 0"
@@ -43,8 +52,12 @@
                 <option value="moderate">Moderate</option>
                 <option value="high">High</option>
             </select>
+            <div class="buttons">
+                <button class="smallbut" ng-click="prevStep()">Previous</button>
+                <button class="smallbut" ng-click="nextStep()">Next</button>
+            </div>
         </div>
-        <div>
+        <div ng-if="isCurrentStep(4)">
             <h3>Daily Water Usage</h3>
             <label for="showersPerDay">Daily Showers Per Person</label>
             <input type="number" id="showersPerDay" ng-model="showersPerDay"
@@ -57,8 +70,12 @@
             <label for="dishesPerDay">Daily Dishes Cleaned Per Person:</label>
             <input type="number" id="dishesPerDay" ng-model="dishesPerDay" ng-init="dishesPerDay = dishesPerDay || 0"
                 placeholder="Enter number of dishes washed">
+            <div class="buttons">
+                <button class="smallbut" ng-click="prevStep()">Previous</button>
+                <button class="smallbut" ng-click="nextStep()">Next</button>
+            </div>
         </div>
-        <div>
+        <div ng-if="isCurrentStep(5)">
             <h3>Energy Consumption</h3>
             <span ng-repeat="source in energySources track by $index">
                 <label for="energySourceType{{$index}}">Energy Source:</label>
@@ -81,8 +98,12 @@
             <br>
             <button ng-if="energySources.length > 1" ng-click="removeEnergySource($index)">Remove</button>
             <button ng-click="addEnergySource()">Add Energy Source</button>
+            <div class="buttons">
+                <button class="smallbut" ng-click="prevStep()">Previous</button>
+                <button class="smallbut" ng-click="nextStep()">Next</button>
+            </div>
         </div>
-        <div>
+        <div ng-if="isCurrentStep(6)">
             <h3>Waste Emissions</h3>
             <label for="monthlyGarbageBins">Garbage Bins (monthly):</label>
             <input type="number" id="monthlyGarbageBins" ng-model="monthlyGarbageBins"
@@ -99,8 +120,12 @@
                 ng-init="monthlyCompostBins = monthlyCompostBins || 0"
                 placeholder="Enter number of compost bins monthly">
             <br>
+            <div class="buttons">
+                <button class="smallbut" ng-click="prevStep()">Previous</button>
+                <button class="smallbut" ng-click="nextStep()">Next</button>
+            </div>
         </div>
-        <div>
+        <div ng-if="isCurrentStep(7) && !calculateButtonClicked">
             <h3>Vacation Habits</h3>
             <label for="vehicleTypeVacay">Vehicle Type:</label>
             <select id="vehicleTypeVacay" ng-model="vehicleTypeVacay">
@@ -116,14 +141,15 @@
             <label for="milesFlown">Miles Flown (per year):</label>
             <input type="number" id="milesFlown" ng-model="milesFlown" ng-init="milesFlown = milesFlown || 0"
                 placeholder="Enter miles/year for flights">
+            <div class="buttons">
+                <button class="smallbut" ng-click="prevStep()">Previous</button>
+                <button class="smallbut" ng-click="nextStep()">Next</button>
+            </div>
         </div>
-        <button class="bigBut" type="submit">Calculate</button>
     </form>
-    <br>
-    <br>
-    <div class="nomargin">
-        <div>
-            <canvas id="metricsChart"></canvas>
+    <div ng-if="calculateButtonClicked" class="nomargin">
+        <div class="nomargin">
+            <canvas id="metricsChart" ng-if="calculateButtonClicked"></canvas>
         </div>
         <div ng-if="totalVehicleEmissions > 0">
             <h3>Total Vehicle Emissions</h3>
@@ -155,11 +181,13 @@
             <p class="result">{{ totalVacayEmissions }} kg - CO2e per month</p>
             <p ng-repeat="recommendation in recommendationsVacay">{{ recommendation }}</p>
         </div>
+        <button class="bigBut" ng-click="reloadPage()">Reassess Your Metrics</button>
         <div id="disclaimer">
             <p
                 ng-if="totalVacayEmissions > 0 || totalWasteEmissions > 0 || totalWaterEmission > 0 || totalEnergyEmissions > 0 || totalDietaryEmissions > 0 || totalVehicleEmissions > 0">
                 <strong>Please note these rough calculations are based on numbers provided by Gov. Canada and are
-                    subject to change.</strong></p>
+                    subject to change.</strong>
+            </p>
         </div>
     </div>
 </div>
