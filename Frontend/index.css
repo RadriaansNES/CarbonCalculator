@@ -100,9 +100,9 @@ body {
   background-repeat: no-repeat;
   background-position: center left;
   display: flex;
-  flex-direction: column; /* Display items vertically */
-  justify-content: space-around; /* Add space around items */
-  align-items: center; /* Center items horizontally */
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   color: #333;
 }
 .container-fluid .c1 p {

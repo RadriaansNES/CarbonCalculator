@@ -1,7 +1,29 @@
 <!-- login.component.html -->
-<div>
-    <h2>Login</h2>
-    <form>
-      <!-- Login form goes here -->
-    </form>
-  </div>
+<div class="container-fluid">
+    <section class="redirect">
+        <div class="HEAD">
+            <div class="space-between">
+                <h2 class="animate__animated animate__rotateIn">Login</h2>
+                <form ng-submit="handleSubmit()">
+                    <label>
+                        <strong>Username:</strong>
+                        <input type="text" name="username" ng-model="formData.username" autocomplete="username" />
+                    </label>
+                    <label>
+                        <strong>Password:</strong>
+                        <input type="password" name="password" ng-model="formData.password" required
+                            autocomplete="current-password" />
+                    </label>
+
+                    <p ng-show="incorrectCredentials"><strong>Incorrect username or password. Please try again.</strong>
+                    </p>
+                    <br>
+                </form>
+            </div>
+            <button class="bigBut" type="submit">LoginNEEDSuri</button>
+            <div>
+                <p>Don't have an account? <a ui-sref='layout.signup'>Sign up today!</a></p>
+            </div>
+        </div>
+    </section>
+</div>
