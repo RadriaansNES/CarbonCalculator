@@ -150,16 +150,15 @@ body {
         flex-direction: column;
         align-items: center;
         position: relative;
-        overflow: hidden;
-        width: 100%;
-    }
-
-    .carousel-slide {
+        width: 100%; // Ensure the carousel takes full width
+      }
+      
+      .carousel-slide {
         position: absolute;
         top: 100vh;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: 100%; // Ensure the slide covers the entire viewport
         background-size: cover;
         background-position: center;
         display: flex;
@@ -168,44 +167,42 @@ body {
         align-items: center;
         text-align: center;
         color: #fff;
-        /* Text color for overlay */
         padding: 10vh 12%;
         opacity: 0;
         transition: opacity 0.5s;
-
+      
         &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 90%;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* Overlay background color and opacity */
-            z-index: 1;
-            /* Ensure the overlay is on top of slide content */
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 90%; // Make sure the overlay covers the entire slide
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 1;
         }
-
+      
         & * {
-            position: relative;
-            z-index: 1;
-            color: #fff;
+          position: relative;
+          z-index: 2; // Ensure the slide content is above the overlay
+          color: #fff;
         }
-
+      
         .CSButs {
-            position: absolute;
-            top: 50vh;
-            display: flex;
-            min-width: 100%;
-            justify-content: space-between;
+          position: absolute;
+          top: 50vh;
+          display: flex;
+          min-width: 100%;
+          justify-content: space-between;
         }
-
+      
         .prev-button, .next-button {
-            background-color: transparent;
-            font-size: 45px;
-            border-width: 0;
+          background-color: transparent;
+          font-size: 45px;
+          border-width: 0;
         }
-    }
+      }
+      
 
 
     .c2 {
