@@ -43,6 +43,15 @@ angular.module('myApp', ['ui.router'])
           }
         }
       })
+      .state('layout.dashboard', {
+        url: '/dashboard', 
+        views: {
+          '': {
+            templateUrl: 'Components/Dashboard/dashboard.component.html', 
+            controller: 'DashboardController'
+          }
+        }
+      })
       .state('layout.signup', {
         url: '/signup', 
         views: {
