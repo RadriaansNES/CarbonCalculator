@@ -13,3 +13,5 @@ node_modules
 application.properties
 mvnw
 mvnw.cmd
+target
+.vscode
