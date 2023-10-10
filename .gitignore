@@ -1,1 +1,15 @@
 node_modules
+
+#backend
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn
+.classpath
+.project
+.settings/
+.springBeans
+.DS_Store
+*.log
+application.properties
+mvnw
+mvnw.cmd
