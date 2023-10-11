@@ -4,21 +4,22 @@
         <div class="HEAD">
             <div class="space-between">
                 <h2 class="animate__animated animate__rotateIn">Login</h2>
-                <form>
+                <form ng-submit="login()">
                     <label>
                         <strong>Username:</strong>
-                        <input type="text" name="username" autoComplete="username" />
+                        <input type="text" name="username" ng-model="user.username" autoComplete="username" />
                     </label>
                     <label>
                         <strong>Password:</strong>
-                        <input type="password" name="password" required autoComplete="current-password" />
+                        <input type="password" name="password" ng-model="user.password" required
+                            autoComplete="current-password" />
                     </label>
 
                     <p style="display:none"><strong>Incorrect username or password. Please try again.</strong></p>
                     <br>
+                    <button class="bigBut" type='submit'>Login</button>
                 </form>
                 <p>Don't have an account? <a ui-sref='layout.signup'>Sign up today!</a> </p>
-                <button class="bigBut" type='submit' ui-sref='layout.dashboard'>LoginNEEDSuri</button>
             </div>
             <h3>Or</h3>
             <button class="scroll-top-button bigBut" ui-sref="layout.calculator">Continue as Guest</button>
