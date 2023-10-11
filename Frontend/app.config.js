@@ -1,7 +1,8 @@
 // app.config.js
 
 angular.module('myApp', ['ui.router'])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider.html5Mode(true); // Enable HTML5 mode
     $stateProvider
       .state('layout', {
         abstract: true, // Layout State
