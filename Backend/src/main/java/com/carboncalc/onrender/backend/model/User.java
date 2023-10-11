@@ -1,3 +1,5 @@
+/* User.java */
+
 package com.carboncalc.onrender.backend.model;
 
 import javax.persistence.Column;
