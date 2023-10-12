@@ -322,7 +322,12 @@ body {
 }
 .container-fluid .redirect .HEAD p {
   text-align: center;
-  padding-bottom: 2vh;
+  padding-bottom: 1vh;
+  padding-top: 1vh;
+  margin-bottom: 0;
+}
+.container-fluid .redirect .HEAD h3 {
+  margin: 0;
 }
 
 .ng-valid label, .ng-invalid label {
