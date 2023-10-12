@@ -396,7 +396,7 @@ body {
     }
 }
 
-.ng-valid label {
+.ng-valid label, .ng-invalid label{
     display: flex;
     justify-content: space-between;
 }

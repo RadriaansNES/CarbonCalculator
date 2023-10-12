@@ -325,7 +325,7 @@ body {
   padding-bottom: 2vh;
 }
 
-.ng-valid label {
+.ng-valid label, .ng-invalid label {
   display: flex;
   justify-content: space-between;
 }
