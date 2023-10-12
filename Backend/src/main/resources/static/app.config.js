@@ -5,11 +5,12 @@ angular.module('myApp', ['ui.router', 'ngCookies'])
     $locationProvider.html5Mode(true); // Enable HTML5 mode
     $stateProvider
       .state('layout', {
-        abstract: true, // Layout State
-        templateUrl: 'Components/Layout/layout.html', 
+        abstract: true,
+        templateUrl: 'Components/Layout/layout.html',
+        controller: 'LayoutController'
       })
       .state('layout.home', {
-        url: '/', 
+        url: '/',
         views: {
           '': {
             templateUrl: 'Components/Home/home.component.html',
@@ -18,46 +19,46 @@ angular.module('myApp', ['ui.router', 'ngCookies'])
         }
       })
       .state('layout.login', {
-        url: '/login', 
+        url: '/login',
         views: {
           '': {
-            templateUrl: 'Components/Login/login.component.html', 
+            templateUrl: 'Components/Login/login.component.html',
             controller: 'LoginController'
           }
         }
       })
       .state('layout.calculator', {
-        url: '/calculator', 
+        url: '/calculator',
         views: {
           '': {
-            templateUrl: 'Components/Calc/calculator.component.html', 
+            templateUrl: 'Components/Calc/calculator.component.html',
             controller: 'CalculatorController'
           }
         }
       })
       .state('layout.redirect', {
-        url: '/redirect', 
+        url: '/redirect',
         views: {
           '': {
-            templateUrl: 'Components/Redirect/redirect.component.html', 
+            templateUrl: 'Components/Redirect/redirect.component.html',
             controller: 'RedirectController'
           }
         }
       })
       .state('layout.dashboard', {
-        url: '/dashboard', 
+        url: '/dashboard',
         views: {
           '': {
-            templateUrl: 'Components/Dashboard/dashboard.component.html', 
+            templateUrl: 'Components/Dashboard/dashboard.component.html',
             controller: 'DashboardController'
           }
         }
       })
       .state('layout.signup', {
-        url: '/signup', 
+        url: '/signup',
         views: {
           '': {
-            templateUrl: 'Components/Signup/signup.component.html', 
+            templateUrl: 'Components/Signup/signup.component.html',
             controller: 'SignupController'
           }
         }

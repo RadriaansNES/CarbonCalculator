@@ -1,10 +1,19 @@
 angular.module('myApp')
   .controller('HomeController', HomeController);
 
-function HomeController($state) {
+function HomeController($state, $cookies, $scope) {
   var slides; 
   var currentSlide = 4; 
   var autoAdvancePaused = false; 
+
+  $scope.checkLoginStatus = function() {
+    var authToken = $cookies.get('authToken');
+    if (authToken) {
+      $state.go('layout.calculator');
+    } else {
+      $state.go('layout.redirect');
+    }
+  }
 
   function scrollToTop() {
     window.scrollTo(0, 0);

@@ -44,7 +44,7 @@ public class UserController {
 
     private String generateSecureToken() {
         SecureRandom random = new SecureRandom();
-        byte[] bytes = new byte[64]; 
+        byte[] bytes = new byte[64];
 
         random.nextBytes(bytes);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
@@ -59,7 +59,7 @@ public class UserController {
         User user = userService.findByUsername(username);
 
         if (user != null && user.getPassword().equals(password)) {
-       
+
             String sessionToken = generateSecureToken();
 
             user.setSessionToken(sessionToken);
@@ -72,6 +72,7 @@ public class UserController {
 
             Cookie cookie = new Cookie("authToken", sessionToken);
             cookie.setMaxAge(3600);
+            cookie.setPath("/"); //Site wide 
             response.addCookie(cookie);
 
             return ResponseEntity.ok(responseMap);
