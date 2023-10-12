@@ -45,6 +45,10 @@ public class User {
     @Column(nullable = false)
     private String country;
 
+    @Column(name = "SESSIONTOKEN")
+    private String sessionToken;
+
+
     public User() {
     }
 
@@ -142,5 +146,13 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getSessionToken() {
+        return sessionToken;
+    }
+
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
     }
 }

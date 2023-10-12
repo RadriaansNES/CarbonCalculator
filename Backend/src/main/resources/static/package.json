@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "angular": "^1.8.3",
+    "angular-cookies": "^1.8.3",
     "angular-ui-router": "^1.0.30",
     "http-server": "v14.1.1"
   }

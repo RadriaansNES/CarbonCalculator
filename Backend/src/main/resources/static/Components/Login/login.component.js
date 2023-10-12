@@ -3,7 +3,8 @@
 angular.module('myApp')
   .controller('LoginController', LoginController);
 
-function LoginController($scope, $http, $state) {
+
+function LoginController($scope, $http, $state, $cookies) {
   $scope.login = function () {
     var credentials = {
       username: $scope.user.username,
@@ -15,6 +16,10 @@ function LoginController($scope, $http, $state) {
     $http.post('/users/login', credentials)
       .then(function (response) {
         console.log('Login successful:', response.data.message);
+
+        var authToken = response.headers('Set-Cookie');
+        $cookies.put('authToken', authToken);
+
         $state.go('layout.dashboard');
       })
 

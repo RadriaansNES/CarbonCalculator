@@ -9,7 +9,24 @@ function SignupController($scope, $http, $state, $timeout) {
   $scope.registrationSuccess = false;
   $scope.badReg = false;
 
+ // Has to be above. 
+  function passwordCheck() {
+    var password = $scope.user.password;
+    if (password.length < 7 || !/\d/.test(password)) {
+      $scope.badPassword = true;
+    } else {
+      $scope.badPassword = false;
+    }
+  }
+
   $scope.submitForm = function () {
+    passwordCheck();
+    
+    if ($scope.badPassword) {
+      console.log('Password does not meet criteria. Form not submitted.');
+      return;
+    }
+
     $http.post('/users/create', $scope.user)
       .then(function (response) {
         console.log('User registered successfully:', response.data.message);
@@ -26,11 +43,4 @@ function SignupController($scope, $http, $state, $timeout) {
         }, 3000);
       });
   };
-
-  $scope.passwordCheck = function () {
-    var password = $scope.user.password;
-    if (password.length < 7 && !/\d/.test(password)) {
-      $scope.badPassword = true;
-    }
-  }
 }

@@ -1,6 +1,6 @@
 // app.config.js
 
-angular.module('myApp', ['ui.router'])
+angular.module('myApp', ['ui.router', 'ngCookies'])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true); // Enable HTML5 mode
     $stateProvider
