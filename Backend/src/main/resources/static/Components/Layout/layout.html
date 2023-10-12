@@ -15,13 +15,13 @@
       </div>
 
       <div class="collapse navbar-collapse" id="navbar-collapse">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" ng-click="updateToken()">
           <li><a ui-sref="layout.home" data-toggle="collapse" data-target="#navbar-collapse"
               aria-expanded="false">Home</a></li>
           <li><a ng-click="LoginCheckCalculator()" data-toggle="collapse" data-target="#navbar-collapse"
               aria-expanded="false">Calculator</a></li>
           <li><a ng-click="LoginCheckLogin()" data-toggle="collapse" data-target="#navbar-collapse"
-            aria-expanded="false">{{ isLoggedIn ? 'Account' : 'Login' }}</a></li>
+            aria-expanded="false">{{ authToken ? 'Account' : 'Login' }}</a></li>
         </ul>
       </div>
     </div>
