@@ -41,6 +41,11 @@
   display: flex;
   justify-content: space-between;
 }
+.MainApp .warning {
+  margin: 4vh 0;
+  font-weight: bold;
+  color: red;
+}
 
 .navbar {
   position: fixed;
@@ -317,8 +322,11 @@ body {
 }
 .container-fluid .redirect .HEAD {
   padding-top: 40px;
-  padding-bottom: 300px;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3vh;
 }
 .container-fluid .redirect .HEAD p {
   text-align: center;

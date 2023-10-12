@@ -19,6 +19,9 @@
                     <br>
                     <button class="bigBut" type='submit'>Login</button>
                 </form>
+                <div class='warning' ng-if="badLog">
+                    <p>Incorrect credentials. Please try again, or register a new account. </p>
+                </div>
             </div>
             <p>Don't have an account? <a ui-sref='layout.signup'>Sign up today!</a> </p>
             <h3>Or</h3>

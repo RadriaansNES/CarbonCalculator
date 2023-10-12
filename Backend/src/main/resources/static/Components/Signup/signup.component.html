@@ -59,7 +59,17 @@
           </label>
           <br />
           <button class="bigBut" type='submit'>Submit</button>
+          <br/>
         </form>
+        <div class='warning' ng-if="badPassword">
+          <p>Please use a password a minimum of 7 characters long, including at least one number.</p>
+        </div>
+        <div class='warning' ng-if="badReg">
+          <p>Unable able to process registration. Redirecting back to home... </p>
+        </div>
+        <div class='warning' ng-if="registrationSuccess">
+          <p>Succesfully registered! Redirecting back to login... </p>
+        </div>
       </div>
     </div>
   </section>

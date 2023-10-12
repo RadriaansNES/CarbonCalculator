@@ -52,6 +52,13 @@
         display: flex;
         justify-content: space-between;
     }
+
+    .warning {
+        margin: 4vh 0;
+        font-weight: bold;
+        color: red;
+    }
+    
 }
 
 //Nav
@@ -387,8 +394,12 @@ body {
 // Redirect
 .container-fluid .redirect .HEAD {
     padding-top: 40px;
-    padding-bottom: 300px;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3vh;
+
 
     p {
         text-align: center;
@@ -433,5 +444,4 @@ body {
         text-align: center;
         padding-bottom: 2vh;
     }
-
 }
