@@ -162,9 +162,6 @@ public class User {
 
     public boolean checkPassword(String password) {
         boolean isMatch = BCrypt.checkpw(password, passwordHash);
-        System.out.println("Checking password: " + password);
-        System.out.println("Against hash: " + passwordHash);
-        System.out.println("Match result: " + isMatch);
         return isMatch;
     }
 

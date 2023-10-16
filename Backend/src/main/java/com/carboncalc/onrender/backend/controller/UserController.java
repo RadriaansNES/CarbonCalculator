@@ -45,7 +45,6 @@ public class UserController {
         user.setPostalCode(registration.getPostalCode());
         user.setCountry(registration.getCountry());
 
-        // Hash the password and set it in the User object
         user.hashAndSetPassword(registration.getPassword());
 
         User savedUser = userService.saveUser(user);
@@ -72,9 +71,8 @@ public class UserController {
         User user = userService.findByUsername(username);
 
         if (user != null) {
-            String storedPasswordHash = user.getPasswordHash(); // Get the stored password hash from the database
 
-            if (user.checkPassword(password)) { // Compare with hashed password
+            if (user.checkPassword(password)) { 
                 String sessionToken = generateSecureToken();
 
                 user.setSessionToken(sessionToken);
@@ -94,9 +92,6 @@ public class UserController {
             } else {
                 Map<String, Object> responseMap = new HashMap<>();
                 responseMap.put("message", "Login failed");
-                System.out.println("Provided username: " + username);
-                System.out.println("Provided plaintext password: " + password);
-                System.out.println("Password check failed. Stored Password Hash: " + storedPasswordHash);
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(responseMap);
             }
         } else {
