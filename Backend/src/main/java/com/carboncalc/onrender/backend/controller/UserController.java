@@ -3,6 +3,8 @@
 package com.carboncalc.onrender.backend.controller;
 
 import com.carboncalc.onrender.backend.model.User;
+import com.carboncalc.onrender.backend.model.LoginDTO;
+import com.carboncalc.onrender.backend.model.RegistrationDTO;
 import com.carboncalc.onrender.backend.service.UserService;
 
 import jakarta.servlet.http.Cookie;
@@ -32,7 +34,20 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Map<String, Object>> createUser(@RequestBody User user) {
+    public ResponseEntity<Map<String, Object>> createUser(@RequestBody RegistrationDTO registration) {
+        User user = new User();
+        user.setUsername(registration.getUsername());
+        user.setFirstName(registration.getFirstName());
+        user.setLastName(registration.getLastName());
+        user.setTelephone(registration.getTelephone());
+        user.setAddress(registration.getAddress());
+        user.setCity(registration.getCity());
+        user.setPostalCode(registration.getPostalCode());
+        user.setCountry(registration.getCountry());
+
+        // Hash the password and set it in the User object
+        user.hashAndSetPassword(registration.getPassword());
+
         User savedUser = userService.saveUser(user);
 
         Map<String, Object> response = new HashMap<>();
@@ -51,34 +66,42 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> credentials,
-            HttpServletResponse response) {
-        String username = credentials.get("username");
-        String password = credentials.get("password");
-
+    public ResponseEntity<Map<String, Object>> login(@RequestBody LoginDTO loginDTO, HttpServletResponse response) {
+        String username = loginDTO.getUsername();
+        String password = loginDTO.getPassword();
         User user = userService.findByUsername(username);
 
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null) {
+            String storedPasswordHash = user.getPasswordHash(); // Get the stored password hash from the database
 
-            String sessionToken = generateSecureToken();
+            if (user.checkPassword(password)) { // Compare with hashed password
+                String sessionToken = generateSecureToken();
 
-            user.setSessionToken(sessionToken);
+                user.setSessionToken(sessionToken);
 
-            userService.saveUser(user);
+                userService.saveUser(user);
 
-            Map<String, Object> responseMap = new HashMap<>();
-            responseMap.put("message", "Login successful");
-            responseMap.put("username", username);
+                Map<String, Object> responseMap = new HashMap<>();
+                responseMap.put("message", "Login successful");
+                responseMap.put("username", username);
 
-            Cookie cookie = new Cookie("authToken", sessionToken);
-            cookie.setMaxAge(3600);
-            cookie.setPath("/"); //Site wide 
-            response.addCookie(cookie);
+                Cookie cookie = new Cookie("authToken", sessionToken);
+                cookie.setMaxAge(3600);
+                cookie.setPath("/"); // Site wide
+                response.addCookie(cookie);
 
-            return ResponseEntity.ok(responseMap);
+                return ResponseEntity.ok(responseMap);
+            } else {
+                Map<String, Object> responseMap = new HashMap<>();
+                responseMap.put("message", "Login failed");
+                System.out.println("Provided username: " + username);
+                System.out.println("Provided plaintext password: " + password);
+                System.out.println("Password check failed. Stored Password Hash: " + storedPasswordHash);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(responseMap);
+            }
         } else {
             Map<String, Object> responseMap = new HashMap<>();
-            responseMap.put("message", "Login failed");
+            responseMap.put("message", "User not found");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(responseMap);
         }
     }

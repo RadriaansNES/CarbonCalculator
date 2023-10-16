@@ -2,6 +2,7 @@
 
 package com.carboncalc.onrender.backend.model;
 
+import org.mindrot.jbcrypt.BCrypt;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +11,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 
-@Table(name = "ACCOUNTS")  
+@Table(name = "ACCOUNTS")
 @Entity
 @SequenceGenerator(name = "USER_SEQ", sequenceName = "USER_SEQ", allocationSize = 1)
 public class User {
@@ -22,7 +23,7 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    private String password;
+    private String passwordHash;
 
     @Column(nullable = false)
     private String firstName;
@@ -48,16 +49,14 @@ public class User {
     @Column(name = "SESSIONTOKEN")
     private String sessionToken;
 
-
     public User() {
     }
 
     public User(
-        String username, String password, String firstName, String lastName, String telephone,
-        String address, String city, String postalCode, String country
-    ) {
+            String username, String passwordHash, String firstName, String lastName, String telephone,
+            String address, String city, String postalCode, String country) {
         this.username = username;
-        this.password = password;
+        this.passwordHash = passwordHash;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephone = telephone;
@@ -84,12 +83,12 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public String getFirstName() {
@@ -155,4 +154,18 @@ public class User {
     public void setSessionToken(String sessionToken) {
         this.sessionToken = sessionToken;
     }
+
+    public void hashAndSetPassword(String plaintextPassword) {
+        int saltRounds = 10;
+        this.passwordHash = BCrypt.hashpw(plaintextPassword, BCrypt.gensalt(saltRounds));
+    }
+
+    public boolean checkPassword(String password) {
+        boolean isMatch = BCrypt.checkpw(password, passwordHash);
+        System.out.println("Checking password: " + password);
+        System.out.println("Against hash: " + passwordHash);
+        System.out.println("Match result: " + isMatch);
+        return isMatch;
+    }
+
 }
