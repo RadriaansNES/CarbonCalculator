@@ -13,7 +13,6 @@ public class RegistrationDTO {
     private String postalCode;
     private String country;
 
-    // Getters
     public String getUsername() {
         return username;
     }
@@ -54,7 +53,6 @@ public class RegistrationDTO {
         return country;
     }
 
-    // Setters
     public void setUsername(String username) {
         this.username = username;
     }
