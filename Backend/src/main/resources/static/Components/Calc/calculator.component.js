@@ -297,7 +297,7 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
     $scope.postFootprint = function () {
         var username = $cookies.get('username');
 
-        // Initialize all emission variables to 0
+        
         var totalVehicleEmissions = 0;
         var totalDietaryEmissions = 0;
         var totalWaterEmission = 0;
