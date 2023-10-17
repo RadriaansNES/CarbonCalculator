@@ -8,21 +8,25 @@ function SignupController($scope, $http, $state, $timeout) {
   $scope.badPassword = false;
   $scope.registrationSuccess = false;
   $scope.badReg = false;
+  $scope.noMatch = false;
 
  // Has to be above. 
   function passwordCheck() {
     var password = $scope.user.password;
     if (password.length < 7 || !/\d/.test(password)) {
       $scope.badPassword = true;
+    } else if ($scope.user.password != $scope.user.password2) {
+      $scope.noMatch = true;
     } else {
       $scope.badPassword = false;
+      $scope.noMatch = false;
     }
   }
 
   $scope.submitForm = function () {
     passwordCheck();
     
-    if ($scope.badPassword) {
+    if ($scope.badPassword || $scope.noMatch) {
       console.log('Password does not meet criteria. Form not submitted.');
       return;
     }

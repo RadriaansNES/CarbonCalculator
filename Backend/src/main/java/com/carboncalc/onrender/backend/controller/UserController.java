@@ -37,6 +37,7 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> createUser(@RequestBody RegistrationDTO registration) {
         User user = new User();
         user.setUsername(registration.getUsername());
+        user.setEmail(registration.getEmail());
         user.setFirstName(registration.getFirstName());
         user.setLastName(registration.getLastName());
         user.setTelephone(registration.getTelephone());

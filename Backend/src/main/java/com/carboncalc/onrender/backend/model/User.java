@@ -22,6 +22,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
     @Column(nullable = false)
     private String passwordHash;
 
@@ -53,9 +56,10 @@ public class User {
     }
 
     public User(
-            String username, String passwordHash, String firstName, String lastName, String telephone,
+            String username, String email, String passwordHash, String firstName, String lastName, String telephone,
             String address, String city, String postalCode, String country) {
         this.username = username;
+        this.email = email;
         this.passwordHash = passwordHash;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -81,6 +85,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPasswordHash() {

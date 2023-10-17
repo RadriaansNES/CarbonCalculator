@@ -18,6 +18,18 @@
           <br />
 
           <label>
+            Repeat Password:
+            <input type="password" name="password" ng-model="user.password2" autocomplete="current-password" />
+          </label>
+          <br />
+
+          <label>
+            Email:
+            <input type="email" name="email" ng-model="user.email" autocomplete="email" />
+          </label>
+          <br />
+
+          <label>
             First Name:
             <input type="text" name="first_name" ng-model="user.firstName" autocomplete="given-name" />
           </label>
@@ -59,10 +71,13 @@
           </label>
           <br />
           <button class="bigBut" type='submit'>Submit</button>
-          <br/>
+          <br />
         </form>
         <div class='warning' ng-if="badPassword">
           <p>Please use a password a minimum of 7 characters long, including at least one number.</p>
+        </div>
+        <div class='warning' ng-if="noMatch">
+          <p>Passwords do not match. Please try again.</p>
         </div>
         <div class='warning' ng-if="badReg">
           <p>Unable able to process registration. Redirecting back to home... </p>
