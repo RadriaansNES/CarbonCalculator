@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -73,7 +75,7 @@ public class UserController {
 
         if (user != null) {
 
-            if (user.checkPassword(password)) { 
+            if (user.checkPassword(password)) {
                 String sessionToken = generateSecureToken();
 
                 user.setSessionToken(sessionToken);
@@ -84,10 +86,17 @@ public class UserController {
                 responseMap.put("message", "Login successful");
                 responseMap.put("username", username);
 
-                Cookie cookie = new Cookie("authToken", sessionToken);
-                cookie.setMaxAge(3600);
-                cookie.setPath("/"); // Site wide
-                response.addCookie(cookie);
+                // Set authToken cookie
+                Cookie authTokenCookie = new Cookie("authToken", sessionToken);
+                authTokenCookie.setMaxAge(3600);
+                authTokenCookie.setPath("/"); // Site wide
+                response.addCookie(authTokenCookie);
+
+                // Set username cookie
+                Cookie usernameCookie = new Cookie("username", username);
+                usernameCookie.setMaxAge(3600);
+                usernameCookie.setPath("/"); // Site wide
+                response.addCookie(usernameCookie);
 
                 return ResponseEntity.ok(responseMap);
             } else {
@@ -99,6 +108,20 @@ public class UserController {
             Map<String, Object> responseMap = new HashMap<>();
             responseMap.put("message", "User not found");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(responseMap);
+        }
+    }
+
+    @GetMapping("/getUserIdByUsername")
+    public ResponseEntity<Map<String, Object>> getUserIdByUsername(@RequestParam String username) {
+        User user = userService.findByUsername(username);
+
+        Map<String, Object> response = new HashMap<>();
+        if (user != null) {
+            response.put("userId", user.getId());
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "User not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
     }
 }

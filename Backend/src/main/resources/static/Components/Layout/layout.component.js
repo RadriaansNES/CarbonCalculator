@@ -4,6 +4,14 @@ angular.module('myApp')
   .controller('LayoutController', LayoutController);
 
 function LayoutController($scope, $state, $cookies) {
+  //Check on init
+  $scope.init = function () {
+    var authToken = $cookies.get('authToken');
+    if (authToken) {
+      $scope.authToken = authToken;
+    }
+  }
+  $scope.init();
 
   $scope.LoginCheckCalculator = function () {
     var authToken = $cookies.get('authToken'); //Need to write this to check authToken at the TIME of the request
@@ -34,8 +42,11 @@ function LayoutController($scope, $state, $cookies) {
       return $cookies.get('authToken');
     },
     function (newAuthToken, oldAuthToken) {
-      if (!newAuthToken && oldAuthToken) {
+      if (newAuthToken) {
+        $scope.authToken = newAuthToken;
+      } else if (!newAuthToken && oldAuthToken) {
         $scope.authToken = null;
+        $scope.username = null;
       }
     }
   );

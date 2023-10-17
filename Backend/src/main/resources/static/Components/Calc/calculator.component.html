@@ -181,6 +181,7 @@
             <p class="result">{{ totalVacayEmissions }} kg - CO2e per month</p>
             <p ng-repeat="recommendation in recommendationsVacay">{{ recommendation }}</p>
         </div>
+        <button class="bigBut" ng-click="postFootprint()">Post Your Metrics</button>
         <button class="bigBut" ng-click="reloadPage()">Reassess Your Metrics</button>
         <div id="disclaimer">
             <p

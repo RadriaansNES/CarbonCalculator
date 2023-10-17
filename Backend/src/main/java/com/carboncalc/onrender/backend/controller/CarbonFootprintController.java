@@ -4,7 +4,7 @@ import com.carboncalc.onrender.backend.model.CarbonFootprint;
 import com.carboncalc.onrender.backend.service.CarbonFootprintService;
 import com.carboncalc.onrender.backend.model.CarbonFootprintDTO;
 import com.carboncalc.onrender.backend.model.User;
-import com.carboncalc.onrender.backend.repository.UserRepository; // Import UserRepository
+import com.carboncalc.onrender.backend.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +21,9 @@ public class CarbonFootprintController {
     @Autowired
     public CarbonFootprintController(
             CarbonFootprintService carbonFootprintService,
-            UserRepository userRepository 
-    ) {
+            UserRepository userRepository) {
         this.carbonFootprintService = carbonFootprintService;
-        this.userRepository = userRepository; 
+        this.userRepository = userRepository;
     }
 
     @PostMapping("/create")
@@ -39,7 +38,12 @@ public class CarbonFootprintController {
 
         CarbonFootprint carbonFootprint = new CarbonFootprint(
                 user,
-                carbonFootprintDTO.getFootprintValue(),
+                carbonFootprintDTO.getTotalVehicleEmissions(),
+                carbonFootprintDTO.getTotalDietaryEmissions(),
+                carbonFootprintDTO.getTotalWaterEmission(),
+                carbonFootprintDTO.getTotalEnergyEmissions(),
+                carbonFootprintDTO.getTotalWasteEmissions(),
+                carbonFootprintDTO.getTotalVacayEmissions(),
                 carbonFootprintDTO.getCalculationDate());
 
         CarbonFootprint createdFootprint = carbonFootprintService.saveCarbonFootprint(carbonFootprint);

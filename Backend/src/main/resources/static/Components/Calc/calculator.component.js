@@ -2,9 +2,9 @@
 angular.module('myApp')
     .controller('CalculatorController', CalculatorController);
 
-    function CalculatorController($scope, $timeout) {
+function CalculatorController($scope, $timeout, $cookies, $http) {
 
-    $scope.currentStep = 0; 
+    $scope.currentStep = 0;
     $scope.calculateButtonClicked = false;
 
     $scope.nextStep = function () {
@@ -26,7 +26,7 @@ angular.module('myApp')
         return $scope.currentStep === step;
     };
 
-    
+
 
     // Init
     $scope.vehicleType = 'car';
@@ -49,6 +49,7 @@ angular.module('myApp')
     $scope.milesDriven = 0;
     $scope.vehicleTypeVacay = 'car';
     let myChart = null;
+
 
     // Factors
     const emissionsFactors = {
@@ -289,8 +290,58 @@ angular.module('myApp')
         });
     }
 
-    $scope.reloadPage = function() {
+    $scope.reloadPage = function () {
         window.location.reload();
     };
-    
+
+    $scope.postFootprint = function () {
+        var username = $cookies.get('username');
+
+        // Initialize all emission variables to 0
+        var totalVehicleEmissions = 0;
+        var totalDietaryEmissions = 0;
+        var totalWaterEmission = 0;
+        var totalEnergyEmissions = 0;
+        var totalWasteEmissions = 0;
+        var totalVacayEmissions = 0;
+
+        totalVehicleEmissions = $scope.totalVehicleEmissions;
+        totalDietaryEmissions = $scope.totalDietaryEmissions;
+        totalWaterEmission = $scope.totalWaterEmission;
+        totalEnergyEmissions = $scope.totalEnergyEmissions;
+        totalWasteEmissions = $scope.totalWasteEmissions;
+        totalVacayEmissions = $scope.totalVacayEmissions;
+
+        if (username) {
+            $http.get('/users/getUserIdByUsername', { params: { username: username } })
+                .then(function (response) {
+                    var userId = response.data.userId;
+
+                    var carbonFootprintDTO = {
+                        userId: userId,
+                        totalVehicleEmissions: totalVehicleEmissions,
+                        totalDietaryEmissions: totalDietaryEmissions,
+                        totalWaterEmission: totalWaterEmission,
+                        totalEnergyEmissions: totalEnergyEmissions,
+                        totalWasteEmissions: totalWasteEmissions,
+                        totalVacayEmissions: totalVacayEmissions,
+                        calculationDate: new Date()
+                    };
+
+                    $http.post('/carbon-footprints/create', carbonFootprintDTO)
+                        .then(function (response) {
+                            console.log('Carbon footprint saved:', response.data);
+                        })
+                        .catch(function (error) {
+                            console.error('Error saving carbon footprint:', error);
+                        });
+                })
+                .catch(function (error) {
+                    console.error('Error getting userId:', error);
+                });
+        } else {
+            $state.go('layout.login');
+        }
+    }
+
 }

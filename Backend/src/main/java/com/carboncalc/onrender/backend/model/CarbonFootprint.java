@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "CARBONFOOTPRINTS") 
 public class CarbonFootprint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,16 +12,47 @@ public class CarbonFootprint {
     @ManyToOne
     private User user;
 
-    private Double footprintValue;
+    @Column(name = "TOTALVEHICLEEMISSIONS")
+    private Double totalVehicleEmissions;
 
-    @Column(columnDefinition = "DATE")
+    @Column(name = "TOTALDIETARYEMISSIONS")
+    private Double totalDietaryEmissions;
+
+    @Column(name = "TOTALWATEREMISSION")
+    private Double totalWaterEmission;
+
+    @Column(name = "TOTALENERGYEMISSIONS")
+    private Double totalEnergyEmissions;
+
+    @Column(name = "TOTALWASTEEMISSIONS")
+    private Double totalWasteEmissions;
+
+    @Column(name = "TOTALVACAYEMISSIONS")
+    private Double totalVacayEmissions;
+
+    @Column(columnDefinition = "DATE", name = "CALCULATIONDATE")
     private Date calculationDate;
+
     public CarbonFootprint() {
     }
 
-    public CarbonFootprint(User user, Double footprintValue, Date calculationDate) {
+    public CarbonFootprint(
+            User user,
+            Double totalVehicleEmissions,
+            Double totalDietaryEmissions,
+            Double totalWaterEmission,
+            Double totalEnergyEmissions,
+            Double totalWasteEmissions,
+            Double totalVacayEmissions,
+            Date calculationDate
+    ) {
         this.user = user;
-        this.footprintValue = footprintValue;
+        this.totalVehicleEmissions = totalVehicleEmissions;
+        this.totalDietaryEmissions = totalDietaryEmissions;
+        this.totalWaterEmission = totalWaterEmission;
+        this.totalEnergyEmissions = totalEnergyEmissions;
+        this.totalWasteEmissions = totalWasteEmissions;
+        this.totalVacayEmissions = totalVacayEmissions;
         this.calculationDate = calculationDate;
     }
 
@@ -40,12 +72,52 @@ public class CarbonFootprint {
         this.user = user;
     }
 
-    public Double getFootprintValue() {
-        return footprintValue;
+    public Double getTotalVehicleEmissions() {
+        return totalVehicleEmissions;
     }
 
-    public void setFootprintValue(Double footprintValue) {
-        this.footprintValue = footprintValue;
+    public void setTotalVehicleEmissions(Double totalVehicleEmissions) {
+        this.totalVehicleEmissions = totalVehicleEmissions;
+    }
+
+    public Double getTotalDietaryEmissions() {
+        return totalDietaryEmissions;
+    }
+
+    public void setTotalDietaryEmissions(Double totalDietaryEmissions) {
+        this.totalDietaryEmissions = totalDietaryEmissions;
+    }
+
+    public Double getTotalWaterEmission() {
+        return totalWaterEmission;
+    }
+
+    public void setTotalWaterEmission(Double totalWaterEmission) {
+        this.totalWaterEmission = totalWaterEmission;
+    }
+
+    public Double getTotalEnergyEmissions() {
+        return totalEnergyEmissions;
+    }
+
+    public void setTotalEnergyEmissions(Double totalEnergyEmissions) {
+        this.totalEnergyEmissions = totalEnergyEmissions;
+    }
+
+    public Double getTotalWasteEmissions() {
+        return totalWasteEmissions;
+    }
+
+    public void setTotalWasteEmissions(Double totalWasteEmissions) {
+        this.totalWasteEmissions = totalWasteEmissions;
+    }
+
+    public Double getTotalVacayEmissions() {
+        return totalVacayEmissions;
+    }
+
+    public void setTotalVacayEmissions(Double totalVacayEmissions) {
+        this.totalVacayEmissions = totalVacayEmissions;
     }
 
     public Date getCalculationDate() {
