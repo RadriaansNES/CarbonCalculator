@@ -44,6 +44,7 @@ public class CarbonFootprintController {
                 carbonFootprintDTO.getTotalEnergyEmissions(),
                 carbonFootprintDTO.getTotalWasteEmissions(),
                 carbonFootprintDTO.getTotalVacayEmissions(),
+                carbonFootprintDTO.getTotalEmissions(),
                 carbonFootprintDTO.getCalculationDate());
 
         CarbonFootprint createdFootprint = carbonFootprintService.saveCarbonFootprint(carbonFootprint);

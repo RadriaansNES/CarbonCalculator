@@ -1,9 +1,10 @@
 package com.carboncalc.onrender.backend.model;
+
 import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "CARBONFOOTPRINTS") 
+@Table(name = "CARBONFOOTPRINTS")
 public class CarbonFootprint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +31,9 @@ public class CarbonFootprint {
     @Column(name = "TOTALVACAYEMISSIONS")
     private Double totalVacayEmissions;
 
+    @Column(name = "TOTALEMISSIONS")
+    private Double totalEmissions;
+
     @Column(columnDefinition = "DATE", name = "CALCULATIONDATE")
     private Date calculationDate;
 
@@ -44,8 +48,8 @@ public class CarbonFootprint {
             Double totalEnergyEmissions,
             Double totalWasteEmissions,
             Double totalVacayEmissions,
-            Date calculationDate
-    ) {
+            Double totalEmissions,
+            Date calculationDate) {
         this.user = user;
         this.totalVehicleEmissions = totalVehicleEmissions;
         this.totalDietaryEmissions = totalDietaryEmissions;
@@ -53,6 +57,7 @@ public class CarbonFootprint {
         this.totalEnergyEmissions = totalEnergyEmissions;
         this.totalWasteEmissions = totalWasteEmissions;
         this.totalVacayEmissions = totalVacayEmissions;
+        this.totalEmissions = totalEmissions;
         this.calculationDate = calculationDate;
     }
 
@@ -118,6 +123,14 @@ public class CarbonFootprint {
 
     public void setTotalVacayEmissions(Double totalVacayEmissions) {
         this.totalVacayEmissions = totalVacayEmissions;
+    }
+
+    public Double getTotalEmissions() {
+        return totalEmissions;
+    }
+
+    public void setTotalEmissions(Double totalEmissions) {
+        this.totalEmissions = totalEmissions;
     }
 
     public Date getCalculationDate() {

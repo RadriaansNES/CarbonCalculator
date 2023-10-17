@@ -10,6 +10,7 @@ public class CarbonFootprintDTO {
     private Double totalEnergyEmissions;
     private Double totalWasteEmissions;
     private Double totalVacayEmissions;
+    private Double totalEmissions;
     private double footprintValue;
     private Date calculationDate;
 
@@ -67,6 +68,14 @@ public class CarbonFootprintDTO {
 
     public void setTotalVacayEmissions(Double totalVacayEmissions) {
         this.totalVacayEmissions = totalVacayEmissions;
+    }
+
+    public Double getTotalEmissions() {
+        return totalEmissions;
+    }
+
+    public void setTotalEmissions(Double totalEmissions) {
+        this.totalEmissions = totalEmissions;
     }
 
     public double getFootprintValue() {

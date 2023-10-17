@@ -149,6 +149,7 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
         $scope.totalEnergyEmissions = !isNaN(totalEnergyEmissions) ? Math.ceil(totalEnergyEmissions * 100) / 100 : 'N/A';
         $scope.totalVacayEmissions = !isNaN(totalVacayEmissions) ? Math.ceil(totalVacayEmissions * 100) / 100 : 'N/A';
 
+        $scope.totalEmissions = totalVehicleEmissions + totalDietaryEmissions + totalWaterEmission + totalWasteEmissions + totalEnergyEmissions + totalVacayEmissions;
 
         $scope.recommendationsVehicle = [];
         $scope.recommendationsDiet = [];
@@ -304,6 +305,7 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
         var totalEnergyEmissions = 0;
         var totalWasteEmissions = 0;
         var totalVacayEmissions = 0;
+        var totalEmissions = 0;
 
         totalVehicleEmissions = $scope.totalVehicleEmissions;
         totalDietaryEmissions = $scope.totalDietaryEmissions;
@@ -311,7 +313,8 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
         totalEnergyEmissions = $scope.totalEnergyEmissions;
         totalWasteEmissions = $scope.totalWasteEmissions;
         totalVacayEmissions = $scope.totalVacayEmissions;
-
+        totalEmissions = $scope.totalEmissions;
+        
         if (username) {
             $http.get('/users/getUserIdByUsername', { params: { username: username } })
                 .then(function (response) {
@@ -325,6 +328,7 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
                         totalEnergyEmissions: totalEnergyEmissions,
                         totalWasteEmissions: totalWasteEmissions,
                         totalVacayEmissions: totalVacayEmissions,
+                        totalEmissions: totalEmissions,
                         calculationDate: new Date()
                     };
 

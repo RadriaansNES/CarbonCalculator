@@ -5,18 +5,24 @@
     <div class="HEAD">
       <div class="space-between">
         <div>
-          <h2 class="animate__animated animate__rotateIn">Hello user!</h2>
-          <p> Your greenest carbon footprint you've calculated is:</p>
-          <p> users carbonfootprint </p>
-          <p> You're in the top 10%, well done! </p>
-          <p>Continue to keep up the good work or Consider reducing your meats whatever etc..</p>
+          <h2 class="animate__animated animate__rotateIn">Hello {{ username }}!</h2>
+          <p>Your greenest carbon footprint you've calculated is:</p>
+          <p>{{ usersCarbonFootprint }}</p>
+          <p>You're in the top 10%, well done!</p>
+          <p>Continue to keep up the good work or consider reducing your meats, whatever, etc.</p>
         </div>
         <div>
-          <h2>Recent carbonfootprints calculated</h2> // Continued over the last 5 calculations //Should be able to click on user and see their profile with score
-          <p>Some other user</p>
-          <p>Their score</p>
-          <p> Comments, likes, etc. </p>
+          <h2>Recent carbon footprints calculated</h2>
+          <!-- Continued over the last 5 calculations -->
+          <!-- You can loop through recent carbon footprints here -->
+          <div ng-repeat="carbonFootprint in recentCarbonFootprints">
+            <p>{{ carbonFootprint.username }}</p>
+            <p>{{ carbonFootprint.score }}</p>
+            <p>Comments, likes, etc.</p>
+          </div>
+          <!-- End of loop -->
         </div>
       </div>
+    </div>
   </section>
 </div>
