@@ -18,7 +18,7 @@
             <h4>{{ 'Footprint ' + ($index + 1) + ' - ' + (footprint.calculationDate | date:'dd/MM/yyyy') }}</h4>
             <canvas id="footprintChart{{ $index }}"></canvas>
           </div>
-          <Button class="bigBut">Compare With Friends!</Button> 
+          <Button class="bigBut" ng-click="goSocial()">Compare With Friends!</Button> 
           <Button class="bigBut" ng-click="logout()">Logout</Button>
         </div>
       </div>

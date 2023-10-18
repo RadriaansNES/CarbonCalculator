@@ -204,5 +204,9 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout,
       $state.go('layout.home');
     });
   }
+
+  $scope.goSocial = function () {
+      $state.go('layout.social');
+  }
 }
 
