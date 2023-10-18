@@ -3,18 +3,52 @@
 angular.module('myApp')
   .controller('SocialController', SocialController);
 
-function SocialController($scope, CarbonFootprintService, $timeout) {
+function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
   $scope.bestFootprints = [];
+  $scope.newCommentText = ''; 
 
   CarbonFootprintService.getBestFootprintsThisMonth().then(function (bestFootprints) {
     $scope.bestFootprints = bestFootprints;
+
+    angular.forEach($scope.bestFootprints, function (footprint, index) {
+      CarbonFootprintService.getCommentsForFootprint(footprint.id).then(function (comments) {
+        $scope.bestFootprints[index].comments = comments;
+      });
+    });
 
     $timeout(function () {
       createOrUpdateGraphsForBestFootprints();
     });
   });
 
-  
+  $scope.postComment = function (footprintId, newCommentText) {
+
+    if (!footprintId || !newCommentText) {
+      console.log('Invalid footprintId or newCommentText');
+      return;
+    }
+
+    var username = $cookies.get('username');
+
+    CarbonFootprintService.getUserIdByUsername(username).then(function (userId) {
+   
+      CarbonFootprintService.postComment(footprintId, newCommentText, userId).then(function (comment) {
+ 
+        angular.forEach($scope.bestFootprints, function (footprint) {
+          if (footprint.id === footprintId) {
+            if (!footprint.comments) {
+              footprint.comments = [];
+            }
+            footprint.comments.push(comment);
+          }
+        });
+
+        $scope.newCommentText = '';
+      });
+    });
+  };
+
+
 
   function createOrUpdateGraphsForBestFootprints() {
 
@@ -36,7 +70,7 @@ function SocialController($scope, CarbonFootprintService, $timeout) {
         metric5: 26.4,
         metric6: 1215,
       };
-  
+
       const averageMetrics = userMetrics.map((userValue, index) =>
         userValue / averageValues[`metric${index + 1}`]
       );

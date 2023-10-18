@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "COMMENTS")
+
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

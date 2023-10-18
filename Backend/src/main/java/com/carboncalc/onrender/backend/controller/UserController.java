@@ -92,7 +92,6 @@ public class UserController {
                 authTokenCookie.setPath("/"); // Site wide
                 response.addCookie(authTokenCookie);
 
-                // Set username cookie
                 Cookie usernameCookie = new Cookie("username", username);
                 usernameCookie.setMaxAge(3600);
                 usernameCookie.setPath("/"); // Site wide

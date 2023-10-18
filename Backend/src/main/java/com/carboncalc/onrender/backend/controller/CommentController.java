@@ -32,7 +32,7 @@ public class CommentController {
 
     @PostMapping("/create")
     public ResponseEntity<Comment> createComment(@RequestBody CommentDTO commentDTO) {
-
+    
         CarbonFootprint carbonFootprint = carbonFootprintService
                 .getCarbonFootprintById(commentDTO.getCarbonFootprintId());
         User user = userService.getUserById(commentDTO.getUserId());
