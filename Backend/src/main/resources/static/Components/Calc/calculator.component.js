@@ -309,7 +309,6 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
         var totalEmissions = 0;
 
         totalVehicleEmissions = $scope.totalVehicleEmissions;
-        console.log(totalVehicleEmissions);
         totalDietaryEmissions = $scope.totalDietaryEmissions;
         totalWaterEmission = $scope.totalWaterEmission;
         totalEnergyEmissions = $scope.totalEnergyEmissions;
@@ -345,6 +344,10 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
                         $http.post('/carbon-footprints/create', carbonFootprintDTO)
                             .then(function (response) {
                                 console.log('Carbon footprint saved:', response.data);
+                                $scope.sucPost = true;
+                                $timeout(function () {
+                                    $state.go('layout.dashboard');
+                                }, 3000);
                             })
                             .catch(function (error) {
                                 console.error('Error saving carbon footprint:', error);
