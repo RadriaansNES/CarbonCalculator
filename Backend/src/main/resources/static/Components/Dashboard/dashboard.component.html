@@ -8,18 +8,18 @@
           <h2 class="animate__animated animate__rotateIn">Hello {{ username }}!</h2>
           <p>The Greenest Carbon Footprint You've Calculated Is:</p>
           <div><canvas id="lowestEmissionChart"></canvas></div>
-      
+
           <p><em>{{ lowestCarbonFootprint.totalEmissions }} kg - CO2e per month total emissions</em></p>
           <p>{{ emissionMessageProfile }}</p>
         </div>
         <div>
           <h3>Your Recent Footprints</h3>
-          <div ng-repeat="carbonFootprint in recentCarbonFootprints">
-            <p>{{ carbonFootprint.username }}</p>
-            <p>{{ carbonFootprint.score }}</p>
-            <p>Comments, likes, etc.</p>
+          <div ng-repeat="footprint in lastThreeFootprints">
+            <h4>{{ 'Footprint ' + ($index + 1) + ' - ' + (footprint.calculationDate | date:'dd-MM-yyyy') }}</h4>
+            <canvas id="footprintChart{{ $index }}"></canvas>
           </div>
-          <Button>See how you compare!</Button> <!-- // Direct to forum page showing other users, highscores. -->
+          <Button class="bigBut">Compare With Friends!</Button> 
+          <Button class="bigBut">LogoutNEEDSuri</Button>
         </div>
       </div>
     </div>

@@ -302,12 +302,12 @@ body {
   text-decoration: underline;
 }
 #calc #disclaimer {
-  margin-top: 10vh;
+  margin-top: 5vh;
   padding-bottom: 0;
   margin-bottom: 0;
 }
 #calc .bigBut {
-  margin-top: 5vh;
+  margin-top: 3vh;
 }
 #calc .nomargin {
   margin-bottom: 0;
@@ -375,6 +375,10 @@ form .ng-scope .smallbut {
   padding-bottom: 2vh;
 }
 
+.dashboard h4 {
+  margin-top: 2vh;
+  text-align: center;
+}
 .dashboard h2 {
   padding: 3vh 0;
 }
@@ -391,6 +395,9 @@ form .ng-scope .smallbut {
 }
 .dashboard .space-between {
   justify-content: flex-start !important;
+}
+.dashboard .bigBut {
+  margin-top: 3vh;
 }
 
 /*# sourceMappingURL=index.css.map */

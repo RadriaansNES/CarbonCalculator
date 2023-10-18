@@ -368,13 +368,13 @@ body {
     }
 
     #disclaimer {
-        margin-top: 10vh;
+        margin-top: 5vh;
         padding-bottom: 0;
         margin-bottom: 0;
     }
 
     .bigBut {
-        margin-top: 5vh;
+        margin-top: 3vh;
     }
 
     .nomargin {
@@ -455,6 +455,12 @@ form .ng-scope .smallbut {
 }
 
 .dashboard {
+
+    h4 {
+        margin-top: 2vh;
+        text-align: center;
+    }
+    
     h2 {
        padding: 3vh 0;
     }
@@ -474,5 +480,9 @@ form .ng-scope .smallbut {
 
     .space-between {
         justify-content: flex-start !important;
+    }
+
+    .bigBut {
+        margin-top: 3vh;
     }
 }

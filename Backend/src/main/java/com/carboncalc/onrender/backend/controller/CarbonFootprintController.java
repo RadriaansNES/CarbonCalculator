@@ -80,4 +80,12 @@ public class CarbonFootprintController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/last-three-footprints/{username}")
+    public ResponseEntity<List<CarbonFootprint>> getLastThreeFootprintsByUsername(@PathVariable String username) {
+        List<CarbonFootprint> lastThreeFootprints = carbonFootprintService
+                .getLastThreeCarbonFootprintsByUsername(username);
+
+        return ResponseEntity.ok(lastThreeFootprints);
+    }
 }
