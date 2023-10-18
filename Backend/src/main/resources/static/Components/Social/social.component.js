@@ -14,8 +14,10 @@ function SocialController($scope, CarbonFootprintService, $timeout) {
     });
   });
 
+  
+
   function createOrUpdateGraphsForBestFootprints() {
-    
+
     angular.forEach($scope.bestFootprints, function (footprint, index) {
       const userMetrics = [
         footprint.totalVehicleEmissions,

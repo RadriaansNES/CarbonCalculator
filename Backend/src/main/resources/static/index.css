@@ -386,6 +386,9 @@ form .ng-scope .smallbut {
   margin-top: 2vh;
   text-align: center;
 }
+.container-fluid .dashboard h3, .container-fluid .social h3 {
+  margin: 4vh 0;
+}
 .container-fluid .dashboard h2, .container-fluid .social h2 {
   padding: 3vh 0;
 }
@@ -405,6 +408,9 @@ form .ng-scope .smallbut {
 }
 .container-fluid .dashboard .bigBut, .container-fluid .social .bigBut {
   margin-top: 3vh;
+}
+.container-fluid .dashboard .Footprints, .container-fluid .social .Footprints {
+  margin-bottom: 5vh;
 }
 
 /*# sourceMappingURL=index.css.map */

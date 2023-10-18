@@ -17,7 +17,6 @@
           <div ng-repeat="footprint in lastThreeFootprints">
             <h4 id="bold">{{ 'Footprint ' + ($index + 1) + ' - ' + (footprint.calculationDate | date:'dd/MM/yyyy')}}</h4>
             <canvas id="footprintChart{{ $index }}"></canvas>
-            <br/>
             <p>{{footprint.totalEmissions + 'kg - CO2e/Month'}}</p>
           </div>
           <Button class="bigBut" ng-click="goSocial()">Compare With Friends!</Button> 
