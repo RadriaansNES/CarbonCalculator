@@ -58,7 +58,7 @@ angular.module('myApp', ['ui.router', 'ngCookies'])
         url: '/social',
         views: {
           '': {
-            templateUrl: 'Components/Social/Social.component.html',
+            templateUrl: 'Components/Social/social.component.html',
             controller: 'SocialController'
           }
         }

@@ -1,0 +1,416 @@
+.ng-scope {
+  width: 100%;
+  min-width: 100%;
+}
+
+.MainApp {
+  display: flex;
+}
+.MainApp a,
+.MainApp p {
+  text-decoration: none;
+}
+.MainApp h2 {
+  margin-top: 0;
+  font-weight: bold;
+}
+.MainApp em {
+  font-size: 20px;
+  font-weight: bolder;
+}
+.MainApp h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.MainApp #slogan,
+.MainApp h1,
+.MainApp h2 {
+  text-align: center !important;
+}
+.MainApp .bigBut {
+  color: black !important;
+  height: 50px;
+  min-width: 100%;
+}
+.MainApp .smallbut {
+  color: black !important;
+  height: 40px;
+  min-width: 48%;
+}
+.MainApp .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.MainApp .warning {
+  margin: 4vh 0;
+  font-weight: bold;
+  color: red;
+}
+.MainApp #bold {
+  font-weight: bold;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  padding: 0 5% 0 5%;
+  z-index: 1000;
+  height: 10vh;
+  background-image: url("Src/nav.PNG");
+  background-size: cover;
+  background-position: 50% 85%;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+}
+.navbar a {
+  color: black !important;
+}
+.navbar .navbar-toggle {
+  background-color: white;
+}
+.navbar .navbar-header {
+  height: 10vh;
+  margin-top: 2.25vh;
+}
+.navbar .navbar-nav {
+  background-color: whitesmoke;
+  opacity: 1;
+  margin-top: 0;
+  padding: 0 5% 0 5%;
+}
+.navbar #navbar-collapse {
+  margin-top: -20px;
+  margin-left: -6vw;
+  margin-right: -6vw;
+}
+
+body {
+  padding: 10vh 0 0 0;
+}
+
+#slogan {
+  font-size: 24px;
+  font-weight: bold;
+  overflow: hidden;
+  animation: handwriting 1s steps(40) forwards;
+  color: #333;
+  margin-bottom: 0;
+}
+
+@keyframes handwriting {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.container-fluid {
+  padding: 0;
+  min-width: 100%;
+}
+.container-fluid .c1 {
+  background-image: url("Src/c1.PNG");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: #333;
+}
+.container-fluid .c1 p {
+  font-weight: bold;
+  bottom: 50px;
+}
+.container-fluid .carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.container-fluid .carousel-slide {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 10vh 12%;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.container-fluid .carousel-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.container-fluid .carousel-slide * {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+}
+.container-fluid .c2 {
+  background-image: url("Src/c2.PNG");
+  background-size: 100% 100%;
+}
+.container-fluid .c2 h2,
+.container-fluid .c2 div p {
+  /* Initial position for text */
+  animation-duration: 1.5s;
+  animation-name: slideleft;
+}
+.container-fluid .c3 {
+  background-image: url("Src/c3.PNG");
+  background-size: 100% 100%;
+}
+.container-fluid .c4 {
+  background-image: url("Src/c4.PNG");
+  background-size: 100% 100%;
+}
+.container-fluid .c5 {
+  background-image: url("Src/c5.PNG");
+  background-size: 100% 100%;
+}
+.container-fluid .c6 {
+  background-image: url("Src/c6.PNG");
+  background-size: 100% 100%;
+}
+.container-fluid .c7 {
+  background-image: url("Src/c7.PNG");
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container-fluid .c7 h2 {
+  padding-bottom: 10vh;
+  color: white;
+}
+.container-fluid .c7 {
+  position: relative;
+}
+.container-fluid .c7 h2 {
+  padding-top: 20%;
+}
+.container-fluid .c7::before {
+  content: "";
+  /* Create a pseudo-element for the overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.container-fluid .c7 * {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+.container-fluid .CSButs {
+  position: absolute;
+  display: flex;
+  min-width: 100%;
+  justify-content: space-between;
+  z-index: 1000;
+  top: 175vh;
+}
+.container-fluid .prev-button, .container-fluid .next-button {
+  background-color: transparent;
+  font-size: 45px;
+  border-width: 0;
+  color: white;
+}
+.container-fluid section {
+  height: 90vh;
+  padding: 0 7% 0 7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.container-fluid section p {
+  text-align: justify;
+}
+.container-fluid section .HEAD {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 60px;
+  padding-bottom: 120px;
+}
+
+@keyframes slideleft {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+#calc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 90vh;
+  padding: 0 7% 0 7%;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+#calc #calcHead {
+  text-align: center;
+  font-weight: bold;
+}
+#calc h3 {
+  padding: 0 0 2vh 0;
+  margin: 0;
+}
+#calc div {
+  padding: 3vh 0;
+}
+#calc label,
+#calc input {
+  width: 100%;
+}
+#calc select {
+  min-width: 50%;
+}
+#calc label,
+#calc select,
+#calc input {
+  margin-bottom: 10px;
+}
+#calc .result {
+  text-decoration: underline;
+}
+#calc #disclaimer {
+  margin-top: 5vh;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+#calc .bigBut {
+  margin-top: 3vh;
+}
+#calc .nomargin {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+#calc .warning p {
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+form .ng-scope .smallbut {
+  max-width: 48% !important;
+  width: 48% !important;
+  min-width: none !important;
+}
+
+.container-fluid .redirect .HEAD {
+  padding-top: 40px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3vh;
+}
+.container-fluid .redirect .HEAD p {
+  text-align: center;
+  padding-bottom: 1vh;
+  padding-top: 1vh;
+  margin-bottom: 0;
+}
+.container-fluid .redirect .HEAD h3 {
+  margin: 0;
+}
+
+.ng-valid label, .ng-invalid label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.space-between {
+  min-width: 100%;
+  margin-top: 3vh;
+}
+.space-between h2 {
+  padding-bottom: 2vh;
+}
+
+.container-fluid .register .HEAD, .container-fluid .dashboard .HEAD, .container-fluid .social .HEAD {
+  padding: 0;
+  align-items: center;
+}
+.container-fluid .register .HEAD .space-between, .container-fluid .dashboard .HEAD .space-between, .container-fluid .social .HEAD .space-between {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0;
+}
+.container-fluid .register .HEAD p, .container-fluid .dashboard .HEAD p, .container-fluid .social .HEAD p {
+  text-align: center;
+  padding-bottom: 2vh;
+}
+
+.container-fluid .dashboard, .container-fluid .social {
+  height: auto;
+  padding-bottom: 5vh;
+}
+.container-fluid .dashboard h4, .container-fluid .social h4 {
+  margin-top: 2vh;
+  text-align: center;
+}
+.container-fluid .dashboard h3, .container-fluid .social h3 {
+  margin: 4vh 0;
+}
+.container-fluid .dashboard h2, .container-fluid .social h2 {
+  padding: 3vh 0;
+}
+.container-fluid .dashboard p, .container-fluid .social p {
+  margin: 0;
+  padding: 0;
+}
+.container-fluid .dashboard em, .container-fluid .social em {
+  padding-bottom: 2vh;
+  font-size: 17px;
+}
+.container-fluid .dashboard #lowestEmissionChart, .container-fluid .social #lowestEmissionChart {
+  margin-bottom: 2vh;
+}
+.container-fluid .dashboard .space-between, .container-fluid .social .space-between {
+  justify-content: flex-start !important;
+}
+.container-fluid .dashboard .bigBut, .container-fluid .social .bigBut {
+  margin-top: 3vh;
+}
+.container-fluid .dashboard .Footprints, .container-fluid .social .Footprints {
+  margin-bottom: 5vh;
+}
+
+/*# sourceMappingURL=index.css.map */
