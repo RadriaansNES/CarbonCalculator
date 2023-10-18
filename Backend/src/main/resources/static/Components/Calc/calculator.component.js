@@ -2,7 +2,7 @@
 angular.module('myApp')
     .controller('CalculatorController', CalculatorController);
 
-function CalculatorController($scope, $timeout, $cookies, $http) {
+function CalculatorController($scope, $timeout, $cookies, $http, $state) {
 
     $scope.currentStep = 0;
     $scope.calculateButtonClicked = false;
