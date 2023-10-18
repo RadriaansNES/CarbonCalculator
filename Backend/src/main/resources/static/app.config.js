@@ -54,6 +54,15 @@ angular.module('myApp', ['ui.router', 'ngCookies'])
           }
         }
       })
+      .state('layout.social', {
+        url: '/social',
+        views: {
+          '': {
+            templateUrl: 'Components/Social/Social.component.html',
+            controller: 'SocialController'
+          }
+        }
+      })
       .state('layout.signup', {
         url: '/signup',
         views: {
@@ -63,9 +72,7 @@ angular.module('myApp', ['ui.router', 'ngCookies'])
           }
         }
       });
-
-
-
+      
     // Default route 
     $urlRouterProvider.otherwise('/');
   });
