@@ -10,8 +10,8 @@ node_modules
 .springBeans
 .DS_Store
 *.log
-application.properties
 mvnw
 mvnw.cmd
 target
 .vscode
+.env
