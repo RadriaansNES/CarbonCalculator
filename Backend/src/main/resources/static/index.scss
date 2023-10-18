@@ -427,7 +427,7 @@ body {
     }
 }
 
-.container-fluid .register .HEAD {
+.container-fluid .register .HEAD, .container-fluid .dashboard .HEAD {
     padding: 0;
     align-items: center;
 
@@ -439,9 +439,31 @@ body {
         margin-top: 0;
     }
 
-
     p {
         text-align: center;
         padding-bottom: 2vh;
+    }
+}
+
+.dashboard {
+    h2 {
+       padding: 3vh 0;
+    }
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    em {
+        padding-bottom: 2vh;
+        font-size: 17px;
+    }
+
+    #lowestEmissionChart {
+        margin-bottom: 2vh;
+    }
+
+    .space-between {
+        justify-content: flex-start !important;
     }
 }

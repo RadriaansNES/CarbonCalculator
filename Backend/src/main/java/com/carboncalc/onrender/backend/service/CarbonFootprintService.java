@@ -26,4 +26,8 @@ public class CarbonFootprintService {
     public List<CarbonFootprint> getCarbonFootprintsByUserId(Long userId) {
         return carbonFootprintRepository.findByUserId(userId);
     }
+
+    public CarbonFootprint getLowestEmissionByUsername(String username) {
+        return carbonFootprintRepository.findLowestEmissionByUser(username).orElse(null);
+    }
 }

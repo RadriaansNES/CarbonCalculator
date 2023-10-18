@@ -69,4 +69,15 @@ public class CarbonFootprintController {
 
         return ResponseEntity.ok(carbonFootprints);
     }
+
+    @GetMapping("/lowest-emission/{username}")
+    public ResponseEntity<CarbonFootprint> getLowestEmissionByUsername(@PathVariable String username) {
+        CarbonFootprint carbonFootprint = carbonFootprintService.getLowestEmissionByUsername(username);
+
+        if (carbonFootprint != null) {
+            return ResponseEntity.ok(carbonFootprint);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

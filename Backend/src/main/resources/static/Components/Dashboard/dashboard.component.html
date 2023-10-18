@@ -1,26 +1,25 @@
 <!-- dashboard.component.html -->
 
 <div class="container-fluid">
-  <section class="register">
+  <section class="dashboard">
     <div class="HEAD">
       <div class="space-between">
         <div>
           <h2 class="animate__animated animate__rotateIn">Hello {{ username }}!</h2>
-          <p>Your greenest carbon footprint you've calculated is:</p>
-          <p>{{ usersCarbonFootprint }}</p>
-          <p>You're in the top 10%, well done!</p>
-          <p>Continue to keep up the good work or consider reducing your meats, whatever, etc.</p>
+          <p>The Greenest Carbon Footprint You've Calculated Is:</p>
+          <div><canvas id="lowestEmissionChart"></canvas></div>
+      
+          <p><em>{{ lowestCarbonFootprint.totalEmissions }} kg - CO2e per month total emissions</em></p>
+          <p>{{ emissionMessageProfile }}</p>
         </div>
         <div>
-          <h2>Recent carbon footprints calculated</h2>
-          <!-- Continued over the last 5 calculations -->
-          <!-- You can loop through recent carbon footprints here -->
+          <h3>Your Recent Footprints</h3>
           <div ng-repeat="carbonFootprint in recentCarbonFootprints">
             <p>{{ carbonFootprint.username }}</p>
             <p>{{ carbonFootprint.score }}</p>
             <p>Comments, likes, etc.</p>
           </div>
-          <!-- End of loop -->
+          <Button>See how you compare!</Button> <!-- // Direct to forum page showing other users, highscores. -->
         </div>
       </div>
     </div>

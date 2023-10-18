@@ -10,9 +10,21 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
     $scope.nextStep = function () {
         if ($scope.currentStep < 7) {
             $scope.currentStep++;
+            console.log($scope.totalVacayEmissions);
+            console.log($scope.totalVehicleEmissions);
+            console.log($scope.totalDietaryEmissions);
+            console.log($scope.totalWaterEmission);
+            console.log($scope.totalWasteEmissions);
+            console.log($scope.totalEnergyEmissions);
         } else {
             $scope.calculateButtonClicked = true;
             $scope.calculate();
+            console.log($scope.totalVacayEmissions);
+            console.log($scope.totalVehicleEmissions);
+            console.log($scope.totalDietaryEmissions);
+            console.log($scope.totalWaterEmission);
+            console.log($scope.totalWasteEmissions);
+            console.log($scope.totalEnergyEmissions);
         }
     };
 
@@ -48,6 +60,7 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
     $scope.milesFlown = 0;
     $scope.milesDriven = 0;
     $scope.vehicleTypeVacay = 'car';
+
     let myChart = null;
 
 
@@ -150,6 +163,13 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
         $scope.totalVacayEmissions = !isNaN(totalVacayEmissions) ? Math.ceil(totalVacayEmissions * 100) / 100 : 'N/A';
 
         $scope.totalEmissions = totalVehicleEmissions + totalDietaryEmissions + totalWaterEmission + totalWasteEmissions + totalEnergyEmissions + totalVacayEmissions;
+
+        console.log($scope.totalVacayEmissions);
+        console.log($scope.totalVehicleEmissions);
+        console.log($scope.totalDietaryEmissions);
+        console.log($scope.totalWaterEmission);
+        console.log($scope.totalWasteEmissions);
+        console.log($scope.totalEnergyEmissions);
 
         $scope.recommendationsVehicle = [];
         $scope.recommendationsDiet = [];
@@ -298,7 +318,7 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
     $scope.postFootprint = function () {
         var username = $cookies.get('username');
 
-        
+
         var totalVehicleEmissions = 0;
         var totalDietaryEmissions = 0;
         var totalWaterEmission = 0;
@@ -314,7 +334,7 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
         totalWasteEmissions = $scope.totalWasteEmissions;
         totalVacayEmissions = $scope.totalVacayEmissions;
         totalEmissions = $scope.totalEmissions;
-        
+
         if (username) {
             $http.get('/users/getUserIdByUsername', { params: { username: username } })
                 .then(function (response) {

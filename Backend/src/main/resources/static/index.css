@@ -351,20 +351,38 @@ body {
   padding-bottom: 2vh;
 }
 
-.container-fluid .register .HEAD {
+.container-fluid .register .HEAD, .container-fluid .dashboard .HEAD {
   padding: 0;
   align-items: center;
 }
-.container-fluid .register .HEAD .space-between {
+.container-fluid .register .HEAD .space-between, .container-fluid .dashboard .HEAD .space-between {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 0;
 }
-.container-fluid .register .HEAD p {
+.container-fluid .register .HEAD p, .container-fluid .dashboard .HEAD p {
   text-align: center;
   padding-bottom: 2vh;
+}
+
+.dashboard h2 {
+  padding: 3vh 0;
+}
+.dashboard p {
+  margin: 0;
+  padding: 0;
+}
+.dashboard em {
+  padding-bottom: 2vh;
+  font-size: 17px;
+}
+.dashboard #lowestEmissionChart {
+  margin-bottom: 2vh;
+}
+.dashboard .space-between {
+  justify-content: flex-start !important;
 }
 
 /*# sourceMappingURL=index.css.map */
