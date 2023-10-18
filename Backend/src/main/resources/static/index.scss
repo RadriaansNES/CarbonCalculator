@@ -58,6 +58,10 @@
         font-weight: bold;
         color: red;
     }
+
+    #bold {
+        font-weight: bold;
+    }
     
 }
 
@@ -436,7 +440,7 @@ form .ng-scope .smallbut {
     }
 }
 
-.container-fluid .register .HEAD, .container-fluid .dashboard .HEAD {
+.container-fluid .register .HEAD, .container-fluid .dashboard .HEAD, .container-fluid .social .HEAD {
     padding: 0;
     align-items: center;
 
@@ -454,7 +458,9 @@ form .ng-scope .smallbut {
     }
 }
 
-.dashboard {
+.container-fluid .dashboard, .container-fluid .social {
+        height: auto;
+        padding-bottom: 5vh;
 
     h4 {
         margin-top: 2vh;

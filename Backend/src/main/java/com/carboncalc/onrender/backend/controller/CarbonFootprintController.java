@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -87,5 +90,26 @@ public class CarbonFootprintController {
                 .getLastThreeCarbonFootprintsByUsername(username);
 
         return ResponseEntity.ok(lastThreeFootprints);
+    }
+
+    @GetMapping("/best-footprints-this-month")
+    public ResponseEntity<List<CarbonFootprint>> getBestFootprintsThisMonth() {
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate startOfMonth = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), 1);
+        LocalDate endOfMonth = startOfMonth.plusMonths(1).minusDays(1);
+
+        Date startDate = Date.from(startOfMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date endDate = Date.from(endOfMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        List<CarbonFootprint> bestFootprints = carbonFootprintService.getBestFootprintsThisMonth(startDate, endDate);
+
+        return ResponseEntity.ok(bestFootprints);
+    }
+
+    @GetMapping("/recent-footprints")
+    public ResponseEntity<List<CarbonFootprint>> getRecentFootprints() {
+        List<CarbonFootprint> recentFootprints = carbonFootprintService.getRecentFootprints();
+        return ResponseEntity.ok(recentFootprints);
     }
 }

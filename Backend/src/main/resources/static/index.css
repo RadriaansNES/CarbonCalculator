@@ -46,6 +46,9 @@
   font-weight: bold;
   color: red;
 }
+.MainApp #bold {
+  font-weight: bold;
+}
 
 .navbar {
   position: fixed;
@@ -359,44 +362,48 @@ form .ng-scope .smallbut {
   padding-bottom: 2vh;
 }
 
-.container-fluid .register .HEAD, .container-fluid .dashboard .HEAD {
+.container-fluid .register .HEAD, .container-fluid .dashboard .HEAD, .container-fluid .social .HEAD {
   padding: 0;
   align-items: center;
 }
-.container-fluid .register .HEAD .space-between, .container-fluid .dashboard .HEAD .space-between {
+.container-fluid .register .HEAD .space-between, .container-fluid .dashboard .HEAD .space-between, .container-fluid .social .HEAD .space-between {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 0;
 }
-.container-fluid .register .HEAD p, .container-fluid .dashboard .HEAD p {
+.container-fluid .register .HEAD p, .container-fluid .dashboard .HEAD p, .container-fluid .social .HEAD p {
   text-align: center;
   padding-bottom: 2vh;
 }
 
-.dashboard h4 {
+.container-fluid .dashboard, .container-fluid .social {
+  height: auto;
+  padding-bottom: 5vh;
+}
+.container-fluid .dashboard h4, .container-fluid .social h4 {
   margin-top: 2vh;
   text-align: center;
 }
-.dashboard h2 {
+.container-fluid .dashboard h2, .container-fluid .social h2 {
   padding: 3vh 0;
 }
-.dashboard p {
+.container-fluid .dashboard p, .container-fluid .social p {
   margin: 0;
   padding: 0;
 }
-.dashboard em {
+.container-fluid .dashboard em, .container-fluid .social em {
   padding-bottom: 2vh;
   font-size: 17px;
 }
-.dashboard #lowestEmissionChart {
+.container-fluid .dashboard #lowestEmissionChart, .container-fluid .social #lowestEmissionChart {
   margin-bottom: 2vh;
 }
-.dashboard .space-between {
+.container-fluid .dashboard .space-between, .container-fluid .social .space-between {
   justify-content: flex-start !important;
 }
-.dashboard .bigBut {
+.container-fluid .dashboard .bigBut, .container-fluid .social .bigBut {
   margin-top: 3vh;
 }
 

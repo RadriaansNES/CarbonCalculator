@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,21 +38,33 @@ public class CarbonFootprintService {
     }
 
     public List<CarbonFootprint> getLastThreeCarbonFootprintsByUsername(String username) {
-        // Retrieve all carbon footprints for the user
-        List<CarbonFootprint> allFootprints = carbonFootprintRepository.findByUserUsername(username);
 
-        // Find the lowest emission footprint (you already have this method)
+        List<CarbonFootprint> allFootprints = carbonFootprintRepository.findByUserUsername(username);
         CarbonFootprint lowestEmissionFootprint = getLowestEmissionByUsername(username);
 
-        // Remove the lowest emission footprint from the list
         allFootprints.remove(lowestEmissionFootprint);
 
-        // Sort the list of footprints by date in descending order
         allFootprints.sort(Comparator.comparing(CarbonFootprint::getCalculationDate).reversed());
 
-        // Return the last three footprints
         return allFootprints.stream()
                 .limit(3)
                 .collect(Collectors.toList());
+    }
+
+    public List<CarbonFootprint> getBestFootprintsThisMonth(Date startDate, Date endDate) {
+    
+        List<CarbonFootprint> allFootprints = carbonFootprintRepository.findBestFootprintsThisMonth(startDate, endDate);
+        List<CarbonFootprint> sortedFootprints = allFootprints.stream()
+                .sorted(Comparator.comparingDouble(CarbonFootprint::getTotalEmissions))
+                .collect(Collectors.toList());
+
+        return sortedFootprints.stream()
+                .limit(3)
+                .collect(Collectors.toList());
+    }
+
+    public List<CarbonFootprint> getRecentFootprints() {
+       
+        return carbonFootprintRepository.findRecentFootprints();
     }
 }

@@ -1,15 +1,17 @@
 <!-- social.component.html -->
 <div class="container-fluid">
-    <section class="redirect">
+    <section class="social">
         <div class="HEAD">
             <div class="space-between">
                 <div>
                     <h3>Best 3 Carbon Footprints This Month</h3>
-                    <!--From database, the lowest TotalEmissions this month. Should have the name of the user, the graph, then comments with likes -->
-                </div>
-                <div>
-                    <h3>Recently Posted Carbon Footprints</h3>
-                    <!--From database, the 10 most recent Carbon footprint calculations. Should have the name of the user, the graph, then comments with likes -->
+                    <div ng-repeat="footprint in bestFootprints">
+                        <h4>{{ footprint.user.username }}</h4>
+                        <p>{{ footprint.totalEmissions + ' kg - CO2e/Month total emissions'}} </p>
+                        <div class="graph-container">
+                            <canvas id="bestFootprintsChart{{$index}}"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
