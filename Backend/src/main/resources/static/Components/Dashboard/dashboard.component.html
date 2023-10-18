@@ -5,7 +5,7 @@
     <div class="HEAD">
       <div class="space-between">
         <div>
-          <h2 class="animate__animated animate__rotateIn">Hello {{ username }}!</h2>
+          <h2 class="animate__animated animate__heartBeat">Hello {{ username }}!</h2>
           <p>The Greenest Carbon Footprint You've Calculated Is:</p>
           <div><canvas id="lowestEmissionChart"></canvas></div>
 
@@ -15,11 +15,11 @@
         <div>
           <h3>Your Recent Footprints</h3>
           <div ng-repeat="footprint in lastThreeFootprints">
-            <h4>{{ 'Footprint ' + ($index + 1) + ' - ' + (footprint.calculationDate | date:'dd-MM-yyyy') }}</h4>
+            <h4>{{ 'Footprint ' + ($index + 1) + ' - ' + (footprint.calculationDate | date:'dd/MM/yyyy') }}</h4>
             <canvas id="footprintChart{{ $index }}"></canvas>
           </div>
           <Button class="bigBut">Compare With Friends!</Button> 
-          <Button class="bigBut">LogoutNEEDSuri</Button>
+          <Button class="bigBut" ng-click="logout()">Logout</Button>
         </div>
       </div>
     </div>

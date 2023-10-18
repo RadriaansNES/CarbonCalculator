@@ -124,4 +124,17 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
     }
+
+    @GetMapping("/logout")
+    public void logout(HttpServletResponse response) {
+        Cookie authTokenCookie = new Cookie("authToken", null);
+        authTokenCookie.setMaxAge(0);
+        authTokenCookie.setPath("/");
+        response.addCookie(authTokenCookie);
+
+        Cookie usernameCookie = new Cookie("username", null);
+        usernameCookie.setMaxAge(0);
+        usernameCookie.setPath("/");
+        response.addCookie(usernameCookie);
+    }
 }

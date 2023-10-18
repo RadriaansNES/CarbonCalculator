@@ -3,7 +3,7 @@
 angular.module('myApp')
   .controller('DashboardController', DashboardController);
 
-function DashboardController($scope, $cookies, CarbonFootprintService, $timeout) {
+function DashboardController($scope, $cookies, CarbonFootprintService, $timeout, $state, $http) {
   $scope.username = $cookies.get('username');
 
   // Fetch the last three footprints
@@ -197,6 +197,12 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout)
       myChart.data.datasets[0].data = data;
       myChart.update();
     }
+  }
+
+  $scope.logout = function () {
+    $http.get('/users/logout').then(function (response) {
+      $state.go('layout.home');
+    });
   }
 }
 
