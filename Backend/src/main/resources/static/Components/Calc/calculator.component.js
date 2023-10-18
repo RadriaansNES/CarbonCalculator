@@ -10,21 +10,9 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
     $scope.nextStep = function () {
         if ($scope.currentStep < 7) {
             $scope.currentStep++;
-            console.log($scope.totalVacayEmissions);
-            console.log($scope.totalVehicleEmissions);
-            console.log($scope.totalDietaryEmissions);
-            console.log($scope.totalWaterEmission);
-            console.log($scope.totalWasteEmissions);
-            console.log($scope.totalEnergyEmissions);
         } else {
             $scope.calculateButtonClicked = true;
             $scope.calculate();
-            console.log($scope.totalVacayEmissions);
-            console.log($scope.totalVehicleEmissions);
-            console.log($scope.totalDietaryEmissions);
-            console.log($scope.totalWaterEmission);
-            console.log($scope.totalWasteEmissions);
-            console.log($scope.totalEnergyEmissions);
         }
     };
 
@@ -42,23 +30,23 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
 
     // Init
     $scope.vehicleType = 'car';
-    $scope.vehicleUsage = 0;
-    $scope.publicTransportation = 0;
+    $scope.vehicleUsage = null;
+    $scope.publicTransportation = null;
     $scope.dietType = 'regular';
-    $scope.numPeople = 0;
+    $scope.numPeople = null;
     $scope.waterScarcity = 'normal';
-    $scope.showersPerDay = 0;
-    $scope.flushesPerDay = 0;
-    $scope.dishesPerDay = 0;
+    $scope.showersPerDay = null;
+    $scope.flushesPerDay = null;
+    $scope.dishesPerDay = null;
     $scope.energySources = [{
         type: 'Hydropower',
-        usage: 0,
+        usage: null,
     }];
-    $scope.monthlyGarbageBins = 0;
-    $scope.monthlyRecyclingBins = 0;
-    $scope.monthlyCompostBins = 0;
-    $scope.milesFlown = 0;
-    $scope.milesDriven = 0;
+    $scope.monthlyGarbageBins = null;
+    $scope.monthlyRecyclingBins = null;
+    $scope.monthlyCompostBins = null;
+    $scope.milesFlown = null;
+    $scope.milesDriven = null;
     $scope.vehicleTypeVacay = 'car';
 
     let myChart = null;
@@ -164,13 +152,6 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
 
         $scope.totalEmissions = totalVehicleEmissions + totalDietaryEmissions + totalWaterEmission + totalWasteEmissions + totalEnergyEmissions + totalVacayEmissions;
 
-        console.log($scope.totalVacayEmissions);
-        console.log($scope.totalVehicleEmissions);
-        console.log($scope.totalDietaryEmissions);
-        console.log($scope.totalWaterEmission);
-        console.log($scope.totalWasteEmissions);
-        console.log($scope.totalEnergyEmissions);
-
         $scope.recommendationsVehicle = [];
         $scope.recommendationsDiet = [];
         $scope.recommendationsWater = [];
@@ -275,18 +256,18 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
                         labels: metricLabels,
                         datasets: [
                             {
-                                label: 'User Metrics',
-                                data: factors,
-                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                borderColor: 'rgba(255, 99, 132, 1)',
-                                pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-                            },
-                            {
-                                label: 'Average Metrics',
+                                label: 'Average Individual Carbon Emission',
                                 data: Array(userMetrics.length).fill(1),
                                 backgroundColor: 'rgba(0, 0, 0, 0.2)',
                                 borderColor: 'rgba(0, 0, 0, 1)',
                                 pointBackgroundColor: 'rgba(0, 0, 0, 1)',
+                            },
+                            {
+                                label: 'Factor of User\'s Emissions Over Average',
+                                data: factors,
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                pointBackgroundColor: 'rgba(255, 99, 132, 1)',
                             },
                         ],
                     },
@@ -328,6 +309,7 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
         var totalEmissions = 0;
 
         totalVehicleEmissions = $scope.totalVehicleEmissions;
+        console.log(totalVehicleEmissions);
         totalDietaryEmissions = $scope.totalDietaryEmissions;
         totalWaterEmission = $scope.totalWaterEmission;
         totalEnergyEmissions = $scope.totalEnergyEmissions;
@@ -335,37 +317,48 @@ function CalculatorController($scope, $timeout, $cookies, $http) {
         totalVacayEmissions = $scope.totalVacayEmissions;
         totalEmissions = $scope.totalEmissions;
 
-        if (username) {
-            $http.get('/users/getUserIdByUsername', { params: { username: username } })
-                .then(function (response) {
-                    var userId = response.data.userId;
+        if (
+            totalVehicleEmissions !== 0 &&
+            totalDietaryEmissions !== 0 &&
+            totalWaterEmission !== 0 &&
+            totalEnergyEmissions !== 0 &&
+            totalWasteEmissions !== 0 &&
+            totalVacayEmissions !== 0
+        ) {
+            if (username) {
+                $http.get('/users/getUserIdByUsername', { params: { username: username } })
+                    .then(function (response) {
+                        var userId = response.data.userId;
 
-                    var carbonFootprintDTO = {
-                        userId: userId,
-                        totalVehicleEmissions: totalVehicleEmissions,
-                        totalDietaryEmissions: totalDietaryEmissions,
-                        totalWaterEmission: totalWaterEmission,
-                        totalEnergyEmissions: totalEnergyEmissions,
-                        totalWasteEmissions: totalWasteEmissions,
-                        totalVacayEmissions: totalVacayEmissions,
-                        totalEmissions: totalEmissions,
-                        calculationDate: new Date()
-                    };
+                        var carbonFootprintDTO = {
+                            userId: userId,
+                            totalVehicleEmissions: totalVehicleEmissions,
+                            totalDietaryEmissions: totalDietaryEmissions,
+                            totalWaterEmission: totalWaterEmission,
+                            totalEnergyEmissions: totalEnergyEmissions,
+                            totalWasteEmissions: totalWasteEmissions,
+                            totalVacayEmissions: totalVacayEmissions,
+                            totalEmissions: totalEmissions,
+                            calculationDate: new Date()
+                        };
 
-                    $http.post('/carbon-footprints/create', carbonFootprintDTO)
-                        .then(function (response) {
-                            console.log('Carbon footprint saved:', response.data);
-                        })
-                        .catch(function (error) {
-                            console.error('Error saving carbon footprint:', error);
-                        });
-                })
-                .catch(function (error) {
-                    console.error('Error getting userId:', error);
-                });
+                        $http.post('/carbon-footprints/create', carbonFootprintDTO)
+                            .then(function (response) {
+                                console.log('Carbon footprint saved:', response.data);
+                            })
+                            .catch(function (error) {
+                                console.error('Error saving carbon footprint:', error);
+                            });
+                    })
+                    .catch(function (error) {
+                        console.error('Error getting userId:', error);
+                    });
+            } else {
+                $state.go('layout.login');
+            }
         } else {
-            $state.go('layout.login');
+            $scope.MetricsWarning = true;
         }
-    }
 
+    }
 }

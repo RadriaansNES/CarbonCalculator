@@ -383,12 +383,22 @@ body {
         padding-bottom: 0;
     }
 
+    .warning p {
+        text-align: center;
+    }
+
 }
 
 @keyframes fadeIn {
     to {
         opacity: 1;
     }
+}
+
+form .ng-scope .smallbut {
+    max-width: 48% !important;
+    width: 48% !important;
+    min-width: none !important;
 }
 
 // Redirect

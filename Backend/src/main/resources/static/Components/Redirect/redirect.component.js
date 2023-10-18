@@ -16,7 +16,7 @@ function RedirectController($scope, $http, $state, $cookies) {
         console.log('Login successful:', response.data.message);
         $scope.authToken = $cookies.get('authToken');
         $scope.$emit('authTokenUpdated', $scope.authToken);
-        $state.go('layout.dashboard');
+        $state.go('layout.calculator');
       })
 
       .catch(function (error) {
