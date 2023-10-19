@@ -1,0 +1,431 @@
+//SCSS
+
+.ng-scope {
+    width: 100%;
+    min-width: 100%;
+}
+
+.MainApp {
+    display: flex;
+
+    a,
+    p {
+        text-decoration: none;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-weight: bold;
+    }
+
+    em {
+        font-size: 20px;
+        font-weight: bolder;
+    }
+
+    h1 {
+
+        margin-top: 0;
+        margin-bottom: 0;
+        // ADD QUERY FOR word-break: break-all - for smaller than medium device size
+    }
+
+    #slogan,
+    h1,
+    h2 {
+        text-align: center !important;
+    }
+
+    .bigBut {
+        color: black !important;
+        height: 50px;
+        min-width: 100%;
+    }
+
+    .smallbut {
+        color: black !important;
+        height: 40px;
+        min-width: 48%;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+//Nav
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    margin: 0;
+    padding: 0 5% 0 5%;
+    z-index: 1000;
+    height: 10vh;
+    background-image: url('Src/nav.PNG');
+    background-size: cover;
+    background-position: 50% 85%;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+
+    a {
+        color: black !important;
+    }
+
+    .navbar-toggle {
+        background-color: white;
+    }
+
+    .navbar-header {
+        height: 10vh;
+        margin-top: 2.25vh;
+    }
+
+    .navbar-nav {
+        background-color: whitesmoke;
+        opacity: 1;
+        margin-top: 0;
+        padding: 0 5% 0 5%;
+    }
+
+    #navbar-collapse {
+        margin-top: -20px; //query pair
+        margin-left: -5vw;
+        margin-right: -5vw;
+    }
+
+}
+
+//Reset
+body {
+    padding: 10vh 0 0 0;
+}
+
+//Home
+
+#slogan {
+    font-size: 24px;
+    font-weight: bold;
+    overflow: hidden;
+    animation: handwriting 1s steps(40) forwards;
+    color: #333;
+    margin-bottom: 0;
+}
+
+@keyframes handwriting {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.container-fluid {
+    padding: 0;
+    min-width: 100%;
+
+    .c1 {
+        background-image: url('Src/c1.PNG');
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: center left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        color: #333;
+
+        p {
+            font-weight: bold;
+            bottom: 50px;
+        }
+
+    }
+
+    .carousel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        width: 100%; 
+        height: 100vh; //here ???
+      }
+      
+      .carousel-slide {
+        position: absolute;
+        top: 100vh;
+        left: 0;
+        width: 100%;
+        height: 90vh; // here
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        padding: 10vh 12%;
+        opacity: 0;
+        transition: opacity 0.5s;
+      
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          min-height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 1;
+        }
+      
+        & * {
+          position: relative;
+          z-index: 2;
+          color: #fff;
+        }
+      }
+      
+
+
+    .c2 {
+        background-image: url('Src/c2.PNG');
+        background-size: 100% 100%;
+
+        h2,
+        div p {
+            /* Initial position for text */
+            animation-duration: 1.5s;
+            animation-name: slideleft;
+        }
+    }
+
+    .c3 {
+        background-image: url('Src/c3.PNG');
+        background-size: 100% 100%;
+
+    }
+
+    .c4 {
+        background-image: url('Src/c4.PNG');
+        background-size: 100% 100%;
+
+    }
+
+    .c5 {
+        background-image: url('Src/c5.PNG');
+        background-size: 100% 100%;
+    }
+
+    .c6 {
+        background-image: url('Src/c6.PNG');
+        background-size: 100% 100%;
+    }
+
+    .c7 {
+        background-image: url('Src/c7.PNG');
+        background-size: 100% 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+
+        h2 {
+            padding-bottom: 10vh;
+            color: white;
+        }
+    }
+
+    .c7 {
+
+        h2 {
+            padding-top: 20%;
+        }
+
+        position: relative;
+
+        &::before {
+            content: '';
+            /* Create a pseudo-element for the overlay */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        & * {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+    }
+
+    .CSButs {
+        position: absolute;
+        display: flex;
+        min-width: 100%;
+        justify-content: space-between;
+        z-index: 1000;
+        top: 175vh; // Media query for mobile to push  further up for pc 
+      }
+    
+      .prev-button, .next-button {
+        background-color: transparent;
+        font-size: 45px;
+        border-width: 0;
+        color: white;
+      }
+
+    section {
+        height: 90vh;
+        padding: 0 7% 0 7%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        p {
+            text-align: justify;
+        }
+
+        .HEAD {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding-top: 60px;
+            padding-bottom: 120px;
+        }
+    }
+}
+
+@keyframes slideleft {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+//Calc
+#calc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 90vh;
+    padding: 0 7% 0 7%;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+
+    #calcHead {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    h3 {
+        padding: 0 0 2vh 0;
+        margin: 0;
+    }
+
+    div {
+        padding: 3vh 0;
+        margin-bottom: 6vh;
+    }
+
+    label,
+    input {
+        width: 100%;
+    }
+
+    select {
+        min-width: 50%;
+    }
+
+    label,
+    select,
+    input {
+        margin-bottom: 10px;
+    }
+
+    .result {
+        text-decoration: underline;
+    }
+
+    #disclaimer {
+        margin-top: 10vh;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .bigBut {
+        margin-top: 5vh;
+    }
+
+    .nomargin {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+// Redirect
+.container-fluid .redirect .HEAD {
+    padding-top: 40px;
+    padding-bottom: 300px;
+    align-items: center;
+
+    p {
+        text-align: center;
+        padding-bottom: 2vh;
+    }
+}
+
+.ng-valid label, .ng-invalid label{
+    display: flex;
+    justify-content: space-between;
+}
+
+.space-between {
+    min-width: 100%;
+    margin-top: 3vh;
+
+    h2 {
+        padding-bottom: 2vh;
+    }
+}
+
+.container-fluid .register .HEAD {
+    padding: 0;
+    align-items: center;
+
+    .space-between {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 0;
+    }
+
+
+    p {
+        text-align: center;
+        padding-bottom: 2vh;
+    }
+
+}

@@ -1,6 +1,7 @@
 node_modules
 
 #backend
+target
 application.properties
 .classpath
 .project
@@ -11,3 +12,5 @@ application.properties
 .vscode
 .env
 application
+mvnw
+mvnw.cmd

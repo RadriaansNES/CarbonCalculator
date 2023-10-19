@@ -1,0 +1,91 @@
+<!-- signup.component.html -->
+<div class="container-fluid">
+  <section class="register">
+    <div class="HEAD">
+      <div class="space-between">
+        <h2 class="animate__animated animate__rotateIn">Register</h2>
+        <form ng-submit="submitForm()">
+          <label>
+            Username:
+            <input type="text" name="username" ng-model="user.username" autocomplete="username" />
+          </label>
+          <br />
+
+          <label>
+            Password:
+            <input type="password" name="password" ng-model="user.password" autocomplete="current-password" />
+          </label>
+          <br />
+
+          <label>
+            Repeat Password:
+            <input type="password" name="password" ng-model="user.password2" autocomplete="current-password" />
+          </label>
+          <br />
+
+          <label>
+            Email:
+            <input type="email" name="email" ng-model="user.email" autocomplete="email" />
+          </label>
+          <br />
+
+          <label>
+            First Name:
+            <input type="text" name="first_name" ng-model="user.firstName" autocomplete="given-name" />
+          </label>
+          <br />
+
+          <label>
+            Last Name:
+            <input type="text" name="last_name" ng-model="user.lastName" autocomplete="family-name" />
+          </label>
+          <br />
+
+          <label>
+            Telephone:
+            <input type="number" name="telephone" ng-model="user.telephone" autocomplete="tel" />
+          </label>
+          <br />
+
+          <label>
+            Address:
+            <input type="text" name="address" ng-model="user.address" autocomplete="street-address" />
+          </label>
+          <br />
+
+          <label>
+            City:
+            <input type="text" name="city" ng-model="user.city" autocomplete="address-level2" />
+          </label>
+          <br />
+
+          <label>
+            Postal Code:
+            <input type="text" name="postal_code" ng-model="user.postalCode" autocomplete="postal-code" />
+          </label>
+          <br />
+
+          <label>
+            Country:
+            <input type="text" name="country" ng-model="user.country" autocomplete="country" />
+          </label>
+          <br />
+          <button class="bigBut" type='submit'>Submit</button>
+          <br />
+        </form>
+        <div class='warning' ng-if="badPassword">
+          <p>Please use a password a minimum of 7 characters long, including at least one number.</p>
+        </div>
+        <div class='warning' ng-if="noMatch">
+          <p>Passwords do not match. Please try again.</p>
+        </div>
+        <div class='warning' ng-if="badReg">
+          <p>Unable able to process registration. Redirecting back to home... </p>
+        </div>
+        <div class='warning' ng-if="registrationSuccess">
+          <p>Succesfully registered! Redirecting back to login... </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
