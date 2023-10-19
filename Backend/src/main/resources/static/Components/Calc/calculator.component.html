@@ -184,14 +184,14 @@
             <p class="result">{{ totalVacayEmissions }} kg - CO2e per month</p>
             <p ng-repeat="recommendation in recommendationsVacay">{{ recommendation }}</p>
         </div>
-        <button class="bigBut" ng-click="postFootprint()">Post Your Metrics</button>
+        <button class="bigBut scroll-top-button" ng-click="postFootprint()">Post Your Metrics</button>
         <div class='warning' ng-if="sucPost">
             <p>Successfully posted! Redirecting to your account... </p>
         </div>
         <div class='warning' ng-if="MetricsWarning">
             <p>Sorry you may only post your metrics if all emission calculations have been calculated. Please reassess your metrics and try again.</p>
         </div>
-        <button class="bigBut" ng-click="reloadPage()">Reassess Your Metrics</button>
+        <button class="bigBut scroll-top-button" ng-click="reloadPage()">Reassess Your Metrics</button>
         <div id="disclaimer">
             <p
                 ng-if="totalVacayEmissions > 0 || totalWasteEmissions > 0 || totalWaterEmission > 0 || totalEnergyEmissions > 0 || totalDietaryEmissions > 0 || totalVehicleEmissions > 0">
