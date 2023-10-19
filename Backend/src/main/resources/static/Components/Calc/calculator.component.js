@@ -50,6 +50,7 @@ function CalculatorController($scope, $timeout, $cookies, $http, $state) {
     $scope.vehicleTypeVacay = 'car';
 
     let myChart = null;
+    let myChart2 = null;
 
 
     // Factors
@@ -287,8 +288,58 @@ function CalculatorController($scope, $timeout, $cookies, $http, $state) {
             }
         }
 
+        function createOrUpdateBarChart() {
+
+            const factors = userMetrics.map((userValue, index) =>
+                userValue / averageValues[`metric${index + 1}`]
+            );
+
+            const backgroundColors = [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ];
+
+            const ctx2 = document.getElementById('metricsBarChart').getContext('2d');
+
+            if (myChart2 === null) {
+                myChart2 = new Chart(ctx2, {
+                    type: 'bar',
+                    data: {
+                        labels: metricLabels,
+                        datasets: [{
+                            data: factors,
+                            backgroundColor: backgroundColors,
+                            borderWidth: 1,
+                            label: '',
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false, //Hide the legend
+                            },
+                        },
+                    }
+                });
+            } else {
+                myChart2.data.labels = labels;
+                myChart2.data.datasets[0].data = data;
+                myChart2.update();
+            }
+        }
+
         $timeout(function () {
             createOrUpdateRadarChart();
+            createOrUpdateBarChart();
         });
     }
 
