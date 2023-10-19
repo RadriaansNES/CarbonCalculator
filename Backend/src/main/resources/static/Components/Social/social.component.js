@@ -5,6 +5,7 @@ angular.module('myApp')
 
 function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
   $scope.bestFootprints = [];
+  $scope.recentFootprints = [];
   $scope.newCommentText = '';
 
   CarbonFootprintService.getBestFootprintsThisMonth().then(function (bestFootprints) {
@@ -49,6 +50,14 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
 
   CarbonFootprintService.getRecentFootprints().then(function (recentFootprints) {
     $scope.recentFootprints = recentFootprints;
+
+    angular.forEach($scope.recentFootprints, function (footprint, index) {
+      CarbonFootprintService.getCommentsForFootprint(footprint.id).then(function (comments) {
+        footprint.comments = comments.sort(function (a, b) {
+          return new Date(a.commentDate) - new Date(b.commentDate);
+        });
+      });
+    });
 
     $timeout(function () {
       createOrUpdateGraphsForRecentFootprints();

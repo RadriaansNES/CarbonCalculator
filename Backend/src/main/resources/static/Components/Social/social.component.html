@@ -33,6 +33,16 @@
                         <div class="graph-container">
                             <canvas id="recentFootprintsChart{{$index}}"></canvas>
                         </div>
+                        <div class="comments-section">
+                            <h5>Comments</h5>
+                            <div ng-repeat="comment in footprint.comments">
+                                <p>{{ comment.user.username }}</p>
+                                <p>{{ comment.commentText }}</p>
+                                <p>{{ comment.commentDate | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+                            </div>
+                            <input type="text" ng-model="footprint.newCommentText" placeholder="Add a comment">
+                            <button ng-click="postComment(footprint.id, footprint.newCommentText)">Post Comment</button>
+                        </div>
                     </div>
                 </div>
             </div>

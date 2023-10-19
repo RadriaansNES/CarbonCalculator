@@ -109,7 +109,17 @@ public class CarbonFootprintController {
 
     @GetMapping("/recent-footprints")
     public ResponseEntity<List<CarbonFootprint>> getRecentFootprints() {
-        List<CarbonFootprint> recentFootprints = carbonFootprintService.getRecentFootprints();
+        LocalDate currentDate = LocalDate.now();
+        LocalDate startOfMonth = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), 1);
+        LocalDate endOfMonth = startOfMonth.plusMonths(1).minusDays(1);
+
+        Date startDate = Date.from(startOfMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date endDate = Date.from(endOfMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        List<CarbonFootprint> bestFootprints = carbonFootprintService.getBestFootprintsThisMonth(startDate, endDate);
+        List<CarbonFootprint> recentFootprints = carbonFootprintService.getRecentFootprints(startDate, endDate,
+                bestFootprints);
+
         return ResponseEntity.ok(recentFootprints);
     }
 }
