@@ -11,19 +11,31 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
   CarbonFootprintService.getBestFootprintsThisMonth().then(function (bestFootprints) {
     $scope.bestFootprints = bestFootprints;
 
-    angular.forEach($scope.bestFootprints, function (footprint, index) {
-      CarbonFootprintService.getCommentsForFootprint(footprint.id).then(function (comments) {
-        footprint.comments = comments.sort(function (a, b) {
+    angular.forEach($scope.bestFootprints, function (bestFootprint, index) {
+      CarbonFootprintService.getCommentsForFootprint(bestFootprint.id).then(function (comments) {
+        bestFootprint.comments = comments.sort(function (a, b) {
           return new Date(a.commentDate) - new Date(b.commentDate);
         });
       });
     });
 
-    $timeout(function () {
-      createOrUpdateGraphsForBestFootprints();
+    CarbonFootprintService.getRecentFootprints().then(function (recentFootprints) {
+      $scope.recentFootprints = recentFootprints;
+
+      angular.forEach($scope.recentFootprints, function (recentFootprint, index) {
+        CarbonFootprintService.getCommentsForFootprint(recentFootprint.id).then(function (comments) {
+          recentFootprint.comments = comments.sort(function (a, b) {
+            return new Date(a.commentDate) - new Date(b.commentDate);
+          });
+        });
+      });
+
+      $timeout(function () {
+        createOrUpdateGraphsForBestFootprints();
+        createOrUpdateGraphsForRecentFootprints();
+      });
     });
   });
-
   $scope.postComment = function (footprintId, newCommentText) {
     if (!footprintId || !newCommentText) {
       console.log('Invalid footprintId or newCommentText');
@@ -47,23 +59,6 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
       });
     });
   };
-
-  CarbonFootprintService.getRecentFootprints().then(function (recentFootprints) {
-    $scope.recentFootprints = recentFootprints;
-
-    angular.forEach($scope.recentFootprints, function (footprint, index) {
-      CarbonFootprintService.getCommentsForFootprint(footprint.id).then(function (comments) {
-        footprint.comments = comments.sort(function (a, b) {
-          return new Date(a.commentDate) - new Date(b.commentDate);
-        });
-      });
-    });
-
-    $timeout(function () {
-      createOrUpdateGraphsForRecentFootprints();
-    });
-  });
-
 
   function createOrUpdateGraphsForRecentFootprints() {
     angular.forEach($scope.recentFootprints, function (footprint, index) {
