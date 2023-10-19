@@ -3,7 +3,7 @@
 angular.module('myApp')
   .controller('SocialController', SocialController);
 
-function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
+function SocialController($scope, CarbonFootprintService, $timeout, $cookies, $state) {
   $scope.bestFootprints = [];
   $scope.recentFootprints = [];
   $scope.newCommentText = '';
@@ -44,20 +44,24 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
 
     var username = $cookies.get('username');
 
-    CarbonFootprintService.getUserIdByUsername(username).then(function (userId) {
-      CarbonFootprintService.postComment(footprintId, newCommentText, userId).then(function (comment) {
-        angular.forEach($scope.bestFootprints, function (footprint) {
-          if (footprint.id === footprintId) {
-            if (!footprint.comments) {
-              footprint.comments = [];
+    if (username) {
+      CarbonFootprintService.getUserIdByUsername(username).then(function (userId) {
+        CarbonFootprintService.postComment(footprintId, newCommentText, userId).then(function (comment) {
+          angular.forEach($scope.bestFootprints, function (footprint) {
+            if (footprint.id === footprintId) {
+              if (!footprint.comments) {
+                footprint.comments = [];
+              }
+              footprint.comments.push(comment);
             }
-            footprint.comments.push(comment);
-          }
+          });
+  
+          $scope.newCommentText = '';
         });
-
-        $scope.newCommentText = '';
       });
-    });
+    } else {
+      $state.go('layout.login');
+    }
   };
 
   function createOrUpdateGraphsForRecentFootprints() {
