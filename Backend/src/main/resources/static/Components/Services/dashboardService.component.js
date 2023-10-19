@@ -48,4 +48,12 @@ angular.module('myApp').service('CarbonFootprintService', function ($http) {
                 return response.data.userId;
             });
     };
+
+
+    this.getRecentFootprints = function () {
+        return $http.get("/carbon-footprints/recent-footprints")
+            .then(function (response) {
+                return response.data;
+            });
+    };
 });

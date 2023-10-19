@@ -64,7 +64,6 @@ public class CarbonFootprintService {
     }
 
     public List<CarbonFootprint> getRecentFootprints() {
-       
         return carbonFootprintRepository.findRecentFootprints();
     }
 }

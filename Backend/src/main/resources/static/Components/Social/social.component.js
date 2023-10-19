@@ -24,7 +24,6 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
   });
 
   $scope.postComment = function (footprintId, newCommentText) {
-
     if (!footprintId || !newCommentText) {
       console.log('Invalid footprintId or newCommentText');
       return;
@@ -33,9 +32,7 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
     var username = $cookies.get('username');
 
     CarbonFootprintService.getUserIdByUsername(username).then(function (userId) {
-
       CarbonFootprintService.postComment(footprintId, newCommentText, userId).then(function (comment) {
-
         angular.forEach($scope.bestFootprints, function (footprint) {
           if (footprint.id === footprintId) {
             if (!footprint.comments) {
@@ -50,11 +47,17 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
     });
   };
 
+  CarbonFootprintService.getRecentFootprints().then(function (recentFootprints) {
+    $scope.recentFootprints = recentFootprints;
+
+    $timeout(function () {
+      createOrUpdateGraphsForRecentFootprints();
+    });
+  });
 
 
-  function createOrUpdateGraphsForBestFootprints() {
-
-    angular.forEach($scope.bestFootprints, function (footprint, index) {
+  function createOrUpdateGraphsForRecentFootprints() {
+    angular.forEach($scope.recentFootprints, function (footprint, index) {
       const userMetrics = [
         footprint.totalVehicleEmissions,
         footprint.totalDietaryEmissions,
@@ -63,6 +66,7 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
         footprint.totalWasteEmissions,
         footprint.totalVacayEmissions
       ];
+
 
       const averageValues = {
         metric1: 383,
@@ -98,40 +102,119 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies) {
       const labels = metricLabels;
       const data = averageMetrics;
 
-      const ctx = document.getElementById(`bestFootprintsChart${index}`).getContext('2d');
+      const ctx2 = document.getElementById(`recentFootprintsChart${index}`);
 
-      let myChart;
-
-      if (!myChart) {
-        myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: labels,
-            datasets: [{
-              data: data,
-              backgroundColor: backgroundColors,
-              borderWidth: 1,
-              label: '',
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            },
-            plugins: {
-              legend: {
-                display: false, // Hide the legend
-              },
-            },
-          }
-        });
-      } else {
-        myChart.data.labels = labels;
-        myChart.data.datasets[0].data = data;
-        myChart.update();
+      if (!ctx2) {
+        // Handle the case where the canvas element doesn't exist
+        console.error(`Canvas element not found: recentFootprintsChart${index}`);
+        return;
       }
+
+      const myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: backgroundColors,
+            borderWidth: 1,
+            label: '',
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            legend: {
+              display: false, // Hide the legend
+            },
+          },
+        }
+      });
+    });
+  }
+
+  function createOrUpdateGraphsForBestFootprints() {
+    angular.forEach($scope.bestFootprints, function (footprint, index) {
+      const userMetrics = [
+        footprint.totalVehicleEmissions,
+        footprint.totalDietaryEmissions,
+        footprint.totalWaterEmission,
+        footprint.totalEnergyEmissions,
+        footprint.totalWasteEmissions,
+        footprint.totalVacayEmissions
+      ];
+
+
+      const averageValues = {
+        metric1: 383,
+        metric2: 120,
+        metric3: 83,
+        metric4: 166,
+        metric5: 26.4,
+        metric6: 1215,
+      };
+
+      const averageMetrics = userMetrics.map((userValue, index) =>
+        userValue / averageValues[`metric${index + 1}`]
+      );
+
+      const metricLabels = [
+        'Vehicle Emissions',
+        'Dietary Emissions',
+        'Water Emission',
+        'Energy Emissions',
+        'Waste Emissions',
+        'Vacation Emissions'
+      ];
+
+      const backgroundColors = [
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(75, 192, 192, 0.7)',
+        'rgba(153, 102, 255, 0.7)',
+        'rgba(255, 159, 64, 0.7)'
+      ];
+
+      const labels = metricLabels;
+      const data = averageMetrics;
+
+      const ctx = document.getElementById(`bestFootprintsChart${index}`);
+
+      if (!ctx) {
+        // Handle the case where the canvas element doesn't exist
+        console.error(`Canvas element not found: bestFootprintsChart${index}`);
+        return;
+      }
+
+      const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: backgroundColors,
+            borderWidth: 1,
+            label: '',
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            legend: {
+              display: false, // Hide the legend
+            },
+          },
+        }
+      });
     });
   }
 }
