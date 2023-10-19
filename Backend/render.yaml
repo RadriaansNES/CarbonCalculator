@@ -1,5 +1,0 @@
-services:
-  - name: backend
-    env: web
-    buildCommand: mvn install
-    startCommand: mvn spring-boot:run
