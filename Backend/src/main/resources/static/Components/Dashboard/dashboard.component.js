@@ -133,7 +133,7 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout,
     const metricLabels = [
       'Vehicle Emissions',
       'Dietary Emissions',
-      'Water Emission',
+      'Water Emissions',
       'Energy Emissions',
       'Waste Emissions',
       'Vacation Emissions'

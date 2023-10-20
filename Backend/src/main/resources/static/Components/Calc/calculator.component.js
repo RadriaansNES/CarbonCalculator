@@ -233,7 +233,7 @@ function CalculatorController($scope, $timeout, $cookies, $http, $state) {
         const metricLabels = [
             'Vehicle Emissions',
             'Dietary Emissions',
-            'Water Emission',
+            'Water Emissions',
             'Energy Emissions',
             'Waste Emissions',
             'Vacation Emissions',

@@ -92,7 +92,7 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies, $s
       const metricLabels = [
         'Vehicle Emissions',
         'Dietary Emissions',
-        'Water Emission',
+        'Water Emissions',
         'Energy Emissions',
         'Waste Emissions',
         'Vacation Emissions'
@@ -173,7 +173,7 @@ function SocialController($scope, CarbonFootprintService, $timeout, $cookies, $s
       const metricLabels = [
         'Vehicle Emissions',
         'Dietary Emissions',
-        'Water Emission',
+        'Water Emissions',
         'Energy Emissions',
         'Waste Emissions',
         'Vacation Emissions'
