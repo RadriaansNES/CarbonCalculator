@@ -1,5 +1,5 @@
 <!-- calculator.component.html -->
-<div class="container-fluid" id="calc">
+<div class="container-fluid noTop" id="calc">
     <div ng-if="isCurrentStep(0)">
         <p id="calcHead">Enter your information to get your monthly statistics, how you compare against others, and what
             you
@@ -152,8 +152,8 @@
     </form>
     <div ng-if="calculateButtonClicked" class="nomargin">
         <div class="nomargin">
-            <canvas id="metricsChart" ng-if="calculateButtonClicked"></canvas>
-            <canvas id="metricsBarChart" ng-if="calculateButtonClicked"></canvas>
+            <canvas class="graph-containerRADAR" id="metricsChart" ng-if="calculateButtonClicked"></canvas>
+            <canvas class="graph-container" id="metricsBarChart" ng-if="calculateButtonClicked"></canvas>
         </div>
         <div ng-if="totalVehicleEmissions > 0">
             <h3>Total Vehicle Emissions</h3>

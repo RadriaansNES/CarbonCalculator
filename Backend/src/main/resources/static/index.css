@@ -30,11 +30,16 @@
 .MainApp .bigBut {
   color: black !important;
   height: 50px;
-  width: 100%; /* Occupy full width by default */
-  margin: 0 auto; /* Center horizontally */
-  display: block; /* Ensure block-level element behavior */
-  align-self: center; /* Center vertically within a flex container */
-  text-align: center; /* Center text horizontally within the button */
+  width: 100%;
+  /* Occupy full width by default */
+  margin: 0 auto;
+  /* Center horizontally */
+  display: block;
+  /* Ensure block-level element behavior */
+  align-self: center;
+  /* Center vertically within a flex container */
+  text-align: center;
+  /* Center text horizontally within the button */
 }
 .MainApp .smallbut {
   color: black !important;
@@ -300,7 +305,7 @@ body {
   width: 100%;
 }
 #calc select {
-  min-width: 50%;
+  min-width: 100%;
 }
 #calc label,
 #calc select,
@@ -391,6 +396,10 @@ form .ng-scope .smallbut {
   padding-bottom: 2vh;
 }
 
+.container-fluid .dashboard .HEAD p {
+  padding-top: 1vh;
+}
+
 .container-fluid .dashboard,
 .container-fluid .social {
   height: auto;
@@ -431,8 +440,12 @@ form .ng-scope .smallbut {
 .container-fluid .social .bigBut {
   margin-top: 3vh;
 }
-.container-fluid .dashboard .Footprints,
-.container-fluid .social .Footprints {
+
+.dashboard .Footprints {
+  margin-bottom: 6vh;
+}
+
+.social .Footprints {
   margin-bottom: 10vh;
 }
 
@@ -465,6 +478,7 @@ form .ng-scope .smallbut {
 }
 .container-fluid .social .HEAD .comments-section button {
   width: 25%;
+  margin-top: 2vh;
 }
 .container-fluid .social .HEAD .comments-section input {
   margin-top: 2vh;
@@ -476,25 +490,7 @@ form .ng-scope .smallbut {
     margin-bottom: 5vh !important;
   }
 }
-@media (min-width: 768px) and (max-width: 1023px) {
-  .navbar-brand {
-    font-size: 21px;
-  }
-  h1 {
-    font-size: 39px !important;
-  }
-  h2 {
-    font-size: 33px !important;
-  }
-  h3 {
-    font-size: 27px !important;
-  }
-  label, input, p, .navbar-nav > li > a, button, canvas {
-    font-size: 17px !important;
-  }
-  select {
-    font-size: 19px;
-  }
+@media (min-width: 768px) {
   .navbar .navbar-nav {
     background-color: transparent;
     opacity: 1;
@@ -518,10 +514,97 @@ form .ng-scope .smallbut {
   input {
     min-width: 50%;
   }
-  .redirect .space-between, .redirect .space-between form {
+  .redirect .space-between,
+  .redirect .space-between form {
     display: flex;
     flex-direction: column;
     gap: 2vh;
+  }
+  .comments-section .space-between2 {
+    display: flex;
+    justify-content: space-between;
+  }
+  .comments-section .space-between2 button {
+    margin-top: 2vh;
+  }
+  .graph-container {
+    display: flex;
+    max-height: 300px;
+    justify-content: center;
+  }
+  .graph-containerRADAR {
+    display: flex;
+    max-height: 400px;
+    justify-content: center;
+    margin-bottom: 1vh;
+  }
+  #calc div {
+    padding: 5vh 0;
+  }
+  #calc .nomargin {
+    padding-top: 1vh;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar-brand {
+    font-size: 21px;
+  }
+  h1 {
+    font-size: 39px !important;
+  }
+  h2 {
+    font-size: 33px !important;
+  }
+  h3 {
+    font-size: 27px !important;
+  }
+  label,
+  input,
+  p,
+  .navbar-nav > li > a,
+  button,
+  canvas {
+    font-size: 17px !important;
+  }
+  select {
+    font-size: 19px;
+  }
+  .CSButs button {
+    font-size: 40px !important;
+  }
+}
+@media (min-width: 1024px) {
+  .navbar-brand {
+    font-size: 22.5px;
+  }
+  h1 {
+    font-size: 40.5px !important;
+  }
+  h2 {
+    font-size: 34.5px !important;
+  }
+  h3 {
+    font-size: 29.5px !important;
+  }
+  label,
+  input,
+  p,
+  .navbar-nav > li > a,
+  button,
+  canvas {
+    font-size: 18.5px !important;
+  }
+  select {
+    font-size: 20.5px;
+  }
+  .CSButs button {
+    font-size: 41.5px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .container-fluid section, .container-fluid .carousel-slide, #calc {
+    padding-left: 25%;
+    padding-right: 25%;
   }
 }
 
