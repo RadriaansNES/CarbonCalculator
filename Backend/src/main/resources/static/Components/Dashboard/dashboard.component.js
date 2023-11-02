@@ -4,26 +4,34 @@ angular.module('myApp')
   .controller('DashboardController', DashboardController);
 
 function DashboardController($scope, $cookies, CarbonFootprintService, $timeout, $state, $http) {
-  $scope.nodata = false;
-
+  $scope.nodata = true;
+  $scope.noRecentData = true;
+  
   $scope.username = $cookies.get('username');
 
   CarbonFootprintService.getLastThreeFootprintsByUsername($scope.username).then(function (response) {
     $scope.lastThreeFootprints = response.data;
-    $scope.nodata = false;
+    console.log($scope.lastThreeFootprints);
+    if ($scope.lastThreeFootprints.length = 0){
+      $scope.noRecentData = false;
+    }
     
     $timeout(function () {
       createOrUpdateBarCharts();
     });
 
   }).catch(function (error) {
-    $scope.nodata = true;
+    $scope.noRecentData = true;
 });
 
 
   CarbonFootprintService.getLowestEmissionByUsername($scope.username).then(function (response) {
     $scope.lowestCarbonFootprint = response.data;
-    $scope.nodata = false;
+    console.log($scope.lowestCarbonFootprint);
+    if ($scope.lowestCarbonFootprint) {
+      $scope.nodata = false;
+    }
+
     if ($scope.lowestCarbonFootprint.totalEmissions > 1993 * 1.25) {
       $scope.emissionMessageProfile = 'Your carbon footprint is relatively high, indicating potential for improvement. Consider adopting practices to reduce your carbon emissions.';
     } else if ($scope.lowestCarbonFootprint.totalEmissions >= 1993 * 0.75) {
