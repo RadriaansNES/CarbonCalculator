@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/carbon-footprints")
@@ -32,22 +33,16 @@ public class CarbonFootprintController {
     @PostMapping("/create")
     public ResponseEntity<CarbonFootprint> createCarbonFootprint(@RequestBody CarbonFootprintDTO carbonFootprintDTO) {
         Long userId = carbonFootprintDTO.getUserId();
-
         User user = userRepository.findById(userId).orElse(null);
 
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
 
-        CarbonFootprint carbonFootprint = new CarbonFootprint(
-                user,
-                carbonFootprintDTO.getTotalVehicleEmissions(),
-                carbonFootprintDTO.getTotalDietaryEmissions(),
-                carbonFootprintDTO.getTotalWaterEmission(),
-                carbonFootprintDTO.getTotalEnergyEmissions(),
-                carbonFootprintDTO.getTotalWasteEmissions(),
-                carbonFootprintDTO.getTotalVacayEmissions(),
-                carbonFootprintDTO.getTotalEmissions(),
+        CarbonFootprint carbonFootprint = new CarbonFootprint(user, carbonFootprintDTO.getTotalVehicleEmissions(),
+                carbonFootprintDTO.getTotalDietaryEmissions(), carbonFootprintDTO.getTotalWaterEmission(),
+                carbonFootprintDTO.getTotalEnergyEmissions(), carbonFootprintDTO.getTotalWasteEmissions(),
+                carbonFootprintDTO.getTotalVacayEmissions(), carbonFootprintDTO.getTotalEmissions(),
                 carbonFootprintDTO.getCalculationDate());
 
         CarbonFootprint createdFootprint = carbonFootprintService.saveCarbonFootprint(carbonFootprint);
@@ -59,11 +54,7 @@ public class CarbonFootprintController {
     public ResponseEntity<CarbonFootprint> getCarbonFootprint(@PathVariable Long id) {
         CarbonFootprint carbonFootprint = carbonFootprintService.getCarbonFootprintById(id);
 
-        if (carbonFootprint != null) {
-            return ResponseEntity.ok(carbonFootprint);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.of(Optional.ofNullable(carbonFootprint));
     }
 
     @GetMapping("/user/{userId}")
@@ -77,30 +68,23 @@ public class CarbonFootprintController {
     public ResponseEntity<CarbonFootprint> getLowestEmissionByUsername(@PathVariable String username) {
         CarbonFootprint carbonFootprint = carbonFootprintService.getLowestEmissionByUsername(username);
 
-        if (carbonFootprint != null) {
-            return ResponseEntity.ok(carbonFootprint);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.of(Optional.ofNullable(carbonFootprint));
     }
 
     @GetMapping("/last-three-footprints/{username}")
     public ResponseEntity<List<CarbonFootprint>> getLastThreeFootprintsByUsername(@PathVariable String username) {
-        List<CarbonFootprint> lastThreeFootprints = carbonFootprintService
-                .getLastThreeCarbonFootprintsByUsername(username);
+        List<CarbonFootprint> lastThreeFootprints = carbonFootprintService.getLastThreeCarbonFootprintsByUsername(username);
 
         return ResponseEntity.ok(lastThreeFootprints);
     }
 
     @GetMapping("/best-footprints-this-month")
-    public ResponseEntity<List<CarbonFootprint>> getBestFootprintsThisMonth() {
-
+    public ResponseEntity<List<CarbonFootprint>> getBestFootprintsThisRolling30Days() {
         LocalDate currentDate = LocalDate.now();
-        LocalDate startOfMonth = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), 1);
-        LocalDate endOfMonth = startOfMonth.plusMonths(1).minusDays(1);
+        LocalDate thirtyDaysAgo = currentDate.minusDays(30);
 
-        Date startDate = Date.from(startOfMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Date endDate = Date.from(endOfMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date startDate = Date.from(thirtyDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date endDate = Date.from(currentDate.atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant());
 
         List<CarbonFootprint> bestFootprints = carbonFootprintService.getBestFootprintsThisMonth(startDate, endDate);
 
@@ -110,15 +94,13 @@ public class CarbonFootprintController {
     @GetMapping("/recent-footprints")
     public ResponseEntity<List<CarbonFootprint>> getRecentFootprints() {
         LocalDate currentDate = LocalDate.now();
-        LocalDate startOfMonth = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), 1);
-        LocalDate endOfMonth = startOfMonth.plusMonths(1).minusDays(1);
+        LocalDate thirtyDaysAgo = currentDate.minusDays(30);
 
-        Date startDate = Date.from(startOfMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Date endDate = Date.from(endOfMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date startDate = Date.from(thirtyDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date endDate = Date.from(currentDate.atTime(23, 59, 59).atZone(ZoneId.systemDefault()).toInstant());
 
-        List<CarbonFootprint> bestFootprints = carbonFootprintService.getBestFootprintsThisMonth(startDate, endDate);
         List<CarbonFootprint> recentFootprints = carbonFootprintService.getRecentFootprints(startDate, endDate,
-                bestFootprints);
+                getBestFootprintsThisRolling30Days().getBody());
 
         return ResponseEntity.ok(recentFootprints);
     }

@@ -13,34 +13,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/comments")
 public class CommentController {
     private final CommentService commentService;
+    private final CarbonFootprintService carbonFootprintService;
+    private final UserService userService;
 
     @Autowired
-    private CarbonFootprintService carbonFootprintService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    public CommentController(CommentService commentService) {
+    public CommentController(
+            CommentService commentService,
+            CarbonFootprintService carbonFootprintService,
+            UserService userService) {
         this.commentService = commentService;
+        this.carbonFootprintService = carbonFootprintService;
+        this.userService = userService;
     }
 
     @PostMapping("/create")
     public ResponseEntity<Comment> createComment(@RequestBody CommentDTO commentDTO) {
-        CarbonFootprint carbonFootprint = carbonFootprintService
-                .getCarbonFootprintById(commentDTO.getCarbonFootprintId());
+        CarbonFootprint carbonFootprint = carbonFootprintService.getCarbonFootprintById(commentDTO.getCarbonFootprintId());
         User user = userService.getUserById(commentDTO.getUserId());
+
+        if (carbonFootprint == null || user == null) {
+            return ResponseEntity.notFound().build();
+        }
 
         Comment comment = new Comment(
                 carbonFootprint,
                 user,
                 commentDTO.getCommentText(),
-                new java.util.Date()); 
+                new java.util.Date());
 
         Comment createdComment = commentService.saveComment(comment);
 
@@ -51,11 +56,7 @@ public class CommentController {
     public ResponseEntity<Comment> getComment(@PathVariable Long id) {
         Comment comment = commentService.getCommentById(id);
 
-        if (comment != null) {
-            return ResponseEntity.ok(comment);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.of(Optional.ofNullable(comment));
     }
 
     @GetMapping("/footprint/{footprintId}")

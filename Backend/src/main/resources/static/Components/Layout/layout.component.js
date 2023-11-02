@@ -4,7 +4,7 @@ angular.module('myApp')
   .controller('LayoutController', LayoutController);
 
 function LayoutController($scope, $state, $cookies) {
-  //Check on init
+
   $scope.init = function () {
     var authToken = $cookies.get('authToken');
     if (authToken) {
@@ -36,7 +36,6 @@ function LayoutController($scope, $state, $cookies) {
     $scope.authToken = authToken;
   });
 
-  //Listener for experation
   $scope.$watch(
     function () {
       return $cookies.get('authToken');

@@ -201,6 +201,7 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout,
 
   $scope.logout = function () {
     $http.get('/users/logout').then(function (response) {
+      window.scrollTo(0, 0);
       $state.go('layout.home');
     });
   }

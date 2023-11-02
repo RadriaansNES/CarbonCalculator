@@ -13,33 +13,35 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/likes")
 public class LikeController {
     private final LikeService likeService;
+    private final CarbonFootprintService carbonFootprintService;
+    private final UserService userService;
 
     @Autowired
-    private CarbonFootprintService carbonFootprintService;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    public LikeController(LikeService likeService) {
+    public LikeController(
+            LikeService likeService,
+            CarbonFootprintService carbonFootprintService,
+            UserService userService) {
         this.likeService = likeService;
+        this.carbonFootprintService = carbonFootprintService;
+        this.userService = userService;
     }
 
     @PostMapping("/create")
     public ResponseEntity<Like> createLike(@RequestBody LikeDTO likeDTO) {
-
         CarbonFootprint carbonFootprint = carbonFootprintService.getCarbonFootprintById(likeDTO.getCarbonFootprintId());
         User user = userService.getUserById(likeDTO.getUserId());
 
-        Like like = new Like(
-                carbonFootprint,
-                user,
-                likeDTO.getLikeDate());
+        if (carbonFootprint == null || user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Like like = new Like(carbonFootprint, user, likeDTO.getLikeDate());
         Like createdLike = likeService.saveLike(like);
 
         return ResponseEntity.ok(createdLike);
@@ -49,11 +51,7 @@ public class LikeController {
     public ResponseEntity<Like> getLike(@PathVariable Long id) {
         Like like = likeService.getLikeById(id);
 
-        if (like != null) {
-            return ResponseEntity.ok(like);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.of(Optional.ofNullable(like));
     }
 
     @GetMapping("/footprint/{footprintId}")

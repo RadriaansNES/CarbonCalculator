@@ -558,6 +558,8 @@ form .ng-scope .smallbut {
     }
 
     .comments-section {
+        margin-bottom: 15vh;
+
         p {
             padding: 0.5vh;
         }
@@ -576,7 +578,7 @@ form .ng-scope .smallbut {
 
 @media (max-width: 500px) {
     .container-fluid .register {
-        margin-top: 10vh !important;
+        margin-top: 5vh !important;
         margin-bottom: 5vh !important;
     }
 

@@ -52,26 +52,16 @@ public class CarbonFootprintService {
     }
 
     public List<CarbonFootprint> getBestFootprintsThisMonth(Date startDate, Date endDate) {
-
-        List<CarbonFootprint> allFootprints = carbonFootprintRepository.findBestFootprintsThisMonth(startDate, endDate);
-        List<CarbonFootprint> sortedFootprints = allFootprints.stream()
+        return carbonFootprintRepository.findBestFootprintsThisMonth(startDate, endDate).stream()
                 .sorted(Comparator.comparingDouble(CarbonFootprint::getTotalEmissions))
-                .collect(Collectors.toList());
-
-        return sortedFootprints.stream()
                 .limit(3)
                 .collect(Collectors.toList());
     }
 
     public List<CarbonFootprint> getRecentFootprints(Date startDate, Date endDate,
             List<CarbonFootprint> bestFootprints) {
-        List<CarbonFootprint> recentFootprints = carbonFootprintRepository.findRecentFootprints();
-
-        // Filter out footprints that are also in bestFootprints
-        recentFootprints = recentFootprints.stream()
+        return carbonFootprintRepository.findRecentFootprints().stream()
                 .filter(recent -> !bestFootprints.contains(recent))
                 .collect(Collectors.toList());
-
-        return recentFootprints;
     }
 }
