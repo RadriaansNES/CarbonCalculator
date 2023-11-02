@@ -20,6 +20,7 @@
             <canvas class="graph-container" id="footprintChart{{ $index }}"></canvas>
             <p>{{footprint.totalEmissions + 'kg - CO2e/Month'}}</p>
           </div>
+          <Button class="bigBut scroll-top-button" ng-click="goCalc()">Calculate Again</Button>
           <Button class="bigBut scroll-top-button" ng-click="goSocial()">Compare With Friends!</Button>
           <Button class="bigBut scroll-top-button" ng-click="logout()">Logout</Button>
         </div>

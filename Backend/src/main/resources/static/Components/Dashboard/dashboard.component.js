@@ -10,7 +10,7 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout,
 
   CarbonFootprintService.getLastThreeFootprintsByUsername($scope.username).then(function (response) {
     $scope.lastThreeFootprints = response.data;
-    $scope.nodata = true;
+    $scope.nodata = false;
     
     $timeout(function () {
       createOrUpdateBarCharts();
@@ -23,7 +23,7 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout,
 
   CarbonFootprintService.getLowestEmissionByUsername($scope.username).then(function (response) {
     $scope.lowestCarbonFootprint = response.data;
-    $scope.nodata = true;
+    $scope.nodata = false;
     if ($scope.lowestCarbonFootprint.totalEmissions > 1993 * 1.25) {
       $scope.emissionMessageProfile = 'Your carbon footprint is relatively high, indicating potential for improvement. Consider adopting practices to reduce your carbon emissions.';
     } else if ($scope.lowestCarbonFootprint.totalEmissions >= 1993 * 0.75) {
