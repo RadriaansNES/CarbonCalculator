@@ -4,23 +4,26 @@ angular.module('myApp')
   .controller('DashboardController', DashboardController);
 
 function DashboardController($scope, $cookies, CarbonFootprintService, $timeout, $state, $http) {
+  $scope.nodata = false;
+
   $scope.username = $cookies.get('username');
 
-  // Fetch the last three footprints
   CarbonFootprintService.getLastThreeFootprintsByUsername($scope.username).then(function (response) {
     $scope.lastThreeFootprints = response.data;
-
-    // Create bar charts for the last three footprints
+    $scope.nodata = true;
+    
     $timeout(function () {
       createOrUpdateBarCharts();
     });
 
-  });
+  }).catch(function (error) {
+    $scope.nodata = true;
+});
 
-  // Fetch and display data for the lowest carbon footprint
+
   CarbonFootprintService.getLowestEmissionByUsername($scope.username).then(function (response) {
     $scope.lowestCarbonFootprint = response.data;
-
+    $scope.nodata = true;
     if ($scope.lowestCarbonFootprint.totalEmissions > 1993 * 1.25) {
       $scope.emissionMessageProfile = 'Your carbon footprint is relatively high, indicating potential for improvement. Consider adopting practices to reduce your carbon emissions.';
     } else if ($scope.lowestCarbonFootprint.totalEmissions >= 1993 * 0.75) {
@@ -33,7 +36,10 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout,
       createOrUpdateLowestCarbonFootprintBarChart();
     });
 
-  });
+  }).catch(function (error) {
+    $scope.nodata = true;
+});
+
 
   function createOrUpdateBarCharts() {
     // Iterate over the last three footprints and create/update bar charts for each
@@ -209,5 +215,9 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout,
   $scope.goSocial = function () {
       $state.go('layout.social');
   }
+
+  $scope.goCalc  = function () {
+    $state.go('layout.calculator');
+}
 }
 

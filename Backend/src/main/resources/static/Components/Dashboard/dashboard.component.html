@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <section class="dashboard">
     <div class="HEAD">
-      <div class="space-between">
+      <div class="space-between" ng-if="nodata != true">
         <div>
           <h2 class="animate__animated animate__heartBeat">Hello {{ username }}!</h2>
           <p>The Greenest Carbon Footprint You've Calculated Is:</p>
@@ -15,13 +15,21 @@
         <div>
           <h3>Your Recent Footprints</h3>
           <div ng-repeat="footprint in lastThreeFootprints" class="Footprints">
-            <h4 id="bold">{{ 'Footprint ' + ($index + 1) + ' - ' + (footprint.calculationDate | date:'dd/MM/yyyy')}}</h4>
+            <h4 id="bold">{{ 'Footprint ' + ($index + 1) + ' - ' + (footprint.calculationDate | date:'dd/MM/yyyy')}}
+            </h4>
             <canvas class="graph-container" id="footprintChart{{ $index }}"></canvas>
             <p>{{footprint.totalEmissions + 'kg - CO2e/Month'}}</p>
           </div>
-          <Button class="bigBut scroll-top-button" ng-click="goSocial()">Compare With Friends!</Button> 
+          <Button class="bigBut scroll-top-button" ng-click="goSocial()">Compare With Friends!</Button>
           <Button class="bigBut scroll-top-button" ng-click="logout()">Logout</Button>
         </div>
+      </div>
+      <div class="space-between" ng-if="nodata == true">
+        <h2 class="animate__animated animate__heartBeat">Hello {{ username }}!</h2>
+        <p>Unfortunately, you have yet to calculate your carbon footprint. Once you have, personal statistics, recommendations will be generated for you here. Feel free to do so now, or see how others have faired!</p>
+        <Button class="bigBut scroll-top-button" ng-click="goCalc()">Calculator</Button>
+        <Button class="bigBut scroll-top-button" ng-click="goSocial()">Community Results</Button>
+        <Button class="bigBut scroll-top-button" ng-click="logout()">Logout</Button>
       </div>
     </div>
   </section>
