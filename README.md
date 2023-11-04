@@ -30,7 +30,7 @@ Stay updated with the latest carbon footprint calculations shared by the YourCar
 Create a user profile on YourCarbonFootprint to personalize your experience, track your progress, and connect with others who share your passion for environmental sustainability.
 
 ## Technologies Used:
-- Frontend: Angular, Javascript, SCSS
+- Frontend: Angular, Javascript, SCSS, HTML
 - Backend: Java, Spring Boot, Maven
 - Database: Oracle Cloud
 - Deployment: Docker
