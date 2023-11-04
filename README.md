@@ -1,8 +1,8 @@
 # YourCarbonFootprint - Calculate, Share, and Improve Your Carbon Footprint
-## Welcome to GreenFootprint, your go-to platform for measuring and reducing your carbon footprint across various metrics. This web application empowers users to not only calculate their carbon emissions but also share their eco-friendly achievements with a community of like-minded individuals. GreenFootprint is built on a foundation of environmental consciousness, featuring a frontend developed with Angular and a robust backend powered by Java, Spring Boot, and Maven. It is compiled and deployed using Docker for efficiency and scalability.
+## Welcome to YourCarbonFootprint, your go-to platform for measuring and reducing your carbon footprint across various metrics. This web application empowers users to not only calculate their carbon emissions but also share their eco-friendly achievements with a community of like-minded individuals. YourCarbonFootprint is built on a foundation of environmental consciousness, featuring a frontend developed with Angular and a robust backend powered by Java, Spring Boot, and Maven. It is compiled and deployed using Docker for efficiency and scalability.
 
 ### Measure Your Carbon Footprint:
-GreenFootprint provides a comprehensive carbon footprint calculator that covers various aspects of your daily life, including:
+YourCarbonFootprint provides a comprehensive carbon footprint calculator that covers various aspects of your daily life, including:
 
 - Vehicle Usage: Calculate emissions based on your transportation choices.
 - Dietary Lifestyle: Understand the environmental impact of your dietary choices.
@@ -18,7 +18,7 @@ Based on your calculated metrics, YourCarbonFootprint offers personalized recomm
 YourCarbonFootprint allows users to share their carbon footprint achievements with the community. Whether you've made significant strides in reducing emissions or adopted eco-friendly habits, you can inspire others by sharing your success stories.
 
 ### View Others' Footprints and Interact:
-Explore carbon footprints shared by other GreenFootprint users and engage with the community by leaving comments and offering encouragement. Learn from others' experiences and get inspired to make positive changes in your own life.
+Explore carbon footprints shared by other YourCarbonFootprint users and engage with the community by leaving comments and offering encouragement. Learn from others' experiences and get inspired to make positive changes in your own life.
 
 ### Showcases the 'Best' Carbon Footprints:
 Each month, YourCarbonFootprint highlights the most impressive carbon footprint reductions as the "Best Footprints of the Month." This recognition inspires healthy competition and motivates users to strive for sustainability excellence.
