@@ -1,0 +1,747 @@
+//SCSS
+
+.ng-scope {
+    width: 100%;
+    min-width: 100%;
+}
+
+.MainApp {
+    display: flex;
+
+    a,
+    p {
+        text-decoration: none;
+    }
+
+    h2 {
+        margin-top: 0;
+        font-weight: bold;
+    }
+
+    em {
+        font-size: 20px;
+        font-weight: bolder;
+    }
+
+    h1 {
+
+        margin-top: 0;
+        margin-bottom: 0;
+        // ADD QUERY FOR word-break: break-all - for smaller than medium device size
+    }
+
+    #slogan,
+    h1,
+    h2 {
+        text-align: center !important;
+    }
+
+    .bigBut {
+        color: black !important;
+        height: 50px;
+        width: 100%;
+        /* Occupy full width by default */
+        margin: 0 auto;
+        /* Center horizontally */
+        display: block;
+        /* Ensure block-level element behavior */
+        align-self: center;
+        /* Center vertically within a flex container */
+        text-align: center;
+        /* Center text horizontally within the button */
+    }
+
+    .smallbut {
+        color: black !important;
+        height: 40px;
+        min-width: 48%;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .warning {
+        margin: 4vh 0;
+        font-weight: bold;
+        color: red;
+    }
+
+    #bold {
+        font-weight: bold;
+    }
+
+}
+
+//Nav
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    margin: 0;
+    padding: 0 5% 0 5%;
+    z-index: 1000;
+    height: 10vh;
+    background-image: url('Src/nav.PNG');
+    background-size: cover;
+    background-position: 50% 85%;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+
+    a {
+        color: black !important;
+    }
+
+    .navbar-toggle {
+        background-color: white;
+    }
+
+    .navbar-header {
+        height: 10vh;
+        margin-top: 2.25vh;
+    }
+
+    .navbar-nav {
+        background-color: whitesmoke;
+        opacity: 1;
+        margin-top: 0;
+        padding: 0 5% 0 5%;
+    }
+
+    #navbar-collapse {
+        margin-top: -20px; //query pair
+        margin-left: -6vw;
+        margin-right: -6vw;
+    }
+
+}
+
+//Reset
+body {
+    padding: 10vh 0 0 0;
+}
+
+//Home
+
+#slogan {
+    font-size: 24px;
+    font-weight: bold;
+    overflow: hidden;
+    animation: handwriting 1s steps(40) forwards;
+    color: #333;
+    margin-bottom: 0;
+}
+
+@keyframes handwriting {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.container-fluid {
+    padding: 0;
+    min-width: 100%;
+
+    .c1 {
+        background-image: url('Src/c1.PNG');
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: center left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        color: #333;
+
+        p {
+            font-weight: bold;
+            bottom: 50px;
+        }
+
+    }
+
+    .carousel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100vh; //here ???
+    }
+
+    .carousel-slide {
+        position: absolute;
+        top: 100vh;
+        left: 0;
+        width: 100%;
+        height: 90vh; // here
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        padding: 10vh 7%;
+        opacity: 0;
+        transition: opacity 0.5s;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        & * {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+        }
+    }
+
+
+
+    .c2 {
+        background-image: url('Src/c2.PNG');
+        background-size: 100% 100%;
+
+        h2,
+        div p {
+            /* Initial position for text */
+            animation-duration: 1.5s;
+            animation-name: slideleft;
+        }
+    }
+
+    .c3 {
+        background-image: url('Src/c3.PNG');
+        background-size: 100% 100%;
+
+    }
+
+    .c4 {
+        background-image: url('Src/c4.PNG');
+        background-size: 100% 100%;
+
+    }
+
+    .c5 {
+        background-image: url('Src/c5.PNG');
+        background-size: 100% 100%;
+    }
+
+    .c6 {
+        background-image: url('Src/c6.PNG');
+        background-size: 100% 100%;
+    }
+
+    .c7 {
+        background-image: url('Src/c7.PNG');
+        background-size: 100% 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+
+        h2 {
+            padding-bottom: 10vh;
+            color: white;
+        }
+    }
+
+    .c7 {
+
+        h2 {
+            padding-top: 20%;
+        }
+
+        position: relative;
+
+        &::before {
+            content: '';
+            /* Create a pseudo-element for the overlay */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        & * {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+    }
+
+    .CSButs {
+        position: absolute;
+        display: flex;
+        min-width: 100%;
+        justify-content: space-between;
+        z-index: 1000;
+        top: 175vh; 
+        padding: 0 7%;
+    }
+
+    .prev-button,
+    .next-button {
+        background-color: transparent;
+        font-size: 45px;
+        border-width: 0;
+        color: white;
+    }
+
+    section {
+        height: 90vh;
+        padding: 0 7% 0 7%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        p {
+            text-align: justify;
+        }
+
+        .HEAD {
+            min-height: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 5vh 0;
+        }
+    }
+}
+
+@keyframes slideleft {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+//Calc
+#calc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 90vh;
+    padding: 0 7% 0 7%;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+
+    #calcHead {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    h3 {
+        padding: 0 0 2vh 0;
+        margin: 0;
+    }
+
+    div {
+        padding: 3vh 0;
+    }
+
+    label,
+    input {
+        width: 100%;
+    }
+
+    select {
+        min-width: 100%;
+    }
+
+    label,
+    select,
+    input {
+        margin-bottom: 10px;
+    }
+
+    .result {
+        text-decoration: underline;
+    }
+
+    #disclaimer {
+        margin-top: 5vh;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .bigBut {
+        margin-top: 3vh;
+    }
+
+    .nomargin {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .warning p {
+        text-align: center;
+    }
+
+}
+
+#registerSection {
+    height: auto !important;
+    margin: 10vh 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+form .ng-scope .smallbut {
+    max-width: 48% !important;
+    width: 48% !important;
+    min-width: none !important;
+}
+
+// Redirect
+.container-fluid .redirect .HEAD {
+    padding-top: 40px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3vh;
+
+
+    p {
+        text-align: center;
+        padding-bottom: 1vh;
+        padding-top: 1vh;
+        margin-bottom: 0;
+    }
+
+    h3 {
+        margin: 0;
+    }
+}
+
+.ng-valid label,
+.ng-invalid label {
+    display: flex;
+    justify-content: space-between;
+}
+
+.space-between {
+    min-width: 100%;
+    margin-top: 3vh;
+
+    h2 {
+        padding-bottom: 2vh;
+    }
+}
+
+.container-fluid .register .HEAD,
+.container-fluid .dashboard .HEAD,
+.container-fluid .social .HEAD {
+    padding: 0;
+    align-items: center;
+
+    .space-between {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 0;
+    }
+
+    p {
+        text-align: center;
+        padding-bottom: 2vh;
+    }
+}
+
+.container-fluid .dashboard .HEAD p {
+    padding-top: 1vh;
+}
+
+.container-fluid .dashboard,
+.container-fluid .social {
+    height: auto;
+    padding-bottom: 5vh;
+
+    h4 {
+        margin-top: 2vh;
+        text-align: center;
+    }
+
+    h3 {
+        margin: 4vh 0;
+    }
+
+    h2 {
+        padding: 3vh 0;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    em {
+        padding-bottom: 2vh;
+        font-size: 17px;
+    }
+
+    #lowestEmissionChart {
+        margin-bottom: 2vh;
+    }
+
+    .space-between {
+        justify-content: flex-start !important;
+    }
+
+    .bigBut {
+        margin-top: 3vh;
+    }
+}
+
+.dashboard .Footprints {
+    margin-bottom: 6vh;
+}
+
+.social .Footprints {
+    margin-bottom: 10vh;
+}
+
+.container-fluid .social .HEAD {
+
+    h3 {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    div {
+        width: 100%;
+    }
+
+    .space-between {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between !important;
+        align-items: center;
+        margin: 1vh 0;
+
+        h4 {
+            margin: 0;
+        }
+
+        p {
+            padding: 0;
+        }
+    }
+
+    .fullW {
+        min-width: 72%;
+        width: 72%;
+    }
+
+    .comments-section {
+        margin-bottom: 15vh;
+
+        p {
+            padding: 0.5vh;
+        }
+
+        button {
+            width: 25%;
+            margin-top: 2vh;
+        }
+
+        input {
+            margin-top: 2vh;
+        }
+    }
+}
+
+
+@media (max-width: 500px) {
+    .container-fluid .register {
+        margin-top: 5vh !important;
+        margin-bottom: 5vh !important;
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .navbar .navbar-nav {
+        background-color: transparent;
+        opacity: 1;
+        margin-top: 0;
+        padding: 0;
+        position: fixed;
+        top: 4vh;
+        right: 2vh;
+    }
+
+    .container-fluid .carousel-slide {
+        padding-top: 10vh;
+    }
+
+    .container-fluid .c7 h2 {
+        padding-bottom: 10vh;
+        padding-top: 0;
+    }
+
+    .bigBut {
+        width: 75% !important;
+        max-width: 75% !important;
+    }
+
+    input {
+        min-width: 50%;
+    }
+
+    .redirect .space-between,
+    .redirect .space-between form {
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+    }
+
+    .comments-section {
+
+        .space-between2 {
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                margin-top: 2vh;
+            }
+        }
+    }
+
+    .graph-container {
+        display: flex;
+        max-height: 300px;
+        justify-content: center;        
+    }
+
+    .graph-containerRADAR {
+        display: flex;
+        max-height: 400px;
+        justify-content: center;
+        margin-bottom: 1vh;
+    }
+
+    #calc div {
+        padding: 5vh 0;
+    }
+
+    #calc .nomargin {
+        padding-top: 1vh;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    //Font sizes
+    .navbar-brand {
+        font-size: 21px;
+    }
+
+    h1 {
+        font-size: 39px !important;
+    }
+
+    h2 {
+        font-size: 33px !important;
+    }
+
+    h3 {
+        font-size: 27px !important;
+    }
+
+    label,
+    input,
+    p,
+    .navbar-nav>li>a,
+    button,
+    canvas {
+        font-size: 17px !important;
+    }
+
+    select {
+        font-size: 19px;
+    }
+
+    .CSButs button{
+        font-size: 40px !important;
+    }
+    
+}
+
+
+@media (min-width: 1024px){
+
+    //Font sizes
+    .navbar-brand {
+        font-size: 22.5px;
+    }
+
+    h1 {
+        font-size: 40.5px !important;
+    }
+
+    h2 {
+        font-size: 34.5px !important;
+    }
+
+    h3 {
+        font-size: 29.5px !important;
+    }
+
+    label,
+    input,
+    p,
+    .navbar-nav>li>a,
+    button,
+    canvas {
+        font-size: 18.5px !important;
+    }
+
+    select {
+        font-size: 20.5px;
+    }
+
+    .CSButs button{
+        font-size: 41.5px !important;
+    }
+}
+
+@media (min-width: 1440px) {
+
+    .container-fluid section, .container-fluid .carousel-slide, #calc {
+        padding-left: 25%;
+        padding-right: 25%;
+    }
+
+}

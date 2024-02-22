@@ -11,7 +11,6 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout,
 
   CarbonFootprintService.getLastThreeFootprintsByUsername($scope.username).then(function (response) {
     $scope.lastThreeFootprints = response.data;
-    console.log($scope.lastThreeFootprints);
     if ($scope.lastThreeFootprints.length = 0){
       $scope.noRecentData = false;
     }
@@ -50,7 +49,6 @@ function DashboardController($scope, $cookies, CarbonFootprintService, $timeout,
 
 
   function createOrUpdateBarCharts() {
-    // Iterate over the last three footprints and create/update bar charts for each
     $scope.lastThreeFootprints.forEach(function (footprint, index) {
       const userMetrics = [
         footprint.totalVehicleEmissions,

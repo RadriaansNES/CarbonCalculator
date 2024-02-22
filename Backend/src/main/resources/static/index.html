@@ -3,21 +3,30 @@
 <html>
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B98XHR5W4R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-B98XHR5W4R');
+  </script>
   <title>MyCarbonFootprint</title>
-  <base href="/" /> 
+  <base href="/" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="index.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
 <body>
   <div ng-app="myApp" class="MainApp">
-    <div ui-view></div> 
+    <div ui-view></div>
   </div>
 
   <script src="node_modules/angular/angular.js"></script>
@@ -26,7 +35,7 @@
   <script src="app.config.js"></script>
   <script src="Components/Services/dashboardService.component.js"></script>
   <script src="Components/Home/home.component.js"></script>
-  <script src="Components/Login/login.component.js"></script> 
+  <script src="Components/Login/login.component.js"></script>
   <script src="Components/Calc/calculator.component.js"></script>
   <script src="Components/Redirect/redirect.component.js"></script>
   <script src="Components/Signup/signup.component.js"></script>

@@ -1,0 +1,63 @@
+<!-- social.component.html -->
+<div class="container-fluid">
+    <section class="social">
+        <div class="HEAD">
+            <div>
+                <div>
+                    <h3 class="animate__animated animate__bounce">Best 3 Carbon Footprints This Month</h3>
+                    <div class='Footprints' ng-repeat="footprint in bestFootprints">
+                        <div class="space-between">
+                            <h4>{{ footprint.user.username }}</h4>
+                            <p>{{(footprint.calculationDate | date:'dd/MM/yyyy')}}</p>
+                        </div>
+                        <p><u>{{ footprint.totalEmissions + ' kg - CO2e/Month total emissions'}}</u></p>
+                        <div class="graph-container">
+                            <canvas id="bestFootprintsChart{{$index}}"></canvas>
+                        </div>
+                        <div class="comments-section">
+                            <div ng-repeat="comment in footprint.comments">
+                                <div class="space-between">
+                                    <p>{{ comment.user.username }}</p>
+                                    <p>{{ comment.commentDate | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+                                </div>
+                                <p>{{ comment.commentText }}</p>
+                            </div>
+                            <div class="space-between2">
+                                <input class='fullW' type="text" ng-model="footprint.newCommentText"
+                                    placeholder="Add a comment">
+                                <button ng-click="postComment(footprint.id, footprint.newCommentText)">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Recently Posted Carbon Footprints</h3>
+                    <div ng-repeat="footprint in recentFootprints">
+                        <div class="space-between">
+                            <h4>{{ footprint.user.username }}</h4>
+                            <p>{{(footprint.calculationDate | date:'dd/MM/yyyy')}}</p>
+                        </div>
+                        <p><u>{{ footprint.totalEmissions + ' kg - CO2e/Month total emissions'}}</u></p>
+                        <div class="graph-container">
+                            <canvas id="recentFootprintsChart{{$index}}"></canvas>
+                        </div>
+                        <div class="comments-section">
+                            <div ng-repeat="comment in footprint.comments">
+                                <div class="space-between">
+                                    <p>{{ comment.user.username }}</p>
+                                    <p>{{ comment.commentDate | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+                                </div>
+                                <p>{{ comment.commentText }}</p>
+                            </div>
+                            <div class="space-between2">
+                                <input class='fullW' type="text" ng-model="footprint.newCommentText"
+                                    placeholder="Add a comment">
+                                <button ng-click="postComment(footprint.id, footprint.newCommentText)">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

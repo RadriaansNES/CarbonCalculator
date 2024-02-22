@@ -1,16 +1,2 @@
-node_modules
-
-#backend
-target
-application.properties
-.classpath
-.project
-.settings/
-.springBeans
-.DS_Store
-*.log
 .vscode
-.env
-application
-mvnw
-mvnw.cmd
+node_modules

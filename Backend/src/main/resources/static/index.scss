@@ -403,6 +403,11 @@ body {
 
 }
 
+#registerSection {
+    height: auto !important;
+    margin: 10vh 0;
+}
+
 @keyframes fadeIn {
     to {
         opacity: 1;
